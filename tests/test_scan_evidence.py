@@ -33,10 +33,10 @@ def inputs(tmp_path):
             bundle.addfile(info, io.BytesIO(data))
     inspection = [
         {
-            "Id": "local-index",
+            "Id": "sha256:" + hashlib.sha256(config).hexdigest(),
             "Architecture": "amd64",
             "RootFS": {"Layers": ["sha256:layer"]},
-            "Config": {"Env": ["private-inspection-value"]},
+            "Config": {"Env": ["CREDENTIAL=private-runtime-value"]},
         }
     ]
     scan = {
@@ -81,7 +81,18 @@ def test_evidence_preserves_findings_without_leaking_credentials(tmp_path):
     assert "gate_exit_code" not in result  # Evidence cannot claim the later gate has run.
 
 
-@pytest.mark.parametrize("failure", ["identity", "layers", "architecture", "inventory", "runtime"])
+@pytest.mark.parametrize(
+    "failure",
+    [
+        "identity",
+        "layers",
+        "architecture",
+        "inventory",
+        "runtime",
+        "configuration",
+        "executed-identity",
+    ],
+)
 def test_evidence_rejects_mismatched_or_incomplete_scans(tmp_path, failure):
     args = inputs(tmp_path)
     if failure == "identity":
@@ -92,7 +103,28 @@ def test_evidence_rejects_mismatched_or_incomplete_scans(tmp_path, failure):
         args[-1] = "arm64"
     elif failure == "inventory":
         args[2]["Results"] = []
+    elif failure == "configuration":
+        args[1][0]["Config"]["User"] = "0"
+    elif failure == "executed-identity":
+        args[1][0]["Id"] = "wrong-image"
     else:
         args[3]["status"] = "failed"
+    with pytest.raises(ValueError):
+        module.record(*args)
+
+
+def test_containerd_manifest_identity_is_bound_to_runtime_config(tmp_path):
+    args = inputs(tmp_path)
+    config_digest = args[2]["Metadata"]["ImageID"]
+    blob = json.dumps({"config": {"digest": config_digest}}).encode()
+    manifest_digest = "sha256:" + hashlib.sha256(blob).hexdigest()
+    with tarfile.open(args[0], "a") as bundle:
+        info = tarfile.TarInfo("blobs/sha256/" + manifest_digest.split(":")[1])
+        info.size = len(blob)
+        bundle.addfile(info, io.BytesIO(blob))
+    args[1][0]["Id"] = manifest_digest
+    args[1][0]["Descriptor"] = {"digest": manifest_digest}
+    assert module.record(*args)["executed_image_identity_verified"] is True
+    args[1][0]["Descriptor"]["digest"] = "sha256:" + "0" * 64
     with pytest.raises(ValueError):
         module.record(*args)

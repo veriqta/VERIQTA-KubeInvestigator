@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import tarfile
@@ -161,16 +162,22 @@ def prepare(key):
             cache,
             "--skip-db-update",
             "--input",
-            image_archive,
+            image_archive.name,
             "--format",
             "spdx-json",
             "--output",
-            output / "sbom.spdx.json",
+            "sbom.spdx.json",
+            cwd=output,
         )
     (output / "RELEASE-NOTES.md").write_bytes((ROOT / "CHANGELOG.md").read_bytes())
     (output / "requirements.lock").write_bytes((ROOT / "requirements.lock").read_bytes())
     public = output / "candidate-public.pem"
     public.write_bytes(run("openssl", "pkey", "-in", key, "-pubout"))
+    for artifact in output.iterdir():
+        if artifact.suffix in {".json", ".md", ".lock", ".pem"}:
+            text = artifact.read_text()
+            if str(ROOT) in text or re.search(r"/(?:Users|home)/[^/\s]+|/private/var/", text):
+                raise ValueError("Candidate metadata contains a private host path; signing refused")
     subjects = [
         {"name": p.name, "digest": {"sha256": digest(p)}}
         for p in sorted(output.iterdir())
