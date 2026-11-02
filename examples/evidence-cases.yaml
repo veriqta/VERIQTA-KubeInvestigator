@@ -1,0 +1,18 @@
+# Optional evidence acceptance only; apply through the disposable smoke wrapper.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: owned-crash
+  namespace: veriqta-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels: {app: owned-crash}
+  template:
+    metadata:
+      labels: {app: owned-crash}
+    spec:
+      containers:
+        - name: app
+          image: busybox:1.37.0
+          command: [sh, -c, "echo 'Required application configuration is missing'; echo 'password=fixture-only-value'; sleep 2; exit 1"]
