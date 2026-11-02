@@ -1,0 +1,1286 @@
+{
+  "retained-logs": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "270551f8-5030-44d9-a017-1e6256193ee9",
+    "created_at": "2026-11-02T19:20:20.203007+00:00",
+    "completed_at": "2026-11-02T19:20:20.233225+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "log-recovery",
+    "problem": "Check this restarted pod without claiming an active crash loop.",
+    "scenario": "crash",
+    "status": "insufficient evidence",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/log-recovery",
+        "collected_at": "2026-11-02T19:20:20.220784+00:00",
+        "data": [
+          {
+            "name": "log-recovery",
+            "labels": {
+              "app": "log-recovery"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": true,
+                "restarts": 1,
+                "waiting": null,
+                "terminated": null,
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 1
+                }
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/log-recovery",
+        "collected_at": "2026-11-02T19:20:20.225533+00:00",
+        "data": [
+          {
+            "name": "log-recovery.18e4509fdc5fcb64",
+            "reason": "Scheduled",
+            "message": "Successfully assigned veriqta-demo/log-recovery to veriqta-investigator-demo-control-plane",
+            "involved": {
+              "kind": "Pod",
+              "name": "log-recovery"
+            },
+            "count": 1
+          },
+          {
+            "name": "log-recovery.18e4509ff94d781e",
+            "reason": "Pulled",
+            "message": "Container image \"busybox:1.37.0\" already present on machine and can be accessed by the pod",
+            "involved": {
+              "kind": "Pod",
+              "name": "log-recovery"
+            },
+            "count": 2
+          },
+          {
+            "name": "log-recovery.18e4509ffa32f8cf",
+            "reason": "Created",
+            "message": "Container created",
+            "involved": {
+              "kind": "Pod",
+              "name": "log-recovery"
+            },
+            "count": 2
+          },
+          {
+            "name": "log-recovery.18e450a00016394e",
+            "reason": "Started",
+            "message": "Container started",
+            "involved": {
+              "kind": "Pod",
+              "name": "log-recovery"
+            },
+            "count": 2
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E3",
+        "resource": "veriqta-demo/logs/log-recovery",
+        "collected_at": "2026-11-02T19:20:20.230245+00:00",
+        "data": {
+          "pod": "log-recovery",
+          "container": "app",
+          "previous": false,
+          "text": "Current attempt: startup completed\n"
+        },
+        "truncated": true,
+        "error": null
+      },
+      {
+        "id": "E4",
+        "resource": "veriqta-demo/logs/log-recovery",
+        "collected_at": "2026-11-02T19:20:20.232588+00:00",
+        "data": {
+          "pod": "log-recovery",
+          "container": "app",
+          "previous": true,
+          "text": "Previous attempt: required configuration missing\npassword=[REDACTED]\n"
+        },
+        "truncated": true,
+        "error": null
+      }
+    ],
+    "observations": [],
+    "finding": {
+      "diagnosis": "MOCK \u2014 Requested condition not observed in this snapshot; this does not establish health.",
+      "assessment": "insufficient evidence",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+      ],
+      "next_steps": [
+        "Inspect the evidence and compare it with the intended workload configuration.",
+        "Make any correction independently, then run a linked follow-up investigation."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.029,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "ambiguous": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "99feaa31-9d34-4fc5-9ed6-b04c65d76f4a",
+    "created_at": "2026-11-02T19:20:44.408082+00:00",
+    "completed_at": "2026-11-02T19:20:44.435069+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "ambiguous-crash",
+    "problem": "The application exits; the underlying cause is unknown.",
+    "scenario": "crash",
+    "status": "completed",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/ambiguous-crash",
+        "collected_at": "2026-11-02T19:20:44.421893+00:00",
+        "data": [
+          {
+            "name": "ambiguous-crash",
+            "labels": {
+              "app": "ambiguous-crash"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 2,
+                "waiting": {
+                  "reason": "CrashLoopBackOff",
+                  "message": "back-off 20s restarting failed container=app pod=ambiguous-crash_veriqta-demo(3a208914-b762-4f2b-9a91-4f4b6a96a32f)"
+                },
+                "terminated": null,
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 2
+                }
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/ambiguous-crash",
+        "collected_at": "2026-11-02T19:20:44.426207+00:00",
+        "data": [
+          {
+            "name": "ambiguous-crash.18e4509fdcd03b3a",
+            "reason": "Scheduled",
+            "message": "Successfully assigned veriqta-demo/ambiguous-crash to veriqta-investigator-demo-control-plane",
+            "involved": {
+              "kind": "Pod",
+              "name": "ambiguous-crash"
+            },
+            "count": 1
+          },
+          {
+            "name": "ambiguous-crash.18e4509ffa06c077",
+            "reason": "Pulled",
+            "message": "Container image \"busybox:1.37.0\" already present on machine and can be accessed by the pod",
+            "involved": {
+              "kind": "Pod",
+              "name": "ambiguous-crash"
+            },
+            "count": 4
+          },
+          {
+            "name": "ambiguous-crash.18e4509ffb225281",
+            "reason": "Created",
+            "message": "Container created",
+            "involved": {
+              "kind": "Pod",
+              "name": "ambiguous-crash"
+            },
+            "count": 4
+          },
+          {
+            "name": "ambiguous-crash.18e4509fffb1f3f5",
+            "reason": "Started",
+            "message": "Container started",
+            "involved": {
+              "kind": "Pod",
+              "name": "ambiguous-crash"
+            },
+            "count": 3
+          },
+          {
+            "name": "ambiguous-crash.18e450a16947108f",
+            "reason": "BackOff",
+            "message": "Back-off restarting failed container app in pod ambiguous-crash_veriqta-demo(3a208914-b762-4f2b-9a91-4f4b6a96a32f)",
+            "involved": {
+              "kind": "Pod",
+              "name": "ambiguous-crash"
+            },
+            "count": 2
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E3",
+        "resource": "veriqta-demo/logs/ambiguous-crash",
+        "collected_at": "2026-11-02T19:20:44.430371+00:00",
+        "data": {
+          "pod": "ambiguous-crash",
+          "container": "app",
+          "previous": false,
+          "text": "Application exited; cause unavailable\n"
+        },
+        "truncated": true,
+        "error": null
+      },
+      {
+        "id": "E4",
+        "resource": "veriqta-demo/logs/ambiguous-crash",
+        "collected_at": "2026-11-02T19:20:44.433492+00:00",
+        "data": {
+          "pod": "ambiguous-crash",
+          "container": "app",
+          "previous": true,
+          "text": "Application exited; cause unavailable\n"
+        },
+        "truncated": true,
+        "error": null
+      }
+    ],
+    "observations": [
+      "Pod ambiguous-crash container app is waiting: CrashLoopBackOff; last exit: {'reason': 'Error', 'exit_code': 2}; message: back-off 20s restarting failed container=app pod=ambiguous-crash_veriqta-demo(3a208914-b762-4f2b-9a91-4f4b6a96a32f)"
+    ],
+    "finding": {
+      "diagnosis": "MOCK \u2014 Repeated container exits are observed. Exit status alone does not establish why the application failed.",
+      "assessment": "tentative",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E3",
+        "E4"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+      ],
+      "next_steps": [
+        "Inspect the evidence and compare it with the intended workload configuration.",
+        "Make any correction independently, then run a linked follow-up investigation."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.025,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "owned-crash": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "262d48d4-d0c4-4672-8534-784f2309599d",
+    "created_at": "2026-11-02T19:20:46.389703+00:00",
+    "completed_at": "2026-11-02T19:20:46.427560+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "owned-crash-c67698d9b-kkzk9",
+    "problem": "The application keeps crashing; inspect logs and ownership.",
+    "scenario": "crash",
+    "status": "completed",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/owned-crash-c67698d9b-kkzk9",
+        "collected_at": "2026-11-02T19:20:46.399772+00:00",
+        "data": [
+          {
+            "name": "owned-crash-c67698d9b-kkzk9",
+            "labels": {
+              "app": "owned-crash",
+              "pod-template-hash": "c67698d9b"
+            },
+            "phase": "Running",
+            "owners": [
+              {
+                "kind": "ReplicaSet",
+                "name": "owned-crash-c67698d9b"
+              }
+            ],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 2,
+                "waiting": {
+                  "reason": "CrashLoopBackOff",
+                  "message": "back-off 20s restarting failed container=app pod=owned-crash-c67698d9b-kkzk9_veriqta-demo(38701d2f-bf1b-4dda-ba00-7510e1b614ac)"
+                },
+                "terminated": null,
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 1
+                }
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/owned-crash-c67698d9b-kkzk9",
+        "collected_at": "2026-11-02T19:20:46.406200+00:00",
+        "data": [
+          {
+            "name": "owned-crash-c67698d9b-kkzk9.18e4509fdc6f8642",
+            "reason": "Scheduled",
+            "message": "Successfully assigned veriqta-demo/owned-crash-c67698d9b-kkzk9 to veriqta-investigator-demo-control-plane",
+            "involved": {
+              "kind": "Pod",
+              "name": "owned-crash-c67698d9b-kkzk9"
+            },
+            "count": 1
+          },
+          {
+            "name": "owned-crash-c67698d9b-kkzk9.18e4509ff9d85a24",
+            "reason": "Pulled",
+            "message": "Container image \"busybox:1.37.0\" already present on machine and can be accessed by the pod",
+            "involved": {
+              "kind": "Pod",
+              "name": "owned-crash-c67698d9b-kkzk9"
+            },
+            "count": 4
+          },
+          {
+            "name": "owned-crash-c67698d9b-kkzk9.18e4509ffaa3e007",
+            "reason": "Created",
+            "message": "Container created",
+            "involved": {
+              "kind": "Pod",
+              "name": "owned-crash-c67698d9b-kkzk9"
+            },
+            "count": 4
+          },
+          {
+            "name": "owned-crash-c67698d9b-kkzk9.18e4509fffae534b",
+            "reason": "Started",
+            "message": "Container started",
+            "involved": {
+              "kind": "Pod",
+              "name": "owned-crash-c67698d9b-kkzk9"
+            },
+            "count": 3
+          },
+          {
+            "name": "owned-crash-c67698d9b-kkzk9.18e450a169e03764",
+            "reason": "BackOff",
+            "message": "Back-off restarting failed container app in pod owned-crash-c67698d9b-kkzk9_veriqta-demo(38701d2f-bf1b-4dda-ba00-7510e1b614ac)",
+            "involved": {
+              "kind": "Pod",
+              "name": "owned-crash-c67698d9b-kkzk9"
+            },
+            "count": 2
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E3",
+        "resource": "veriqta-demo/logs/owned-crash-c67698d9b-kkzk9",
+        "collected_at": "2026-11-02T19:20:46.409268+00:00",
+        "data": {
+          "pod": "owned-crash-c67698d9b-kkzk9",
+          "container": "app",
+          "previous": false,
+          "text": "Required application configuration is missing\npassword=[REDACTED]\n"
+        },
+        "truncated": true,
+        "error": null
+      },
+      {
+        "id": "E4",
+        "resource": "veriqta-demo/logs/owned-crash-c67698d9b-kkzk9",
+        "collected_at": "2026-11-02T19:20:46.413505+00:00",
+        "data": {
+          "pod": "owned-crash-c67698d9b-kkzk9",
+          "container": "app",
+          "previous": true,
+          "text": "Required application configuration is missing\npassword=[REDACTED]\n"
+        },
+        "truncated": true,
+        "error": null
+      },
+      {
+        "id": "E5",
+        "resource": "veriqta-demo/replicasets/owned-crash-c67698d9b",
+        "collected_at": "2026-11-02T19:20:46.421486+00:00",
+        "data": [
+          {
+            "name": "owned-crash-c67698d9b",
+            "replicas": 1,
+            "ready_replicas": null,
+            "owners": [
+              {
+                "kind": "Deployment",
+                "name": "owned-crash"
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E6",
+        "resource": "veriqta-demo/deployments/owned-crash",
+        "collected_at": "2026-11-02T19:20:46.426590+00:00",
+        "data": [
+          {
+            "name": "owned-crash",
+            "replicas": 1,
+            "ready_replicas": null,
+            "owners": []
+          }
+        ],
+        "truncated": false,
+        "error": null
+      }
+    ],
+    "observations": [
+      "Pod owned-crash-c67698d9b-kkzk9 container app is waiting: CrashLoopBackOff; last exit: {'reason': 'Error', 'exit_code': 1}; message: back-off 20s restarting failed container=app pod=owned-crash-c67698d9b-kkzk9_veriqta-demo(38701d2f-bf1b-4dda-ba00-7510e1b614ac)"
+    ],
+    "finding": {
+      "diagnosis": "MOCK \u2014 Repeated container exits are observed. Exit status alone does not establish why the application failed.",
+      "assessment": "tentative",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5",
+        "E6"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+      ],
+      "next_steps": [
+        "Inspect the evidence and compare it with the intended workload configuration.",
+        "Make any correction independently, then run a linked follow-up investigation."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.036,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "image": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "2eab446a-b580-40ab-b974-863988b89693",
+    "created_at": "2026-11-02T19:20:46.922057+00:00",
+    "completed_at": "2026-11-02T19:20:46.935584+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "catalog-image",
+    "problem": "The image cannot be pulled; inspect the registry error.",
+    "scenario": "image",
+    "status": "completed",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/catalog-image",
+        "collected_at": "2026-11-02T19:20:46.928116+00:00",
+        "data": [
+          {
+            "name": "catalog-image",
+            "labels": {
+              "app": "catalog"
+            },
+            "phase": "Pending",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 0,
+                "waiting": {
+                  "reason": "ErrImagePull",
+                  "message": "rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found"
+                },
+                "terminated": null,
+                "last_exit": null
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/catalog-image",
+        "collected_at": "2026-11-02T19:20:46.934601+00:00",
+        "data": [
+          {
+            "name": "catalog-image.18e4509512576f86",
+            "reason": "Scheduled",
+            "message": "Successfully assigned veriqta-demo/catalog-image to veriqta-investigator-demo-control-plane",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 1
+          },
+          {
+            "name": "catalog-image.18e450952ed8147d",
+            "reason": "Pulling",
+            "message": "Pulling image \"busybox:veriqta-intentionally-missing\"",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509a6a5e8416",
+            "reason": "Failed",
+            "message": "Failed to pull image \"busybox:veriqta-intentionally-missing\": rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509a6a64aa61",
+            "reason": "Failed",
+            "message": "Error: ErrImagePull",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509aa120c653",
+            "reason": "BackOff",
+            "message": "Back-off pulling image \"busybox:veriqta-intentionally-missing\"",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509aa124cdac",
+            "reason": "Failed",
+            "message": "Error: ImagePullBackOff",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          }
+        ],
+        "truncated": false,
+        "error": null
+      }
+    ],
+    "observations": [
+      "Pod catalog-image container app is waiting: ErrImagePull; last exit: None; message: rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found"
+    ],
+    "finding": {
+      "diagnosis": "MOCK \u2014 An image pull backoff is observed. Inspect the collected message and events to distinguish an invalid image reference from registry access or availability failures.",
+      "assessment": "tentative",
+      "evidence_ids": [
+        "E1",
+        "E2"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+      ],
+      "next_steps": [
+        "Inspect the evidence and compare it with the intended workload configuration.",
+        "Make any correction independently, then run a linked follow-up investigation."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.012,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "healthy": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "439aea5c-d053-4c78-afc1-7eec7e56e7e1",
+    "created_at": "2026-11-02T19:20:47.456159+00:00",
+    "completed_at": "2026-11-02T19:20:47.467122+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "frontend",
+    "problem": "Check whether this healthy frontend is crash looping.",
+    "scenario": "crash",
+    "status": "insufficient evidence",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/frontend",
+        "collected_at": "2026-11-02T19:20:47.462550+00:00",
+        "data": [
+          {
+            "name": "frontend",
+            "labels": {
+              "app": "frontend"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": true,
+                "restarts": 0,
+                "waiting": null,
+                "terminated": null,
+                "last_exit": null
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/frontend",
+        "collected_at": "2026-11-02T19:20:47.466322+00:00",
+        "data": [
+          {
+            "name": "frontend.18e45095132e436b",
+            "reason": "Scheduled",
+            "message": "Successfully assigned veriqta-demo/frontend to veriqta-investigator-demo-control-plane",
+            "involved": {
+              "kind": "Pod",
+              "name": "frontend"
+            },
+            "count": 1
+          },
+          {
+            "name": "frontend.18e450952e73a1bb",
+            "reason": "Pulling",
+            "message": "Pulling image \"nginx:1.28-alpine\"",
+            "involved": {
+              "kind": "Pod",
+              "name": "frontend"
+            },
+            "count": 1
+          },
+          {
+            "name": "frontend.18e4509a04ddd19e",
+            "reason": "Pulled",
+            "message": "Successfully pulled image \"nginx:1.28-alpine\" in 12.152s (20.877s including waiting). Image size: 25801709 bytes.",
+            "involved": {
+              "kind": "Pod",
+              "name": "frontend"
+            },
+            "count": 1
+          },
+          {
+            "name": "frontend.18e4509a05e1e5fc",
+            "reason": "Created",
+            "message": "Container created",
+            "involved": {
+              "kind": "Pod",
+              "name": "frontend"
+            },
+            "count": 1
+          },
+          {
+            "name": "frontend.18e4509a0a0bb204",
+            "reason": "Started",
+            "message": "Container started",
+            "involved": {
+              "kind": "Pod",
+              "name": "frontend"
+            },
+            "count": 1
+          }
+        ],
+        "truncated": false,
+        "error": null
+      }
+    ],
+    "observations": [],
+    "finding": {
+      "diagnosis": "MOCK \u2014 Requested condition not observed in this snapshot; this does not establish health.",
+      "assessment": "insufficient evidence",
+      "evidence_ids": [
+        "E1",
+        "E2"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+      ],
+      "next_steps": [
+        "Inspect the evidence and compare it with the intended workload configuration.",
+        "Make any correction independently, then run a linked follow-up investigation."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.009,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "mismatch": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "74db9451-c291-461d-b697-fc80b21ba86e",
+    "created_at": "2026-11-02T19:20:47.981528+00:00",
+    "completed_at": "2026-11-02T19:20:48.003715+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "catalog-image",
+    "problem": "The image cannot be pulled; investigate ImagePullBackOff.",
+    "scenario": "crash",
+    "status": "insufficient evidence",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/catalog-image",
+        "collected_at": "2026-11-02T19:20:47.992440+00:00",
+        "data": [
+          {
+            "name": "catalog-image",
+            "labels": {
+              "app": "catalog"
+            },
+            "phase": "Pending",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 0,
+                "waiting": {
+                  "reason": "ErrImagePull",
+                  "message": "rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found"
+                },
+                "terminated": null,
+                "last_exit": null
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/catalog-image",
+        "collected_at": "2026-11-02T19:20:48.002530+00:00",
+        "data": [
+          {
+            "name": "catalog-image.18e4509512576f86",
+            "reason": "Scheduled",
+            "message": "Successfully assigned veriqta-demo/catalog-image to veriqta-investigator-demo-control-plane",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 1
+          },
+          {
+            "name": "catalog-image.18e450952ed8147d",
+            "reason": "Pulling",
+            "message": "Pulling image \"busybox:veriqta-intentionally-missing\"",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509a6a5e8416",
+            "reason": "Failed",
+            "message": "Failed to pull image \"busybox:veriqta-intentionally-missing\": rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509a6a64aa61",
+            "reason": "Failed",
+            "message": "Error: ErrImagePull",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509aa120c653",
+            "reason": "BackOff",
+            "message": "Back-off pulling image \"busybox:veriqta-intentionally-missing\"",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          },
+          {
+            "name": "catalog-image.18e4509aa124cdac",
+            "reason": "Failed",
+            "message": "Error: ImagePullBackOff",
+            "involved": {
+              "kind": "Pod",
+              "name": "catalog-image"
+            },
+            "count": 3
+          }
+        ],
+        "truncated": false,
+        "error": null
+      }
+    ],
+    "observations": [],
+    "finding": {
+      "diagnosis": "MOCK \u2014 The named condition does not match the selected scenario. Collected evidence does not establish the submitted problem's cause.",
+      "assessment": "insufficient evidence",
+      "evidence_ids": [
+        "E1",
+        "E2"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "The selected scenario does not establish the submitted problem's cause."
+      ],
+      "next_steps": [
+        "Choose the observed condition and matching Pod or Service; investigate unrelated problems independently."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.02,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "unsupported": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "8d307dc2-454e-454c-b46f-2080b0fd725b",
+    "created_at": "2026-11-02T19:20:48.514612+00:00",
+    "completed_at": "2026-11-02T19:20:48.537011+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "frontend",
+    "problem": "Investigate database query latency and fix production automatically.",
+    "scenario": "service",
+    "status": "insufficient evidence",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/*",
+        "collected_at": "2026-11-02T19:20:48.521866+00:00",
+        "data": [
+          {
+            "name": "ambiguous-crash",
+            "labels": {
+              "app": "ambiguous-crash"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 3,
+                "waiting": null,
+                "terminated": {
+                  "reason": "Error",
+                  "exit_code": 2
+                },
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 2
+                }
+              }
+            ]
+          },
+          {
+            "name": "catalog-image",
+            "labels": {
+              "app": "catalog"
+            },
+            "phase": "Pending",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 0,
+                "waiting": {
+                  "reason": "ImagePullBackOff",
+                  "message": "Back-off pulling image \"busybox:veriqta-intentionally-missing\": ErrImagePull: rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found"
+                },
+                "terminated": null,
+                "last_exit": null
+              }
+            ]
+          },
+          {
+            "name": "checkout-crash",
+            "labels": {
+              "app": "checkout"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": false,
+                "restarts": 3,
+                "waiting": null,
+                "terminated": {
+                  "reason": "Error",
+                  "exit_code": 1
+                },
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 1
+                }
+              }
+            ]
+          },
+          {
+            "name": "frontend",
+            "labels": {
+              "app": "frontend"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": true,
+                "restarts": 0,
+                "waiting": null,
+                "terminated": null,
+                "last_exit": null
+              }
+            ]
+          },
+          {
+            "name": "log-recovery",
+            "labels": {
+              "app": "log-recovery"
+            },
+            "phase": "Running",
+            "owners": [],
+            "containers": [
+              {
+                "name": "app",
+                "ready": true,
+                "restarts": 1,
+                "waiting": null,
+                "terminated": null,
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 1
+                }
+              }
+            ]
+          },
+          {
+            "name": "owned-crash-c67698d9b-kkzk9",
+            "labels": {
+              "app": "owned-crash",
+              "pod-template-hash": "c67698d9b"
+            },
+            "phase": "Running",
+            "owners": [
+              {
+                "kind": "ReplicaSet",
+                "name": "owned-crash-c67698d9b"
+              }
+            ],
+            "containers": [
+              {
+                "name": "app",
+                "ready": true,
+                "restarts": 3,
+                "waiting": null,
+                "terminated": null,
+                "last_exit": {
+                  "reason": "Error",
+                  "exit_code": 1
+                }
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/services/frontend",
+        "collected_at": "2026-11-02T19:20:48.527044+00:00",
+        "data": [
+          {
+            "name": "frontend",
+            "selector": {
+              "app": "frontned"
+            },
+            "type": "ClusterIP"
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E3",
+        "resource": "veriqta-demo/endpointslices/*",
+        "collected_at": "2026-11-02T19:20:48.531110+00:00",
+        "data": [
+          {
+            "name": "frontend-r6vhj",
+            "service": "frontend",
+            "endpoints": []
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E4",
+        "resource": "veriqta-demo/replicasets/owned-crash-c67698d9b",
+        "collected_at": "2026-11-02T19:20:48.533144+00:00",
+        "data": [
+          {
+            "name": "owned-crash-c67698d9b",
+            "replicas": 1,
+            "ready_replicas": 1,
+            "owners": [
+              {
+                "kind": "Deployment",
+                "name": "owned-crash"
+              }
+            ]
+          }
+        ],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E5",
+        "resource": "veriqta-demo/deployments/owned-crash",
+        "collected_at": "2026-11-02T19:20:48.535162+00:00",
+        "data": [
+          {
+            "name": "owned-crash",
+            "replicas": 1,
+            "ready_replicas": 1,
+            "owners": []
+          }
+        ],
+        "truncated": false,
+        "error": null
+      }
+    ],
+    "observations": [
+      "Service frontend selector {'app': 'frontned'} matches no pods in the collected namespace snapshot."
+    ],
+    "finding": {
+      "diagnosis": "MOCK \u2014 The submitted problem asks for an unsupported diagnosis or action. Only the selected Kubernetes condition was collected; no cause is established.",
+      "assessment": "insufficient evidence",
+      "evidence_ids": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "The selected scenario does not establish the submitted problem's cause."
+      ],
+      "next_steps": [
+        "Choose the observed condition and matching Pod or Service; investigate unrelated problems independently."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.021,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  },
+  "missing": {
+    "schema_version": "1.0",
+    "software_version": "0.1.0",
+    "id": "97e114c9-11de-4029-9eb3-3706413c18e0",
+    "created_at": "2026-11-02T19:20:49.048148+00:00",
+    "completed_at": "2026-11-02T19:20:49.059960+00:00",
+    "namespace": "veriqta-demo",
+    "workload": "missing-pod",
+    "problem": "This pod is missing; determine whether it is crashing.",
+    "scenario": "crash",
+    "status": "insufficient evidence",
+    "provider": "mock",
+    "model": "deterministic-fixture-v1",
+    "source": "kubernetes",
+    "mock": true,
+    "evidence": [
+      {
+        "id": "E1",
+        "resource": "veriqta-demo/pods/missing-pod",
+        "collected_at": "2026-11-02T19:20:49.054791+00:00",
+        "data": [],
+        "truncated": false,
+        "error": null
+      },
+      {
+        "id": "E2",
+        "resource": "veriqta-demo/events/missing-pod",
+        "collected_at": "2026-11-02T19:20:49.058638+00:00",
+        "data": [],
+        "truncated": false,
+        "error": null
+      }
+    ],
+    "observations": [],
+    "finding": {
+      "diagnosis": "MOCK \u2014 Requested condition not observed in this snapshot; this does not establish health.",
+      "assessment": "insufficient evidence",
+      "evidence_ids": [
+        "E1",
+        "E2"
+      ],
+      "resource_refs": [],
+      "alternatives": [
+        "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+      ],
+      "next_steps": [
+        "Inspect the evidence and compare it with the intended workload configuration.",
+        "Make any correction independently, then run a linked follow-up investigation."
+      ]
+    },
+    "limitations": [
+      "A point-in-time investigation cannot guarantee application health.",
+      "Redaction is best effort; review exports before sharing.",
+      "Model prose is an interpretation; only validated evidence IDs and structured resource references are authoritative."
+    ],
+    "failures": [],
+    "usage": {},
+    "estimated_cost": null,
+    "duration_seconds": 0.009,
+    "parent_id": null,
+    "followup_ids": [],
+    "verification": null
+  }
+}

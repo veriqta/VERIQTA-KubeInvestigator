@@ -123,3 +123,34 @@ def test_kubelet_log_unavailability_is_not_usable_evidence(tmp_path):
             ),
             "E1",
         )
+
+
+def test_live_path_does_not_request_diagnosis_for_unestablished_condition(tmp_path):
+    async def run():
+        s = Settings(token=secrets.token_urlsafe(32), database=str(tmp_path / "reports.db"))
+        store = Store(s)
+        engine = Engine(s, store, Collector(s))
+
+        class ForbiddenProvider:
+            async def turn(self, r):
+                pytest.fail("No condition was established; do not request a diagnosis")
+
+        engine.provider = ForbiddenProvider()
+        r = Report(
+            id="healthy",
+            namespace="veriqta-demo",
+            workload="frontend",
+            problem="Check this pod for repeated crashes",
+            scenario="crash",
+            provider="openai",
+            model="candidate",
+            source="fixture",
+            mock=False,
+        )
+        await engine.execute(r)
+        assert r.status == "insufficient evidence" and not r.observations
+        assert r.finding.diagnosis.startswith("Evidence-only")
+        assert not r.usage
+        store.close()
+
+    asyncio.run(run())

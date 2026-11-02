@@ -2,6 +2,7 @@
 
 Start with the current [release-readiness report](release-readiness.md) and [unsuppressed scan findings](security/findings.md).
 
+- [Real-cluster browser journey and genuine captures](browser-acceptance.md)
 - [Container runtime, local acceptance and hosted-runner commands](runtime-acceptance.md)
 - [Secure deployment checklist](security/secure-deployment.md)
 - [Threat model](security/threat-model.md) · [Security verification matrix](security/verification-matrix.md)
@@ -12,6 +13,7 @@ Start with the current [release-readiness report](release-readiness.md) and [uns
 - [Provider configuration and opt-in evaluations](provider.md)
 - [Configuration reference](configuration.md)
 - [API and report schema](api.md)
+- [Measured operating limits](operating-limits.md)
 - [Operations, monitoring, backup, restore and retention](operations.md)
 - [Compatibility and support evidence](compatibility.md)
 - [Development and contributing](../CONTRIBUTING.md)

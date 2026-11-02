@@ -8,9 +8,9 @@ A self-hosted, read-only Kubernetes incident investigator that turns authorised 
 
 [Quick start](#quick-start) · [Demonstration](#see-an-investigation) · [Documentation](docs/index.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 
-![Actual authenticated interface, explicitly labelled MOCK provider and synthetic fixture evidence](docs/assets/screenshots/overview.png)
+![Actual Helm-installed interface with real Kubernetes evidence and explicitly labelled MOCK interpretations](docs/assets/cluster/overview.png)
 
-*Actual 0.1.0 interface using synthetic fixture evidence and a mock provider. No live-model quality or cluster recovery is implied.*
+*Actual 0.1.0 interface against disposable Kubernetes sample workloads. Evidence is real; interpretations use the MOCK provider. [Browser acceptance and genuine recording](docs/browser-acceptance.md). No live-model quality is implied.*
 
 ## Investigate the failure without handing over control
 

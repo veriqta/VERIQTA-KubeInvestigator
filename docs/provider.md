@@ -1,19 +1,49 @@
-# Provider and evaluations
+# Provider configuration and evaluation
 
-Two independent settings matter: `KI_SOURCE=fixture|kubernetes` controls evidence; `KI_PROVIDER=mock|openai` controls interpretation. Fixture requires mock. Mock requires no API key and never contacts a model provider. Reports and captures explicitly label mock and synthetic evidence separately.
+Evidence and interpretation are separate settings: `KI_SOURCE=fixture|kubernetes` and `KI_PROVIDER=mock|openai`. Fixture evidence requires mock. Mock interpretations are visibly labelled, require no provider key and make no model request. Real Kubernetes evidence can be collected with a mock provider; this validates collection and enforcement, not AI quality.
 
-The live adapter implements the OpenAI Chat Completions JSON-mode contract with `max_completion_tokens=1600`, a fixed api.openai.com destination, no redirects, no automatic retries, and a 20-second HTTP timeout within the investigation deadline. Errors for authentication, rate limits, unsupported models, invalid JSON, malformed tools, invented references and timeouts become failed reports with retained evidence. Failure does not silently switch to mock. The tested provider contract uses a synthetic HTTP transport in tests; **no live model configuration has been tested**. The default candidate is `gpt-4.1-mini`, configurable with KI_MODEL. Review [official model availability](https://developers.openai.com/api/docs/models/gpt-4.1-mini) before live use, including announced deprecations. Do not assume access through a ChatGPT subscription; API billing is separate.
+The live adapter uses OpenAI Chat Completions JSON mode, a fixed verified-TLS destination, no redirects, no automatic retries, a 20-second request timeout and a bounded streamed response. GPT-6 candidates use `reasoning_effort=none`. Structured tools and references are validated outside the model. Errors become honest failed reports rather than substituted mock diagnoses. Selected-field evidence is redacted before submission; residual confidential-data risk remains. Provider retention and billing are external responsibilities.
 
-Use an existing Kubernetes Secret with keys KI_TOKEN and KI_API_KEY. Create the Secret from a private env file or your secret manager, never Helm values or source control. Set chart `provider=openai` and `model` to your authorised model. For local restricted-kubeconfig operation set KI_SOURCE=kubernetes, KI_PROVIDER=openai and KI_API_KEY in the server environment. No key is embedded in JavaScript or exports.
+The current candidate is **gpt-6-luna**, configurable through `KI_MODEL`. No live model configuration or account access has been tested. The earlier GPT-4.1 mini candidate is deprecated, with its snapshot scheduled for removal on January 14, 2027 according to the [official deprecations](https://developers.openai.com/api/docs/deprecations). The [GPT-6 Luna page](https://developers.openai.com/api/docs/models/gpt-6-luna) documents Chat Completions and standard pricing; model availability must be rechecked before evaluation. ChatGPT subscriptions do not establish API access or credits.
 
-Opt-in live evaluation (this performs paid calls and requires your independent authorisation):
+## Proposed bounded live evaluation — not executed
+
+The no-call plan is reproducible:
 
 ```sh
-# Point at an authorised deployment configured with the live provider.
-# KI_TOKEN is the team token; provider credentials exist only on the server.
-.venv/bin/python scripts/evaluate.py --acknowledge-paid-calls --url http://127.0.0.1:8080
+.venv-source/bin/python scripts/evaluate.py --plan
 ```
 
-Use a dedicated sample environment from the demo guide with its failure state reset; do not evaluate production workloads. Six cases cover supported conditions, a healthy pod, ambiguity without logs and an unsupported latency/remediation request. Each defines expected evidence and acceptable limitations in [cases](../evals/cases.json). Output records UTC time, software/model configuration, prompt version, complete redacted reports and review fields. A human must label incorrect diagnosis, unsupported claims and acceptable outcome; null is not a pass. Count those errors as well as successful cases and preserve conditions and operator-reviewed results. Prompt text is versioned in provider.py. No accuracy benchmark or coverage claim has been established.
+The suite contains **eight investigations**, including all three conditions, ambiguity, a healthy pod, a missing workload, an explicit scenario mismatch and an unsupported request. Each has expected evidence and acceptable uncertainty in [cases](../evals/cases.json). Prepare the disposable samples, including examples/evidence-cases.yaml, with optional logs enabled. Preserve their original failure state for evaluation; corrected browser samples are not suitable without a reset.
 
-Usage is recorded when supplied by OpenAI and aggregated in metrics. Estimated cost is null because reliable billed usage/pricing is not established. No live calls were made, so observed live-provider cost is unavailable. Budget for up to six calls per investigation with repeated context and up to 1600 output tokens per call; check your provider price sheet and billing controls. A live evaluation can create six investigations. Infrastructure and paid model access can cost money even though the software is open source.
+The proposed provider is OpenAI `gpt-6-luna`, standard processing with reasoning disabled. Limits are six model turns per investigation, **48 total requests at most**, eight Kubernetes tools per investigation, 90 seconds of running work, 48,000 payload characters and 1,600 output tokens per request. Calls are sequential and never automatically retried. Explicit mismatches can terminate without a provider request.
+
+At the official rates checked November 2, 2026—$0.10 per million uncached input tokens and $0.50 per million output tokens—a conservative allowance of 50,000 input tokens plus 1,600 output tokens per request gives an estimated envelope of **$0.2784**. The proposed budget is **$0.50**. This is not a guaranteed bill or a hard provider-side cap: recheck pricing/account access, apply provider billing controls, and obtain separate authorisation before any paid execution. No cost or accuracy result has been observed.
+
+## Secure execution prerequisites
+
+Use only an authorised disposable deployment exposed through an explicit localhost port-forward. Keep a high-entropy team token and provider API key in a private server-side environment file or existing Kubernetes Secret containing `KI_TOKEN` and `KI_API_KEY`. Never put real values in source, Helm values, URLs, screenshots or chat. Configure `provider=openai`, `model=gpt-6-luna`, `logs=true` and only `veriqta-demo`; use the documented [installation Secret procedure](installation.md). No key is delivered to the browser or evaluation output. A Secret's base64 representation is not encryption.
+
+After independent paid-call authorisation and private configuration, the explicit execution command is:
+
+```sh
+# KI_TOKEN is the team token, not the provider key. Configure it privately.
+.venv-source/bin/python scripts/evaluate.py --run --acknowledge-paid-calls \
+  --url http://127.0.0.1:18080 --output .data/live-evaluation-NEW-RUN.json
+```
+
+The harness refuses mock/synthetic deployments, the wrong candidate, expanded namespaces or larger configured budgets. It refuses non-local URLs, redirects and output overwrites. A private `--token-file` may supply the team token instead of its environment variable. Polling has a deadline; timeout requests cancellation and stops later cases. Partial failures are retained in private output; no automatic retry occurs. Review outputs before sharing despite application redaction.
+
+## Real-evidence replay and review
+
+The [captured reports](../evals/real-evidence/2026-11-02-mock-reports.json) contain real collected evidence from disposable samples with mock interpretations, including current/previous logs and ownership. Their [acceptance provenance](acceptance/2026-11-02-optional-evidence-mock.json) identifies the tested revision and image. Replay validates terminal report structure and references without contacting Kubernetes or a provider:
+
+```sh
+.venv-source/bin/python scripts/evaluate.py \
+  --replay evals/real-evidence/2026-11-02-mock-reports.json \
+  --output .data/replay-NEW-RUN.json
+```
+
+Replay is not live inference or an accuracy benchmark. Live outputs retain prompt version, case-file hash, configured/returned model, timestamps, evidence, failures and reported token usage. Human reviewers must label incorrect diagnoses, unsupported claims and acceptable outcomes, including ambiguity and healthy cases. Null labels are unreviewed, never passes. Compute quality rates only after reviewing every case and recording the actual dataset, conditions and model identity.
+
+Usage metrics report tokens when supplied; cost estimates in application reports remain unavailable. Infrastructure may cost money even though the code is open source. Redaction, shared-team trust and provider disclosures remain essential for every deployment.

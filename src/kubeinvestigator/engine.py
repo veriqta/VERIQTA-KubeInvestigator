@@ -198,6 +198,21 @@ class Engine:
                     "Choose the observed condition and matching Pod or Service; investigate unrelated problems independently."
                 ],
             )
+        elif self.provider and not r.observations:
+            r.finding = Finding(
+                diagnosis="Evidence-only — The selected condition was not established in the collected snapshot. No underlying cause or application health is inferred.",
+                assessment="insufficient evidence",
+                evidence_ids=[e.id for e in r.evidence if not e.error],
+                alternatives=[
+                    "The condition may be absent, transient, out of scope or inaccessible."
+                ],
+                next_steps=[
+                    "Review missing evidence and select the matching observed condition before requesting a diagnosis."
+                ],
+            )
+            r.limitations.append(
+                "No provider request was made because the selected condition was not established."
+            )
         elif self.provider:
             for _ in range(self.s.max_turns):
                 try:

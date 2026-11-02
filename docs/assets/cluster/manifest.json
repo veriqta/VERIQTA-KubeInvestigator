@@ -1,9 +1,23 @@
 {
-  "captured_at": "2026-11-02T16:34:52.063Z",
+  "captured_at": "2026-11-02T19:28:16.684Z",
   "software": "0.1.0",
-  "revision": "3bdcb36b3694cb4656f187b374ed44d03c74c75e",
+  "revision": "a300a4512af3057c7276f19de1c56a0a50e66abc",
   "working_tree_changes": [
-    "scripts/smoke.sh"
+    ".github/action-pins.json",
+    ".github/workflows/cluster-smoke.yml",
+    "SECURITY.md",
+    "docs/assets/cluster/evidence.png",
+    "docs/assets/cluster/followup.png",
+    "docs/assets/cluster/investigation.webm",
+    "docs/assets/cluster/overview.png",
+    "docs/audit-results.md",
+    "docs/index.md",
+    "docs/installation.md",
+    "docs/requirements.md",
+    "docs/scenarios.md",
+    "docs/security/findings.md",
+    "docs/validation.md",
+    "packaging/sqlite/README.md"
   ],
   "source": "kubernetes",
   "provider": "mock",
@@ -12,21 +26,20 @@
   "assets": [
     {
       "file": "overview.png",
-      "sha256": "155fd4a2a9a2af2a6b6b7215e5f1a4b7d762128683aa643f48ae8c13773e4b05"
+      "sha256": "dc8aac390e4d53905578227f5136eecbc75f3d962711a5c8fa1acbd27a5ca3dc"
     },
     {
       "file": "evidence.png",
-      "sha256": "feb709dfe48b8f619ceea5dcf710f768e17f8c3fe64093235f659e5a551151b8"
+      "sha256": "92eb333bfa702217ed3e80bcb19d5c4b9dc24a9a53de0ccfcb633e42ad84ccee"
     },
     {
       "file": "followup.png",
-      "sha256": "4edfd157ea080329592d02de2da77803453221bc55355758a3beb8d4b14262ca"
+      "sha256": "ff08a70c8a18ea5a9c90c30ce93b0191bdcaf00988f4debd01d1d3f7d86ed0aa"
     },
     {
       "file": "investigation.webm",
-      "sha256": "f560db18c6c96928cf4b039263ba14e94a9dc2081ce451936d697d3402e9f14e"
+      "sha256": "dae485516452985301062c9a025e6e88d3291127b873d18cde259fc53f276347"
     }
   ],
-  "harness_sha256": "1e8dbceeedd72ba8d1879d6bdac4451a2760b2a87499959c15926c1a5853632f",
-  "application_source": "Unchanged application source at recorded revision; acceptance harness added in working tree."
+  "harness_sha256": "1e8dbceeedd72ba8d1879d6bdac4451a2760b2a87499959c15926c1a5853632f"
 }
