@@ -26,7 +26,7 @@
     "policy": "packaging/release/trust.json",
     "policy_sha256": "3a780927aaccd5b74649eceb9a2f1edd7ed4171a2eb6ffc8db3c73fdb695e687",
     "approved_signers": 0,
-    "fixture_crypto_tests_passed": 11,
+    "fixture_crypto_tests_passed": 12,
     "local_cli": "LibreSSL 3.3.6",
     "existing_candidate_rejected_by_empty_policy": true,
     "claims": "No independently approved identity, independent builder attestation or SLSA level.",
@@ -47,12 +47,25 @@
     "production_deployment": false
   },
   "local_validation": {
-    "tests_passed": 103,
+    "tests_passed": 104,
     "commands": [
       "make test check VENV=.venv-source"
     ],
-    "scope": "Current working-tree controls based on recorded baseline revision; no model calls or runtime image change.",
-    "script_sha256": "61f3ed6ae8f7b73b31de1b93fa2d1cc7e2cb6014e193216b638454d12ae057bf",
-    "fixture_tests_sha256": "27c17509e0ae992e0f311caf32dc50d42aa35d7fb8c74f39955addb8dae33119"
-  }
+    "baseline_revision": "28cfe31afc80038e12914321a8e09e8f91b668a7",
+    "scope": "Working-tree key/policy/body snapshot regression; no runtime image or model call.",
+    "script_sha256": "934954971baeec89111aa4704ae175ccfe84b36ed58022df1e5c682ba966ac49",
+    "fixture_tests_sha256": "cb5727738b2070eb7a558d49187057136f5e3d92574f898feae22309da936d7e"
+  },
+  "previous_local_validation": [
+    {
+      "tests_passed": 103,
+      "commands": [
+        "make test check VENV=.venv-source"
+      ],
+      "scope": "Current working-tree controls based on recorded baseline revision; no model calls or runtime image change.",
+      "script_sha256": "61f3ed6ae8f7b73b31de1b93fa2d1cc7e2cb6014e193216b638454d12ae057bf",
+      "fixture_tests_sha256": "27c17509e0ae992e0f311caf32dc50d42aa35d7fb8c74f39955addb8dae33119"
+    }
+  ],
+  "updated_at": "2026-11-02T20:49:58.788654+00:00"
 }

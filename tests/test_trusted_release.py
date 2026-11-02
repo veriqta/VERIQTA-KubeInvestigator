@@ -182,3 +182,35 @@ def test_committed_empty_policy_never_trusts_fixture_identity(prepared):
     with pytest.raises(ValueError, match="No unique approved"):
         release.process(*args, private_key=keys["publisher"][0])
     assert not args[1].exists()
+
+
+def test_public_key_swap_cannot_substitute_candidate_signer(prepared, monkeypatch):
+    release, args, keys = prepared
+    release.process(*args, private_key=keys["publisher"][0])
+    # Forge the same approval body with the untrusted candidate private key.
+    subprocess.run(
+        [
+            "openssl",
+            "dgst",
+            "-sha256",
+            "-sign",
+            str(keys["candidate"][0]),
+            "-out",
+            str(args[1] / "RELEASE-APPROVAL.sig"),
+            str(args[1] / "RELEASE-APPROVAL.json"),
+        ],
+        check=True,
+    )
+    copy = args[1].parent / "supplied-public.pem"
+    copy.write_bytes(keys["publisher"][1].read_bytes())
+    args[2] = copy
+    original = release.approved
+
+    def swap_after_policy(*values):
+        fp = original(*values)
+        copy.write_bytes(keys["candidate"][1].read_bytes())
+        return fp
+
+    monkeypatch.setattr(release, "approved", swap_after_policy)
+    with pytest.raises(subprocess.CalledProcessError):
+        release.process(*args)

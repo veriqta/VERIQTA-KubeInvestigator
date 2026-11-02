@@ -23,7 +23,7 @@ The conservative starting deployment allocation is 250m CPU/256Mi memory with 1 
 
 The [PR #6 post-merge run](acceptance/2026-11-02-post-pr6-validation.json) passed all 13 jobs at 0a19271. The [release-control status](acceptance/2026-11-02-release-controls.json) records a fresh private-reporting API 404 (enablement remains unverified), unassigned maintenance roles, no approved production signer and no paid live-evaluation authorisation or verified private setup.
 
-The [maintenance runbook](maintenance.md) now covers SQLite, CPython, base/OS, Python dependencies, action pins and advisory response without claiming active continuous monitoring. [Offline publisher approval](trusted-signing.md) is implemented separately from candidate signing. Its 11 fixture tests and current-candidate empty-policy rejection passed; the committed policy contains zero approved identities. This prepares verification but creates no trusted production signature. New tests and tool changes require their own final revision gates.
+The [maintenance runbook](maintenance.md) now covers SQLite, CPython, base/OS, Python dependencies, action pins and advisory response without claiming active continuous monitoring. [Offline publisher approval](trusted-signing.md) is implemented separately from candidate signing. Its 12 fixture tests and current-candidate empty-policy rejection passed; the committed policy contains zero approved identities. This prepares verification but creates no trusted production signature. New tests and tool changes require their own final revision gates.
 
 ## First-release gates
 

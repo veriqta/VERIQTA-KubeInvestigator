@@ -5,6 +5,7 @@ import hashlib
 import json
 import re
 import subprocess
+import tempfile
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -13,8 +14,10 @@ from release_bundle import digest, verify as verify_candidate
 REPOSITORY = "https://github.com/veriqta/VERIQTA-KubeInvestigator"
 
 
-def command(*args):
-    return subprocess.check_output([str(a) for a in args], stderr=subprocess.DEVNULL, timeout=30)
+def command(*args, input=None):
+    return subprocess.check_output(
+        [str(a) for a in args], input=input, stderr=subprocess.DEVNULL, timeout=30
+    )
 
 
 def fingerprint(public_key):
@@ -23,9 +26,13 @@ def fingerprint(public_key):
 
 
 def approved(policy_path, policy_sha256, public_key):
-    if not re.fullmatch("[a-f0-9]{64}", policy_sha256) or digest(policy_path) != policy_sha256:
+    policy_bytes = policy_path.read_bytes()
+    if (
+        not re.fullmatch("[a-f0-9]{64}", policy_sha256)
+        or hashlib.sha256(policy_bytes).hexdigest() != policy_sha256
+    ):
         raise ValueError("Trust policy differs from the independently approved hash")
-    policy = json.loads(policy_path.read_text())
+    policy = json.loads(policy_bytes)
     if policy.get("schema_version") != 1 or policy.get("repository") != REPOSITORY:
         raise ValueError("Unsupported trust policy or repository")
     fp = fingerprint(public_key)
@@ -103,7 +110,7 @@ def candidate(bundle, revision, version, architecture, publisher_fingerprint):
     }
 
 
-def process(
+def _process(
     bundle,
     approval,
     public_key,
@@ -139,6 +146,7 @@ def process(
             approval / "RELEASE-APPROVAL.sig",
             body,
         )
+    body_bytes = (approval / "RELEASE-APPROVAL.json").read_bytes()
     command(
         "openssl",
         "dgst",
@@ -147,9 +155,9 @@ def process(
         public_key,
         "-signature",
         approval / "RELEASE-APPROVAL.sig",
-        approval / "RELEASE-APPROVAL.json",
+        input=body_bytes,
     )
-    if json.loads((approval / "RELEASE-APPROVAL.json").read_text()) != expected:
+    if json.loads(body_bytes) != expected:
         raise ValueError("Publisher approval is for a different candidate/revision/platform")
     return {
         "status": "passed",
@@ -160,6 +168,36 @@ def process(
         "architecture": architecture,
         "scope": "Artifact endorsement only; no independent builder attestation, SLSA level or live-model accuracy is established.",
     }
+
+
+def process(
+    bundle,
+    approval,
+    public_key,
+    policy,
+    policy_hash,
+    revision,
+    version,
+    architecture,
+    private_key=None,
+):
+    # Freeze public identity bytes before policy/fingerprint and signature checks.
+    # Changing the caller's key file mid-verification must not change the signer.
+    public_bytes = public_key.read_bytes()
+    with tempfile.TemporaryDirectory(prefix="veriqta-publisher-") as directory:
+        frozen_public = Path(directory) / "public.pem"
+        frozen_public.write_bytes(public_bytes)
+        return _process(
+            bundle,
+            approval,
+            frozen_public,
+            policy,
+            policy_hash,
+            revision,
+            version,
+            architecture,
+            private_key,
+        )
 
 
 def main():

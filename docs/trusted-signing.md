@@ -46,7 +46,7 @@ Verification requires **only the independently approved public key and policy**,
   --revision FULL_40_CHARACTER_COMMIT --version 0.1.0 --architecture arm64
 ```
 
-Verification rejects unapproved/revoked/expired identities, policy-hash changes, candidate-key reuse, modified checksums or approval statements and mismatched revisions/platforms. Tests exercise real OpenSSL-compatible signatures under **isolated fixture policies**. The local CLI tested was LibreSSL 3.3.6; hosted verification results must be recorded separately. Passing those tests does not configure production trust; existing ephemeral candidates remain ineligible under the empty repository policy.
+Policy bytes and public identity are snapshotted for consistent hashing/verification; a mid-check key-file swap cannot substitute the candidate signer. The approval body is verified and parsed from the same bytes. Verification rejects unapproved/revoked/expired identities, policy-hash changes, candidate-key reuse, modified checksums or approval statements and mismatched revisions/platforms. Tests exercise real OpenSSL-compatible signatures under **isolated fixture policies**. The local CLI tested was LibreSSL 3.3.6; hosted verification results must be recorded separately. Passing those tests does not configure production trust; existing ephemeral candidates remain ineligible under the empty repository policy.
 
 ## Rotation, revocation and release review
 
