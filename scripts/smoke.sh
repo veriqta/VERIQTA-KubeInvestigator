@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 suite=${KI_ACCEPTANCE_SUITE:-smoke}
-case "$suite" in smoke|recovery|browser|evidence) ;; *) echo "Unsupported acceptance suite" >&2; exit 2;; esac
+case "$suite" in smoke|recovery|browser|evidence|load) ;; *) echo "Unsupported acceptance suite" >&2; exit 2;; esac
 result_file=".data/$suite-result.json"
 missing=()
 for tool in docker kind kubectl helm; do

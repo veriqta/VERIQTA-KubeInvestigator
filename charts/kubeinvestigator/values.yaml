@@ -5,7 +5,7 @@ image:
 namespaces:
   - veriqta-demo
 provider: mock
-model: gpt-4.1-mini
+model: gpt-6-luna
 logs: false
 logLookbackSeconds: 3600
 # Must exist in the release namespace; contains KI_TOKEN and optionally KI_API_KEY.

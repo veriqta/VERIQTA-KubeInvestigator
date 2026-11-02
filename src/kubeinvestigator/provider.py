@@ -43,6 +43,7 @@ class OpenAIProvider:
                 headers={"Authorization": "Bearer " + self.s.api_key.get_secret_value()},
                 json={
                     "model": self.s.model,
+                    **({"reasoning_effort": "none"} if self.s.model.startswith("gpt-6") else {}),
                     "messages": [
                         {"role": "system", "content": SYSTEM},
                         {"role": "user", "content": payload},

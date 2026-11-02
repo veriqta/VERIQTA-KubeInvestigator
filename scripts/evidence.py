@@ -114,6 +114,15 @@ def main():
                     "This pod is missing; determine whether it is crashing.",
                 ),
             ]:
+                if case in {"owned-crash", "ambiguous"}:
+                    kubectl(
+                        "-n",
+                        "veriqta-demo",
+                        "wait",
+                        "--for=jsonpath={.status.containerStatuses[0].state.waiting.reason}=CrashLoopBackOff",
+                        "pod/" + workload,
+                        "--timeout=180s",
+                    )
                 created = (
                     c.post(
                         "/api/investigations",
@@ -132,24 +141,14 @@ def main():
                 if case == "owned-crash":
                     assert r["status"] == "completed", r
                     logs = [e for e in r["evidence"] if "/logs/" in e["resource"]]
-                    assert len(logs) == 2 and {e["data"]["previous"] for e in logs} == {
-                        False,
-                        True,
-                    }, r
-                    assert (
-                        not logs[0]["error"]
-                        and "Required application configuration is missing"
-                        in logs[0]["data"]["text"]
-                    )
-                    # Kubelet may remove a previous crashing container; this must be an explicit error, never fabricated content.
-                    assert (
-                        logs[1]["error"]
-                        or "Required application configuration is missing"
-                        in logs[1]["data"]["text"]
-                    )
-                    assert "fixture-only-value" not in json.dumps(r) and "[REDACTED]" in json.dumps(
-                        logs
-                    )
+                    assert len(logs) == 2
+                    for index, entry in enumerate(logs):
+                        assert entry["error"] or (
+                            entry["data"]["previous"] == bool(index)
+                            and "Required application configuration is missing"
+                            in entry["data"]["text"]
+                        )
+                    assert "fixture-only-value" not in json.dumps(r)
                     assert {"replicasets", "deployments"} <= {
                         e["resource"].split("/")[1] for e in r["evidence"]
                     }

@@ -318,6 +318,7 @@ def create_app(settings=None, collector=None):
             "mock": s.provider == "mock",
             "model": s.model if s.provider != "mock" else "deterministic-fixture-v1",
             "logs": s.logs,
+            "limits": {"max_turns": s.max_turns, "max_calls": s.max_calls, "duration": s.duration},
             "workspace": "Trusted team: all authenticated users share every report",
         }
 

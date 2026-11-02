@@ -79,6 +79,8 @@ def test_provider_success_contract(tmp_path, monkeypatch):
         body = json.loads(request.content)
         assert body["response_format"] == {"type": "json_object"}
         assert body["max_completion_tokens"] == 1600
+        assert body["model"] == "gpt-6-luna"
+        assert body["reasoning_effort"] == "none"
         assert request.url.host == "api.openai.com"
         return httpx.Response(
             200,
