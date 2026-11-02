@@ -1,0 +1,61 @@
+{
+  "recorded_at": "2026-11-02T15:39:56.312319+00:00",
+  "architecture": "amd64",
+  "execution": {
+    "machine_architecture": "x86_64",
+    "runner_architecture": "X64",
+    "runner_os": "Linux"
+  },
+  "config_digest": "sha256:1f68b2bf111aa6c2f150d2af51da483d7b5f13976fae0dbd701599ac544014bc",
+  "inspected_image_id": "sha256:1f68b2bf111aa6c2f150d2af51da483d7b5f13976fae0dbd701599ac544014bc",
+  "archive_sha256": "e34a35f39ec7ec0d04be712d099822270239021bece1aae4549a3c73cdea1213",
+  "filesystem_diff_ids": [
+    "sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba",
+    "sha256:7bd6d027fc875b5a1381ea6ac95905162cfb2b132bb4929d840003cd1d78e1c0",
+    "sha256:a26f58fa1b9b9fd9d49e1da2afd314c5f866fdff7eabc6499991c01a3738707c",
+    "sha256:6cf2f486e746e9ff3bc52010eb7ed34ee4766eb83bc7105895da35537de7b582",
+    "sha256:0abcc732a9d62e9e0fbc969558ca20346d8f7236e29f7f2a31fae793374f0127",
+    "sha256:db0760d838d4111b776dd5c3442ac31a42b9da65cdcd87c020fb801705531094",
+    "sha256:9aed611565fa502fd94281b850e3b2fc33d1c8c8847d7d851ae49a1442e75523",
+    "sha256:6fddcf1a862166122283abc023cac21724f5e57f851e5f074955dbdfedea9d9a"
+  ],
+  "scanner": {
+    "version": "0.76.1",
+    "database": {
+      "Version": 2,
+      "NextUpdate": "2026-11-03T13:15:56.441126429Z",
+      "UpdatedAt": "2026-11-02T13:15:56.44112656Z",
+      "DownloadedAt": "2026-11-02T15:39:07.529690397Z"
+    }
+  },
+  "inventory": {
+    "os_packages": 38,
+    "python_packages": 39
+  },
+  "scan_outcome": "no findings detected by the recorded scan",
+  "vulnerability_counts": {},
+  "vulnerabilities": [],
+  "secret_finding_count": 0,
+  "runtime_check": {
+    "status": "passed",
+    "uid": 10001,
+    "python": "3.12.16",
+    "sqlite": "3.54.1",
+    "sqlite_libraries": {
+      "/usr/lib/libsqlite3.so.3.54.1": "a15896d26c0c302a9595114658d663aa8e26da37aef0fcefa27d35e86933ab89"
+    },
+    "checks": [
+      "non-root",
+      "no runtime packaging/compiler tools",
+      "TLS verification and CA stores",
+      "FTS5 negative-rowid prefix regression, three detail modes",
+      "JSON functions and database integrity",
+      "application WAL initialisation and restart"
+    ],
+    "application": "0.1.0"
+  },
+  "gate_policy": "HIGH/CRITICAL and secret gate runs separately after evidence; this record is not its exit status",
+  "source_revision": "90c5ac63e3fdf12f373a5d900a186b2f9149074e",
+  "run_id": "41473405003",
+  "limitations": "No findings detected is not proof of no vulnerabilities; no live-model accuracy is established"
+}

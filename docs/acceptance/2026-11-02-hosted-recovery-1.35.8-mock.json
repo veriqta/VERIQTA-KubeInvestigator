@@ -1,0 +1,32 @@
+{
+  "completed_at": "2026-11-02T15:43:28.311818+00:00",
+  "software": "0.1.0",
+  "image_id": "sha256:2fdf9ee6ac6a609e98c3e7d4806b62cb3cf9c94ccc93bcb7060e070c374e94ed",
+  "source": "kubernetes",
+  "provider": "mock",
+  "mock": true,
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "checks": [
+    "schema-1 config upgrade preserves reports",
+    "Helm revision rollback preserves reports",
+    "offline PVC backup",
+    "authorised deletion",
+    "offline PVC restore with previous snapshot",
+    "integrity/schema validation",
+    "restored report equality",
+    "fresh investigation from restored report",
+    "bounded history summaries after restore"
+  ],
+  "kubernetes": "v1.35.8",
+  "upgrade_scope": "same binary/schema 1; retention 7 -> 8 -> 7; not a cross-version schema downgrade",
+  "report": "218b675c-d39b-46ef-8530-f30c3a224766",
+  "hosted_provenance": {
+    "run_id": 41473405003,
+    "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41473405003",
+    "head_revision": "d261de7164427864adbc18221e26aca9c3ba5b8b",
+    "artifact": "recovery-v1.35.8-mock",
+    "profile": "native amd64 Ubuntu 24.04 hosted VM",
+    "original_summary_sha256": "3ec143c3731576fd75585bb0b764e000712ac9236292cd989a3691fe0fd59c7e"
+  }
+}

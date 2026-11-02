@@ -1,10 +1,10 @@
 # Current validation summary
 
-[Source/compatibility follow-up](security/findings/2026-11-02-source-compatibility.json) records 74 patched macOS source passes plus real HTTP validation, actual rejection of old SQLite, native arm64 full incident acceptance on Kubernetes 1.36.4/1.37.0, amd64 QEMU execution with 61 installed-image passes, and Linux-container source setup with 73 passes/one Helm-only skip. The fixture omissions in that development check were corrected; prior failures are not counted as passes. Bare-host Linux/WSL2 and native amd64 hardware remain unverified.
+The corrected hosted Validate run **41473405003** at **d261de7** passed all ten jobs. [Recorded evidence](acceptance/2026-11-02-hosted-validation.json) includes native amd64 Ubuntu source **80 tests**, three actual Kubernetes versions/PVC recovery and both native image/runtime scans. The latest local source suite also passed 80 tests. Former local/QEMU records are retained below and in their dated files; native hosted results now supersede the previously unexecuted profiles.
 
-Updated final deployment images have **no findings detected by the recorded scan**; exact digests, inventories and database timestamps are linked above. This is not proof of no vulnerabilities. The previous 1.35.8 incident/PVC recovery and remediation scan records remain intact and were not repeated unchanged. Old bundled SQLite 3.53.1 is rejected; source installations must explicitly select a patched interpreter.
+Image records have **no findings detected by the recorded scan**, not proof of no vulnerabilities. The hosted secret gate covered one PR commit. A separate complete-history Gitleaks audit returned six upstream public signing-fingerprint matches, exit 1, each source-verified and [retained without suppressions](security/findings/2026-11-02-history-secret-review.json). No automated clean-history result is claimed.
 
-Hosted workflows, live-model accuracy, real ingress/TLS/CNI, physical storage failure, managed-cloud profiles, independent review and signing/provenance remain unverified. No paid calls, external workflow triggers, push or publication occurred. [Release readiness](release-readiness.md) lists each remaining gate and next action.
+Live-model accuracy, managed clouds, WSL2/physical-host profiles, actual staging ingress/TLS/CNI, physical storage failure, independent review and release signing/provenance remain unverified. No paid call, publication, external deployment or assistant merge occurred. Later documentation revision check status must be read from PR #3 rather than inferred from this exact code run.
 
 ---
 

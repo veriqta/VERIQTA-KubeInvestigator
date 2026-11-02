@@ -1,5 +1,7 @@
 # Container runtime and disposable acceptance route
 
+The newer [hosted evidence](acceptance/2026-11-02-hosted-validation.json) now verifies native amd64 source/runtime, kind 1.35.8/1.36.4/1.37.0 and PVC recovery, plus native amd64/arm64 image checks. Earlier “hosted/native amd64 unexecuted” statements below are historical. The corrected full workflow passed at d261de7; newer PR revisions require their own current status. Live-model interpretations remain unverified/mock-backed.
+
 Latest follow-up: native arm64 Kubernetes 1.36.4/1.37.0 incident acceptance and QEMU-amd64 app execution now have [actual evidence](security/findings/2026-11-02-source-compatibility.json). Native amd64 hardware and hosted workflows remain unexecuted. Historical 1.35.8 sections below retain original versions/flags; that unchanged successful check was not repeated. The current source environment is .venv-source with explicitly patched SQLite; older .venv-audit/.venv-readiness examples are historical and now rejected for app/database startup. For amd64 checks only, the dedicated profile used Colima's supported --binfmt=true; native runs need no emulation.
 
 ## Supported route available on this Mac

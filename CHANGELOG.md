@@ -2,6 +2,9 @@
 
 ## 0.1.0 — unreleased
 
+- Fix hosted PR secret permissions and unreadable multi-architecture scanner input; native amd64/arm64 Docker archives retain strict gates and sanitised exact-image evidence, with duplicate branch/PR runs removed.
+- Record a complete passing hosted workflow (80 source tests, native amd64 Kubernetes matrix/PVC recovery and both native image scans). Preserve a separate full-history audit's six public signing-fingerprint matches/exit 1 without adding ignores.
+
 - Resolve source SQLite through verified upstream CPython/private-prefix installation and maintained linked SQLite; fail closed before database access on affected runtimes; add actionable setup/startup/maintenance preflight.
 - Verify 74 macOS source tests, native arm64 Kubernetes 1.36.4/1.37.0, QEMU-amd64 execution (61 tests) and Linux-container source setup (73 passed/one Helm skip). Preserve prior evidence and distinguish emulation, hosted/native and live-model gaps.
 - Add official SQLite release/checksum detection, documented maintenance ownership/update gates, and prepared CI patched-interpreter selection; no hosted run performed.

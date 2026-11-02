@@ -1,0 +1,120 @@
+{
+  "recorded_at": "2026-11-02T15:52:42.654396+00:00",
+  "run_id": 41473405003,
+  "run_url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41473405003",
+  "head_revision": "d261de7164427864adbc18221e26aca9c3ba5b8b",
+  "event": "pull_request",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "python",
+      "conclusion": "success",
+      "databaseId": 125372573368,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:39:54Z"
+    },
+    {
+      "name": "chart",
+      "conclusion": "success",
+      "databaseId": 125372573404,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:37:42Z"
+    },
+    {
+      "name": "Container / arm64",
+      "conclusion": "success",
+      "databaseId": 125372573463,
+      "startedAt": "2026-11-02T15:37:30Z",
+      "completedAt": "2026-11-02T15:39:26Z"
+    },
+    {
+      "name": "smoke / Kubernetes v1.37.0 / mock provider",
+      "conclusion": "success",
+      "databaseId": 125372573876,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:44:08Z"
+    },
+    {
+      "name": "secrets",
+      "conclusion": "success",
+      "databaseId": 125372573890,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:37:37Z"
+    },
+    {
+      "name": "Container / amd64",
+      "conclusion": "success",
+      "databaseId": 125372573929,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:40:02Z"
+    },
+    {
+      "name": "smoke / PVC recovery and schema-compatible rollback / mock provider",
+      "conclusion": "success",
+      "databaseId": 125372573939,
+      "startedAt": "2026-11-02T15:37:29Z",
+      "completedAt": "2026-11-02T15:43:36Z"
+    },
+    {
+      "name": "smoke / Kubernetes v1.35.8 / mock provider",
+      "conclusion": "success",
+      "databaseId": 125372573989,
+      "startedAt": "2026-11-02T15:37:38Z",
+      "completedAt": "2026-11-02T15:43:15Z"
+    },
+    {
+      "name": "runtime",
+      "conclusion": "success",
+      "databaseId": 125372574021,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:39:42Z"
+    },
+    {
+      "name": "smoke / Kubernetes v1.36.4 / mock provider",
+      "conclusion": "success",
+      "databaseId": 125372574039,
+      "startedAt": "2026-11-02T15:37:28Z",
+      "completedAt": "2026-11-02T15:42:16Z"
+    }
+  ],
+  "source_profile": {
+    "runner": "ubuntu-24.04 native amd64 VM",
+    "interpreter": "maintained Homebrew Python",
+    "preflight": {
+      "status": "passed",
+      "python": "3.12.16",
+      "sqlite": "3.54.1",
+      "minimum_sqlite": "3.54.1",
+      "scope": "known-version prerequisite; not a complete vulnerability assessment"
+    },
+    "tests_passed": 80,
+    "warning": "upstream TestClient/httpx deprecation"
+  },
+  "acceptance_records": [
+    "docs/acceptance/2026-11-02-hosted-kind-1.35.8-mock.json",
+    "docs/acceptance/2026-11-02-hosted-recovery-1.35.8-mock.json",
+    "docs/acceptance/2026-11-02-hosted-kind-1.37.0-mock.json",
+    "docs/acceptance/2026-11-02-hosted-kind-1.36.4-mock.json"
+  ],
+  "image_records": [
+    "docs/security/findings/2026-11-02-hosted-native-amd64-image.json",
+    "docs/security/findings/2026-11-02-hosted-native-arm64-image.json"
+  ],
+  "secret_scan": {
+    "scope": "PR commit range",
+    "commits_scanned": 1,
+    "result": "no leaks detected in the checked range",
+    "full_history_pass_claimed": false
+  },
+  "previous_failures": {
+    "PR_secret_job": "403 listing PR commits; fixed with job-scoped pull-requests:read and comments disabled",
+    "container_job": "Unsupported multi-arch OCI archive could not initialise; no vulnerability analysis completed. Fixed using one Docker archive per native architecture and pinned Trivy 0.76.1."
+  },
+  "unchanged_policy": "contents read-only except PR read in secret job; no write permissions/publication/external deployment; HIGH/CRITICAL and secret gate retained",
+  "limits": [
+    "Live-model accuracy/account/cost unverified; all incident interpretations mock",
+    "Physical storage failure, real ingress/TLS/CNI, managed clouds and WSL2 unverified",
+    "Full-history Gitleaks review recorded separately; no blanket clean-history claim",
+    "No signing/provenance/publication/merge performed"
+  ]
+}
