@@ -43,3 +43,24 @@ Replace `REVISION` with the 12-character revision printed by preparation. A bund
 The [portable 0.1.0 candidate record](acceptance/2026-11-02-portable-release-candidate.json) identifies revision 7d21ec7 and every artifact hash. Native arm64 preparation, installed-wheel import, final-archive scan, runtime checks, SBOM portability and offline signature/subject verification passed. [Final image evidence](security/findings/2026-11-02-portable-candidate-arm64.json) records Trivy 0.76.1, database timestamps, OCI/configuration identity and complete inventories; [the SPDX SBOM](security/findings/2026-11-02-portable-candidate-sbom.spdx.json) has no private host paths. No findings were detected by the recorded scan. The first local candidate was withheld after privacy review found host paths in its SBOM; the replacement was regenerated and signed, not edited after signing.
 
 The archives, wheels, test key and build caches remain outside Git. Public records do not make any package available for public installation. The candidate is still signed only by a test identity; publication, independently trusted signing and repository visibility remain separate gates.
+
+## Verified hosted candidates
+
+[Workflow run 41515560190](https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190) executed at **c95c50a** on native Ubuntu amd64 and arm64. Both jobs passed 92 tests, source security gates, final runtime checks/scans and ephemeral test signing. The [durable verification record](acceptance/2026-11-02-hosted-release-candidates.json) preserves both artifact ZIP digests, every candidate file hash, public-key fingerprints, provenance revision/architecture, exact image identities, scanner/database metadata and expiry dates.
+
+Both downloads were independently verified against GitHub artifact digests. Offline verification passed for RSA/SHA256 signatures, complete checksums and provenance subjects. Image configuration/layers and runner architecture match the recorded final scans; wheel source/static assets and locked dependencies match c95c50a. Helm normalises Chart.yaml quoting/order; its parsed metadata matches and all other packaged chart files match source bytes. Candidate text metadata contains no private host paths or private key material. Public-key fingerprints also match the successful runner-log summaries. These checks establish integrity of these test candidates, not an independently trusted publisher or SLSA level.
+
+The separate [post-merge validation](acceptance/2026-11-02-main-validation-c95c50a.json) passed all 13 jobs. The [amd64 image evidence](security/findings/2026-11-02-hosted-candidate-amd64.json), [arm64 evidence](security/findings/2026-11-02-hosted-candidate-arm64.json) and linked SPDX inventories have **no findings detected by the recorded scan**. Both always-run ephemeral key-cleanup steps passed; private keys are not in the artifacts.
+
+Authenticated repository members can retrieve the private workflow artifacts while they remain available:
+
+```sh
+# Replace ARCH with amd64 or arm64; downloads do not execute the workflow.
+gh run download 41515560190 --repo veriqta/VERIQTA-KubeInvestigator \
+  --name release-candidate-0.1.0-ARCH --dir .capture/hosted-ARCH
+.venv-source/bin/python scripts/release_bundle.py \
+  --verify .capture/hosted-ARCH/0.1.0-c95c50a0b2b9 \
+  --trusted-public-key .capture/hosted-ARCH/0.1.0-c95c50a0b2b9/candidate-public.pem
+```
+
+Compare the public-key PEM SHA256 with the run record and runner log before verification; the bundled test key alone is not an independently established publisher identity. The record includes GitHub ZIP digests and per-file hashes for additional checks. Artifacts expire after seven days; expiry is not a new test failure. Rebuilding requires another explicitly authorised candidate execution and produces new records/signatures. No container registry, package repository, release tag, public visibility change or production deployment was performed. Live-model evaluation remains unexecuted.

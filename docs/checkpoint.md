@@ -1,5 +1,7 @@
 # Development checkpoint
 
-The first-release acceptance milestone adds real-cluster browser workflows and genuine mock-labelled captures, bounded ownership/current/previous-log evidence, explicit mismatch and insufficient-evidence handling, an eight-case no-call evaluation plan, bounded load measurements and local signed-candidate verification tooling. See [current release readiness](release-readiness.md) for evidence and remaining gates.
+The first-release acceptance milestone is merged through PR #5. [Post-merge validation at c95c50a](acceptance/2026-11-02-main-validation-c95c50a.json) passed all 13 jobs: native images, Kubernetes matrix, browser/evidence/load, recovery and source/security checks.
 
-Source checks currently pass 92 tests, lint, format, types and documentation links. Browser and optional-evidence records identify the exact tested revision/image. Live provider calls remain unexecuted. The new hosted browser/evidence/load jobs must pass before their latest revision is merged. No publication, visibility change or production deployment is implied by development validation.
+The separately authorised [native candidate workflow](acceptance/2026-11-02-hosted-release-candidates.json) passed both amd64/arm64 jobs at the same revision, each with 92 source tests. Both downloads passed independent ZIP digest, signature/checksum/provenance, source-equivalence and metadata privacy verification. Test signatures do not establish an approved publisher identity. Archives and private build data remain excluded from Git; only sanitised evidence is retained.
+
+Live provider calls, public visibility and package/release publication remain unexecuted. Maintenance assignment, private reporting and a trusted release identity remain gates in [current readiness](release-readiness.md). Future changes require their own relevant validation; earlier passes are revision-specific.
