@@ -1,0 +1,524 @@
+{
+  "run_id": 41515560190,
+  "run_url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190",
+  "revision": "c95c50a0b2b9db70f9d5f1e2407ba59beaeec376",
+  "status": "passed",
+  "checks": [
+    "GitHub artifact ZIP digest",
+    "offline RSA/SHA256 signature",
+    "complete checksum inventory",
+    "provenance subject equality/revision/architecture",
+    "exact final Docker archive configuration/layers",
+    "native runner architecture",
+    "loaded SQLite/nonroot runtime evidence",
+    "source-equivalent wheel and Helm metadata",
+    "locked dependency equivalence",
+    "portable metadata/no private key material"
+  ],
+  "candidates": [
+    {
+      "architecture": "amd64",
+      "artifact_id": 13175795898,
+      "artifact_name": "release-candidate-0.1.0-amd64",
+      "artifact_digest": "sha256:760a8d9ae31b82574447faf3a160c99a1f9adb347bcf639f521ce5b674099b6e",
+      "artifact_expires_at": "2026-11-09T20:08:42Z",
+      "candidate": "0.1.0-c95c50a0b2b9",
+      "verification": {
+        "status": "passed",
+        "files": 10,
+        "public_key_sha256": "b2554c89ef8812379dbc17aad06053db675e8f0cdda9c25da3e29273e5010d62",
+        "scope": "Offline checksum/signature/subject verification; local signer identity is not independently trusted and no SLSA level is claimed."
+      },
+      "image": {
+        "recorded_at": "2026-11-02T20:08:41.603383+00:00",
+        "architecture": "amd64",
+        "execution": {
+          "machine_architecture": "x86_64",
+          "runner_architecture": "X64",
+          "runner_os": "Linux"
+        },
+        "config_digest": "sha256:81a9a9caa3559843f3b6972890936029ac9aae3f4147aed21f769c999d97bb4a",
+        "runtime_configuration_matches": true,
+        "executed_image_identity_verified": true,
+        "inspected_image_id": "sha256:81a9a9caa3559843f3b6972890936029ac9aae3f4147aed21f769c999d97bb4a",
+        "archive_sha256": "8eb42b67257d89a704c2df892059e1a7bde06aea820cf3d92d844c3c9ca837db",
+        "filesystem_diff_ids": [
+          "sha256:75c137aedfb2760f88629236cb7b797630aed0c3d91d626d1d1bb694878fc2ba",
+          "sha256:7bd6d027fc875b5a1381ea6ac95905162cfb2b132bb4929d840003cd1d78e1c0",
+          "sha256:a26f58fa1b9b9fd9d49e1da2afd314c5f866fdff7eabc6499991c01a3738707c",
+          "sha256:6cf2f486e746e9ff3bc52010eb7ed34ee4766eb83bc7105895da35537de7b582",
+          "sha256:1badba5116de72223579b89233e903bb49ee4fad6540ef7b3af55ad869d2984a",
+          "sha256:b5a0aff074969a0bc4554e4ce8eb7292cdf6b5a32cf9608607f51c86efbaffb5",
+          "sha256:22c20091e4da436287015d4b7fb62bbd9da29ecddc82a45fc6fa7a70443bf1cc",
+          "sha256:78623ec933360562496709f8c941baf5a0805572d0ec0b16e0ad529d9d1113fc"
+        ],
+        "scanner": {
+          "version": "0.76.1",
+          "database": {
+            "Version": 2,
+            "NextUpdate": "2026-11-03T19:15:11.074748061Z",
+            "UpdatedAt": "2026-11-02T19:15:11.074748541Z",
+            "DownloadedAt": "2026-11-02T20:08:30.229703613Z"
+          }
+        },
+        "inventory": {
+          "os_packages": 38,
+          "python_packages": 39
+        },
+        "scan_outcome": "no findings detected by the recorded scan",
+        "vulnerability_counts": {},
+        "vulnerabilities": [],
+        "secret_finding_count": 0,
+        "runtime_check": {
+          "status": "passed",
+          "uid": 10001,
+          "python": "3.12.16",
+          "sqlite": "3.54.1",
+          "sqlite_libraries": {
+            "/usr/lib/libsqlite3.so.3.54.1": "a15896d26c0c302a9595114658d663aa8e26da37aef0fcefa27d35e86933ab89"
+          },
+          "checks": [
+            "non-root",
+            "no runtime packaging/compiler tools",
+            "TLS verification and CA stores",
+            "FTS5 negative-rowid prefix regression, three detail modes",
+            "JSON functions and database integrity",
+            "application WAL initialisation and restart"
+          ],
+          "application": "0.1.0"
+        },
+        "gate_policy": "HIGH/CRITICAL and secret gate runs separately after evidence; this record is not its exit status",
+        "source_revision": "c95c50a0b2b9db70f9d5f1e2407ba59beaeec376",
+        "run_id": "41515560190",
+        "limitations": "No findings detected is not proof of no vulnerabilities; no live-model accuracy is established"
+      },
+      "files": {
+        "veriqta_kubeinvestigator-0.1.0.tar.gz": {
+          "sha256": "9de1906f22289be3acc3d250728a66bd2e46d06e931140325dd27dbfaae33f76",
+          "bytes": 132963
+        },
+        "kubeinvestigator-0.1.0.tgz": {
+          "sha256": "64b185d03c65a784ea9d5b9fdfc6be8d6bd9ce69dbb0de390ab4426f518515f5",
+          "bytes": 2676
+        },
+        "RELEASE-NOTES.md": {
+          "sha256": "9147d9df186cd11317420ed71a0f0235773ba335b83c826acfa72f8af15aa431",
+          "bytes": 1360
+        },
+        "veriqta_kubeinvestigator-0.1.0-py3-none-any.whl": {
+          "sha256": "42bf8e18148b2d41c1a6704186fac84b1acc19d7c46a49e56d6ff16ac6e39cd6",
+          "bytes": 115242
+        },
+        "provenance.json": {
+          "sha256": "29b5f5a1021752def305579b32ed2c8a51f4391bd1958836509dae69dde71006",
+          "bytes": 2378
+        },
+        "sbom.spdx.json": {
+          "sha256": "b0ebfe1e6962e2f81fbf509a08c71af7ea780820169764c721d36dc60463459e",
+          "bytes": 150337
+        },
+        "image-security.json": {
+          "sha256": "cac938eb037c1b8823a5d5a99ed1853cdc404d6eaf66929c0bba89eb46f4a755",
+          "bytes": 2598
+        },
+        "SHA256SUMS.sig": {
+          "sha256": "44fb36f41c6062625c0106dc8a0a1eb799daeba8107b3cb821c84cffeaef0204",
+          "bytes": 384
+        },
+        "kubeinvestigator-0.1.0.tar": {
+          "sha256": "8eb42b67257d89a704c2df892059e1a7bde06aea820cf3d92d844c3c9ca837db",
+          "bytes": 213488640
+        },
+        "SHA256SUMS": {
+          "sha256": "9f20fda194617f862c2af3d93aad194b8cbfc3dcf20f12df59864f52cb1f387e",
+          "bytes": 907
+        },
+        "candidate-public.pem": {
+          "sha256": "b2554c89ef8812379dbc17aad06053db675e8f0cdda9c25da3e29273e5010d62",
+          "bytes": 625
+        },
+        "requirements.lock": {
+          "sha256": "a029659f064acb5c62baaccc7aadf62d5f1a6edcc3c14122ff8b62853ede1ef4",
+          "bytes": 784
+        }
+      },
+      "artifact_url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190/artifacts/13175795898",
+      "image_evidence": "docs/security/findings/2026-11-02-hosted-candidate-amd64.json",
+      "sbom": "docs/security/findings/2026-11-02-hosted-candidate-amd64-sbom.spdx.json"
+    },
+    {
+      "architecture": "arm64",
+      "artifact_id": 13175203173,
+      "artifact_name": "release-candidate-0.1.0-arm64",
+      "artifact_digest": "sha256:eb591768d1e5318c6da56b6b738ba7dafb4cfffae394ce1dccb6a7158e9ad0dd",
+      "artifact_expires_at": "2026-11-09T20:06:50Z",
+      "candidate": "0.1.0-c95c50a0b2b9",
+      "verification": {
+        "status": "passed",
+        "files": 10,
+        "public_key_sha256": "dc8354890565c321c57c207ca57ef9f5206142355af5b448702d58ec88da365d",
+        "scope": "Offline checksum/signature/subject verification; local signer identity is not independently trusted and no SLSA level is claimed."
+      },
+      "image": {
+        "recorded_at": "2026-11-02T20:06:49.996676+00:00",
+        "architecture": "arm64",
+        "execution": {
+          "machine_architecture": "aarch64",
+          "runner_architecture": "ARM64",
+          "runner_os": "Linux"
+        },
+        "config_digest": "sha256:292b561a934e290063cb4472af148f7aaaf164dd47756ae509a3a0998be6c417",
+        "runtime_configuration_matches": true,
+        "executed_image_identity_verified": true,
+        "inspected_image_id": "sha256:292b561a934e290063cb4472af148f7aaaf164dd47756ae509a3a0998be6c417",
+        "archive_sha256": "dfb468720cbe1ae16e974c9bb2f92baa6f9f77be1d9fc377a5000c3b824bc72a",
+        "filesystem_diff_ids": [
+          "sha256:a278e6f39431cd0ed74238a3d377893ad0d905d68b676bf9a65529080669756b",
+          "sha256:d1f7e7fd9025f972f44b67b76aa2c8979253755508c059fe1a358de9bc1fdc89",
+          "sha256:fb50aa63544d8736bd10cb1e7b26d1f60f7b1d2e502fac14b5c5ac5ea43efbc0",
+          "sha256:4210d19c4e0d650c02a69d0a86a48205fc3012d71135d7782764de0588cc6148",
+          "sha256:9533746030a18f2ef667176da52455b49dc6f22bd61fa5ddf1743267b8768bd6",
+          "sha256:1ad0e0417b2769507a2af81e2e6567302a327312a5cd6e592619c8795664fe62",
+          "sha256:9c0bb06366de0ef49d0a568b0955f388e309b09b3c456832181dce3c341bf40f",
+          "sha256:4dd2cbce9787995e2db614c2e832a8b9290a6c4a8e43c11329b4704684bc9362"
+        ],
+        "scanner": {
+          "version": "0.76.1",
+          "database": {
+            "Version": 2,
+            "NextUpdate": "2026-11-03T19:15:11.074748061Z",
+            "UpdatedAt": "2026-11-02T19:15:11.074748541Z",
+            "DownloadedAt": "2026-11-02T20:06:43.27289221Z"
+          }
+        },
+        "inventory": {
+          "os_packages": 38,
+          "python_packages": 39
+        },
+        "scan_outcome": "no findings detected by the recorded scan",
+        "vulnerability_counts": {},
+        "vulnerabilities": [],
+        "secret_finding_count": 0,
+        "runtime_check": {
+          "status": "passed",
+          "uid": 10001,
+          "python": "3.12.16",
+          "sqlite": "3.54.1",
+          "sqlite_libraries": {
+            "/usr/lib/libsqlite3.so.3.54.1": "7b03d826dd3898d24421baa0b4c972396fe10d506988cb528a9b63ff02678401"
+          },
+          "checks": [
+            "non-root",
+            "no runtime packaging/compiler tools",
+            "TLS verification and CA stores",
+            "FTS5 negative-rowid prefix regression, three detail modes",
+            "JSON functions and database integrity",
+            "application WAL initialisation and restart"
+          ],
+          "application": "0.1.0"
+        },
+        "gate_policy": "HIGH/CRITICAL and secret gate runs separately after evidence; this record is not its exit status",
+        "source_revision": "c95c50a0b2b9db70f9d5f1e2407ba59beaeec376",
+        "run_id": "41515560190",
+        "limitations": "No findings detected is not proof of no vulnerabilities; no live-model accuracy is established"
+      },
+      "files": {
+        "veriqta_kubeinvestigator-0.1.0.tar.gz": {
+          "sha256": "10b7c255f755fae848c1443d46082f5eec6ec37a074bb3107a2ea3a392534325",
+          "bytes": 132995
+        },
+        "kubeinvestigator-0.1.0.tgz": {
+          "sha256": "267c0bd0c3b86abe081500a5df3eb462881b57c6f67fd26882f6a5776ad23d16",
+          "bytes": 2676
+        },
+        "RELEASE-NOTES.md": {
+          "sha256": "9147d9df186cd11317420ed71a0f0235773ba335b83c826acfa72f8af15aa431",
+          "bytes": 1360
+        },
+        "veriqta_kubeinvestigator-0.1.0-py3-none-any.whl": {
+          "sha256": "d95d06caca75ceffeb98a7109048c846ea6762739f3b397c2fe0e22ca48402ad",
+          "bytes": 115242
+        },
+        "provenance.json": {
+          "sha256": "a466b704b2c086b23a3fbcc47eead6e2b2d5a00469bae2ac9e7d3d74362201da",
+          "bytes": 2378
+        },
+        "sbom.spdx.json": {
+          "sha256": "0db7a7f97f7edaf96b18eb6d93e34a11e222477452fdf93c966478f2152bfde2",
+          "bytes": 150386
+        },
+        "image-security.json": {
+          "sha256": "0870ceb0717336eba59bd7daa93cea2d9a226113406a538b874d0cf6c342229a",
+          "bytes": 2600
+        },
+        "SHA256SUMS.sig": {
+          "sha256": "da5224e387422b0688d5442deaffbdf88fdda38fbae7fa8100fba7577d033ea2",
+          "bytes": 384
+        },
+        "kubeinvestigator-0.1.0.tar": {
+          "sha256": "dfb468720cbe1ae16e974c9bb2f92baa6f9f77be1d9fc377a5000c3b824bc72a",
+          "bytes": 217702912
+        },
+        "SHA256SUMS": {
+          "sha256": "2e9c82c86eb8a9c4d286b2404f0443f022235207ce4ad4fe3b840f3da14b16fc",
+          "bytes": 907
+        },
+        "candidate-public.pem": {
+          "sha256": "dc8354890565c321c57c207ca57ef9f5206142355af5b448702d58ec88da365d",
+          "bytes": 625
+        },
+        "requirements.lock": {
+          "sha256": "a029659f064acb5c62baaccc7aadf62d5f1a6edcc3c14122ff8b62853ede1ef4",
+          "bytes": 784
+        }
+      },
+      "artifact_url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190/artifacts/13175203173",
+      "image_evidence": "docs/security/findings/2026-11-02-hosted-candidate-arm64.json",
+      "sbom": "docs/security/findings/2026-11-02-hosted-candidate-arm64-sbom.spdx.json"
+    }
+  ],
+  "limits": [
+    "Ephemeral CI test signatures prove candidate integrity, not independently trusted publisher identity.",
+    "No SLSA level, registry publication, release, deployment or live-model accuracy is claimed."
+  ],
+  "recorded_at": "2026-11-02T20:13:24.431941+00:00",
+  "event": "workflow_dispatch",
+  "workflow_file": {
+    "path": ".github/workflows/prepare-release.yml",
+    "sha256": "b395fcee90e36e53c91bd29914173084235876c56f7b76164d1a6135abd7f15c"
+  },
+  "jobs": [
+    {
+      "completedAt": "2026-11-02T20:09:05Z",
+      "conclusion": "success",
+      "databaseId": 125518124205,
+      "name": "Candidate / amd64 / no publication",
+      "startedAt": "2026-11-02T20:02:55Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:02:59Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:02:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:03:02Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:02:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:04:23Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:03:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:04:24Z",
+          "conclusion": "success",
+          "name": "Run azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112",
+          "number": 4,
+          "startedAt": "2026-11-02T20:04:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:05:02Z",
+          "conclusion": "success",
+          "name": "Run make setup test check",
+          "number": 5,
+          "startedAt": "2026-11-02T20:04:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:06:11Z",
+          "conclusion": "success",
+          "name": "Source security gate and pinned scanner installation",
+          "number": 6,
+          "startedAt": "2026-11-02T20:05:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:08:42Z",
+          "conclusion": "success",
+          "name": "Build and verify native versioned candidate with ephemeral test identity",
+          "number": 7,
+          "startedAt": "2026-11-02T20:06:11Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:08:48Z",
+          "conclusion": "success",
+          "name": "Retain candidate artifacts only (not a release or registry publication)",
+          "number": 8,
+          "startedAt": "2026-11-02T20:08:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:08:48Z",
+          "conclusion": "success",
+          "name": "Remove ephemeral test key after interruption",
+          "number": 9,
+          "startedAt": "2026-11-02T20:08:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:08:52Z",
+          "conclusion": "success",
+          "name": "Post Source security gate and pinned scanner installation",
+          "number": 17,
+          "startedAt": "2026-11-02T20:08:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:08:52Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 18,
+          "startedAt": "2026-11-02T20:08:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:08:52Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-11-02T20:08:52Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190/job/125518124205"
+    },
+    {
+      "completedAt": "2026-11-02T20:07:02Z",
+      "conclusion": "success",
+      "databaseId": 125518124477,
+      "name": "Candidate / arm64 / no publication",
+      "startedAt": "2026-11-02T20:02:57Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:03:01Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:02:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:03:02Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:03:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:04:05Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:03:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:04:06Z",
+          "conclusion": "success",
+          "name": "Run azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112",
+          "number": 4,
+          "startedAt": "2026-11-02T20:04:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:04:38Z",
+          "conclusion": "success",
+          "name": "Run make setup test check",
+          "number": 5,
+          "startedAt": "2026-11-02T20:04:06Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:05:15Z",
+          "conclusion": "success",
+          "name": "Source security gate and pinned scanner installation",
+          "number": 6,
+          "startedAt": "2026-11-02T20:04:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:06:50Z",
+          "conclusion": "success",
+          "name": "Build and verify native versioned candidate with ephemeral test identity",
+          "number": 7,
+          "startedAt": "2026-11-02T20:05:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:06:55Z",
+          "conclusion": "success",
+          "name": "Retain candidate artifacts only (not a release or registry publication)",
+          "number": 8,
+          "startedAt": "2026-11-02T20:06:50Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:06:55Z",
+          "conclusion": "success",
+          "name": "Remove ephemeral test key after interruption",
+          "number": 9,
+          "startedAt": "2026-11-02T20:06:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:07:00Z",
+          "conclusion": "success",
+          "name": "Post Source security gate and pinned scanner installation",
+          "number": 17,
+          "startedAt": "2026-11-02T20:06:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:07:00Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 18,
+          "startedAt": "2026-11-02T20:07:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:07:00Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-11-02T20:07:00Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190/job/125518124477"
+    }
+  ],
+  "source_suite": {
+    "tests_passed_per_architecture": 92,
+    "evidence": "Both job logs contain 92 passed; static/type/docs and source security gates passed."
+  },
+  "verification_commands": [
+    "gh api repos/veriqta/VERIQTA-KubeInvestigator/actions/runs/41515560190/artifacts",
+    "gh run download 41515560190 --name release-candidate-0.1.0-ARCH --dir .capture/hosted-ARCH",
+    ".venv-source/bin/python scripts/release_bundle.py --verify .capture/hosted-ARCH/0.1.0-c95c50a0b2b9 --trusted-public-key .capture/hosted-ARCH/0.1.0-c95c50a0b2b9/candidate-public.pem"
+  ],
+  "verification_details": {
+    "zip_digests": "Matched GitHub artifact service metadata for each downloaded ZIP.",
+    "signer_fingerprints": "Matched downloaded public-key PEM hashes to the successful runner-log verification summaries. Test identity only.",
+    "helm": "Chart.yaml semantic metadata matches source; Helm sorts/normalises YAML. Every other packaged chart file matches source bytes.",
+    "source": "Wheel Python/static assets and bundled requirements.lock match the tested checkout.",
+    "privacy": "Candidate text metadata has no private host paths or private key material.",
+    "cleanup": "Both always-run ephemeral signing-key cleanup steps passed. No private keys are retained in artifacts."
+  },
+  "publication": "None: private repository workflow artifacts, not releases or registry/package publication; artifact expiry is recorded per architecture."
+}
