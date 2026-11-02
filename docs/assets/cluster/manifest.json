@@ -1,23 +1,20 @@
 {
-  "captured_at": "2026-11-02T19:28:16.684Z",
+  "captured_at": "2026-11-02T19:47:47.005Z",
   "software": "0.1.0",
-  "revision": "a300a4512af3057c7276f19de1c56a0a50e66abc",
+  "revision": "7d21ec7b4242142c6f214591a43ee78845716e2a",
   "working_tree_changes": [
-    ".github/action-pins.json",
-    ".github/workflows/cluster-smoke.yml",
-    "SECURITY.md",
+    ".github/workflows/prepare-release.yml",
+    "docs/assets/README.md",
     "docs/assets/cluster/evidence.png",
     "docs/assets/cluster/followup.png",
     "docs/assets/cluster/investigation.webm",
     "docs/assets/cluster/overview.png",
-    "docs/audit-results.md",
-    "docs/index.md",
-    "docs/installation.md",
-    "docs/requirements.md",
-    "docs/scenarios.md",
+    "docs/browser-acceptance.md",
+    "docs/operating-limits.md",
+    "docs/release-readiness.md",
+    "docs/releasing.md",
     "docs/security/findings.md",
-    "docs/validation.md",
-    "packaging/sqlite/README.md"
+    "scripts/browser-cluster.cjs"
   ],
   "source": "kubernetes",
   "provider": "mock",
@@ -26,20 +23,38 @@
   "assets": [
     {
       "file": "overview.png",
-      "sha256": "dc8aac390e4d53905578227f5136eecbc75f3d962711a5c8fa1acbd27a5ca3dc"
+      "sha256": "83fc617b9a3a2dd1689e7f406e5a51342d77d398a9b8d8a46be7393a944d2793"
+    },
+    {
+      "file": "report.png",
+      "sha256": "bcb24d12513d8ac3899a0b157f2aa3445768f3e4f50a55a33af9f7d5db4c8f3b"
     },
     {
       "file": "evidence.png",
-      "sha256": "92eb333bfa702217ed3e80bcb19d5c4b9dc24a9a53de0ccfcb633e42ad84ccee"
+      "sha256": "def232e705e10ff143e79850ab0703ebfece0cdbfe99fae3b2e4a45eff7e2515"
     },
     {
       "file": "followup.png",
-      "sha256": "ff08a70c8a18ea5a9c90c30ce93b0191bdcaf00988f4debd01d1d3f7d86ed0aa"
+      "sha256": "aeb1eaae599c015256994834018f0a16d9c1aaa3d2dc64ff23060297667f8b81"
     },
     {
       "file": "investigation.webm",
-      "sha256": "dae485516452985301062c9a025e6e88d3291127b873d18cde259fc53f276347"
+      "sha256": "b9b75b443a4c725e88b0f3f25e4f7668e80a4d540a3c8cd44fa15c7e87e46fc3"
+    },
+    {
+      "file": "investigation.gif",
+      "sha256": "291f4cd63c4aee5cd0b1e4da33dfe29e36bafb09ba47b725312806a197d1415d",
+      "description": "Static sequence of genuine browser screenshots; not a continuous recording"
     }
   ],
-  "harness_sha256": "1e8dbceeedd72ba8d1879d6bdac4451a2760b2a87499959c15926c1a5853632f"
+  "gif_authoring": {
+    "Pillow": "12.3.0",
+    "source_frames": [
+      "overview.png",
+      "report.png",
+      "evidence.png",
+      "followup.png"
+    ]
+  },
+  "harness_sha256": "81c452d82eb6e8be4cff5a8c1b2db6ed327758ea7f4c607b747ec6a525a8eb9a"
 }

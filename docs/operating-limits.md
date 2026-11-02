@@ -17,6 +17,8 @@ All accepted investigations completed. The rate limiter rejected excess requests
 
 For a small initial team installation, reserve at least **250m CPU and 256Mi memory**, retaining a **1 CPU/512Mi limit**, one replica and default investigation concurrency two. This is a conservative starting allocation above the measured small-workload baseline, not a validated production throughput guarantee. Retain the default 1Gi PVC, separate backup capacity and the 100MB database-family admission threshold. Watch queue, rejection, storage and resource signals before raising limits. Provider latency, long logs, larger namespaces, exports and other workloads require environment-specific measurements; do not extrapolate the mock response times to live mode.
 
+A separate [native amd64 hosted run](acceptance/2026-11-02-hosted-first-release-load.json) at head50c30af also passed with matching kubectl. Its 32-client burst accepted 24 and rejected 8 as earlier work drained; the queue cap applies to simultaneous active/queued jobs, not an entire burst. Its maximum sampled working set was 73.57MiB, CPU 190.66m and observed completion 0.689s. Both short profiles support the conservative starting allocation above; neither establishes sustained or live-provider capacity.
+
 ## Reproduce safely
 
 With a patched source setup and a local Docker runtime:

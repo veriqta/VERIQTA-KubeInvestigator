@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "revision": "7d21ec7b4242142c6f214591a43ee78845716e2a",
+  "architecture": "arm64",
+  "candidate": "0.1.0-7d21ec7b4242",
+  "artifacts": {
+    "veriqta_kubeinvestigator-0.1.0.tar.gz": {
+      "sha256": "d20c6d114581a8daf462c3ff58e03eb33fb11ab71ab71a914745ac830be19db5",
+      "bytes": 132852
+    },
+    "kubeinvestigator-0.1.0.tgz": {
+      "sha256": "9aca72a20f7ea663a2872a81cc3d3fd7635d0162c49dc2150ad2025deed382fc",
+      "bytes": 2720
+    },
+    "RELEASE-NOTES.md": {
+      "sha256": "9147d9df186cd11317420ed71a0f0235773ba335b83c826acfa72f8af15aa431",
+      "bytes": 1360
+    },
+    "veriqta_kubeinvestigator-0.1.0-py3-none-any.whl": {
+      "sha256": "0eb6cab3248dd0c5647d6131646584ece5b634785fa04e3593fcb981e883d985",
+      "bytes": 115499
+    },
+    "provenance.json": {
+      "sha256": "3948ada0a6d2618bec10aa5bdfdf86a06995b3322d97cd897afabb097a2a76c1",
+      "bytes": 2378
+    },
+    "sbom.spdx.json": {
+      "sha256": "db23a9b8f7b191bf089f52125f617dbefe17bfa9389558661ceca398d876f4d5",
+      "bytes": 170619
+    },
+    "image-security.json": {
+      "sha256": "766d605f3b36466564f08a95ab47830c65b46d8fbcfce59ade6d06a9eeba36d0",
+      "bytes": 2542
+    },
+    "SHA256SUMS.sig": {
+      "sha256": "11ee28b9c4fce9725524b2087c1f7061e51f71b37b004ff6e47dbccdeb275c65",
+      "bytes": 384
+    },
+    "kubeinvestigator-0.1.0.tar": {
+      "sha256": "dcd4f75900ae97fa609c84275e06c8633da84b76f6c433db16fd30056c6a02e5",
+      "bytes": 42086912
+    },
+    "SHA256SUMS": {
+      "sha256": "58514f292c3f308793380ef729269befe4fdd2fe016810a668de2e6a9d3c146d",
+      "bytes": 907
+    },
+    "candidate-public.pem": {
+      "sha256": "0519e7c4c2bb67c9c5e6219572997fd8d7448830e14e6473e8cde232c05cfd41",
+      "bytes": 625
+    },
+    "requirements.lock": {
+      "sha256": "a029659f064acb5c62baaccc7aadf62d5f1a6edcc3c14122ff8b62853ede1ef4",
+      "bytes": 784
+    }
+  },
+  "checks": [
+    "native final runtime SQLite/hardening check",
+    "full final-archive vulnerability/secret scan",
+    "runtime configuration and OCI image identity binding",
+    "SPDX SBOM with portable metadata",
+    "OpenSSL SHA256/RSA test signature",
+    "complete checksum inventory and provenance-subject verification",
+    "installed wheel imports independently with patched SQLite",
+    "metadata review: no private host paths"
+  ],
+  "signing_identity": "Ephemeral local test key; not an independently trusted publisher. No remote signing or transparency service used.",
+  "publication": "None; candidate artifacts remain ignored/local. Hosted native architecture candidate preparation is manual and has not yet run.",
+  "scan_result": "no findings detected by the recorded scan",
+  "scope": "No SLSA level or public release is claimed. Earlier candidate withheld for private paths in SBOM."
+}
