@@ -1,13 +1,13 @@
 # Visual asset inventory and regeneration
 
-The supplied VERIQTA mark is retained in brand/veriqta-supplied.png with its original pixel data and colour profile. Embedded EXIF/XMP metadata was removed during the pre-push privacy review; no visual redesign was made. It is user-supplied brand material; no independent trademark/brand licence was provided. Apache-2.0 for code does not grant endorsement or unrestricted rights in that supplied mark. Original project graphics are code-native SVG, distinct from the supplied company identity. Palette (#0b3029, #075745, #edf4ec, #fafcf8) is a restrained project treatment, not a claim of an official corporate standard.
+The supplied VERIQTA mark is retained in brand/veriqta-supplied.png with its original pixel data and colour profile. Embedded EXIF/XMP metadata was removed during the pre-push privacy review; no visual redesign was made. It is user-supplied brand material; no independent trademark/brand licence was provided. Apache-2.0 for code does not grant endorsement or unrestricted rights in that supplied mark. Project banner/lockup layouts are code-native SVG and now reuse the supplied company artwork directly; the approximate VQ graphics were removed. The original supplied green/cream colours, geometry and lettering are preserved. The generator trims only blank outer margins through an SVG viewport and scales for display; it does not trace, redraw or recolour the logo. Palette (#0b3029, #075745, #edf4ec, #fafcf8) is a restrained project treatment, not a claim of an official corporate standard.
 
 | Files | Purpose / source / licence | Mode and capture version | Regenerate |
 | --- | --- | --- | --- |
 | brand/veriqta-supplied.png | User-supplied VERIQTA identity; rights reserved to respective owner | Brand, no investigation | Replace only with authorised original |
-| brand/project-light.svg, project-dark.svg | Original project mark and wordmark; Apache-2.0 | Not a screenshot | Edit SVG source, verify contrast on light/dark surfaces |
-| brand/hero.svg | Original README banner; Apache-2.0 | Not a screenshot | Edit SVG source; all essential text also in README |
-| brand/social-preview.png | Raster rendering of original hero; Apache-2.0 | Not a product screenshot | `node scripts/render-brand.cjs` with sharp |
+| brand/project-light.svg, project-dark.svg | Product lockups using supplied logo; original layout Apache-2.0, supplied brand rights reserved | Not a screenshot | `node scripts/render-brand.cjs`; verify supplied logo on both backgrounds |
+| brand/hero.svg, hero.png | README banner with supplied logo; original layout Apache-2.0, supplied brand rights reserved | Not a screenshot | `node scripts/render-brand.cjs`; PNG is used for reliable README image rendering |
+| brand/social-preview.png | Raster rendering of corrected hero; layout Apache-2.0, brand rights reserved | Not a product screenshot | `node scripts/render-brand.cjs` with sharp |
 | diagrams/*.mmd, *.svg | Original editable diagram sources and GitHub-compatible SVGs; Apache-2.0 | Architecture, not evaluation data | Edit source and SVG together; verify against architecture.md |
 | screenshots/overview.png | Real authenticated UI overview; Apache-2.0 | 0.1.0 local working tree, MOCK + fixture | capture.cjs |
 | screenshots/report.png | Real Service selector report; Apache-2.0 | 0.1.0 local working tree, MOCK + fixture | capture.cjs |
@@ -18,6 +18,8 @@ The supplied VERIQTA mark is retained in brand/veriqta-supplied.png with its ori
 | demos/investigation.gif | Optimised sequence of genuine captured states; Apache-2.0 | MOCK + fixture, static fallback overview.png | `python scripts/assets.py` with Pillow |
 
 The capture-manifest.json records capture timestamps, tool versions, a source fingerprint and SHA-256 hashes for the genuine screenshots/video/GIF. The source was an uncommitted 0.1.0 working tree, so no commit ID is invented. The storage-recovery diagram documents the offline lease/backup/restore sequence; it is an illustration, not test evidence.
+
+The same generator writes brand/veriqta-logo.svg and the packaged UI asset src/kubeinvestigator/static/veriqta-logo.png from the supplied image. The original mark appears in the UI and refreshed genuine captures; no screenshot is edited to insert a simulated logo.
 
 ## Capture procedure
 
