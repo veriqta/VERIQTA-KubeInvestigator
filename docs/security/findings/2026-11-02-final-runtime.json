@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-02",
+  "stage": "runtime (final default Dockerfile stage)",
+  "platform": "linux/arm64",
+  "index_digest": "sha256:2226235df3082152ac81ef3872ee76cbb38415b00ee68ed48a7f2336bc5984e9",
+  "runtime_manifest_digest": "sha256:e5f7ce4935fb467935af4081e7447f386c56d3c392414570aad312664db9dd74",
+  "config_digest": "sha256:385372b29bb7c7e2ed6c95890fb04427c4224b23302fc3db810adad0f078c717",
+  "archive_sha256": "26300d1cefc8f7bcddafdd53ff8e1aba96c686a3c42795a50b507c72e9661d28",
+  "scanner": "Trivy 0.76.1",
+  "database": {
+    "Version": 2,
+    "NextUpdate": "2026-11-03T07:17:05.526947983Z",
+    "UpdatedAt": "2026-11-02T07:17:05.526948404Z",
+    "DownloadedAt": "2026-11-02T10:00:51.90053Z"
+  },
+  "scan_command": "trivy --cache-dir .capture/trivy-runtime-cache image --skip-db-update --input .capture/final-runtime-image.tar --scanners vuln,secret --list-all-pkgs --format json --output .capture/final-runtime-scan.json",
+  "gate_command": "trivy --cache-dir .capture/trivy-runtime-cache image --skip-db-update --input .capture/final-runtime-image.tar --scanners vuln,secret --severity HIGH,CRITICAL --exit-code 1",
+  "gate_exit_code": 0,
+  "base_image": "python:3.12-alpine3.24@sha256:e6dae589c1c05976188fd3bd019afd091445fc533ed2ea29001beddc7368a9c8",
+  "counts": {
+    "os_packages": 38,
+    "python_packages": 39,
+    "vulnerabilities": 0,
+    "secrets": 0
+  },
+  "suppressed_findings": 0,
+  "runtime_check": {
+    "status": "passed",
+    "uid": 10001,
+    "python": "3.12.16",
+    "sqlite": "3.54.1",
+    "sqlite_libraries": {
+      "/usr/lib/libsqlite3.so.3.54.1": "7b03d826dd3898d24421baa0b4c972396fe10d506988cb528a9b63ff02678401"
+    },
+    "checks": [
+      "non-root",
+      "no runtime packaging/compiler tools",
+      "TLS verification and CA stores",
+      "FTS5 negative-rowid prefix regression, three detail modes",
+      "JSON functions and database integrity",
+      "application WAL initialisation and restart"
+    ],
+    "application": "0.1.0"
+  },
+  "checks": {
+    "host_suite": "68 passed",
+    "installed_final_runtime_tests": "57 passed; test fixtures and pure Python pytest tools staged into a separate read-only disposable volume; no runtime pip installation",
+    "static": "ruff/format/mypy/docs and actionlint passed",
+    "live_model_accuracy": "unverified; no paid calls",
+    "source_host_sqlite": "3.53.1; below fixed version; functional host tests do not approve source deployment security",
+    "source_secret_scan": {
+      "findings": 0,
+      "scope": "deliverable source; private .capture/.data/venvs/build/dist/.git excluded; not full history review"
+    },
+    "source_host_sqlite_fts5_enabled": true
+  },
+  "build_runtime_links": {
+    "smoke": {
+      "index_digest": "sha256:155133f57bad58b3ae745c4efc76b4bc86cf117ad06be151a7c09ca54789cda7",
+      "runtime_manifest_digest": "sha256:e5f7ce4935fb467935af4081e7447f386c56d3c392414570aad312664db9dd74",
+      "config_digest": "sha256:385372b29bb7c7e2ed6c95890fb04427c4224b23302fc3db810adad0f078c717",
+      "identical_runtime_to_final_scan": true
+    },
+    "recovery": {
+      "index_digest": "sha256:2226235df3082152ac81ef3872ee76cbb38415b00ee68ed48a7f2336bc5984e9",
+      "runtime_manifest_digest": "sha256:e5f7ce4935fb467935af4081e7447f386c56d3c392414570aad312664db9dd74",
+      "config_digest": "sha256:385372b29bb7c7e2ed6c95890fb04427c4224b23302fc3db810adad0f078c717",
+      "identical_runtime_to_final_scan": true
+    }
+  },
+  "limitations": [
+    "Single native arm64 platform; amd64 and other Kubernetes versions unexecuted",
+    "Database/provider accuracy is not established by mock interpretations",
+    "Known Alpine SQLite advisory gap was remediated independently using upstream 3.54.1; scanner alone would not have caught 3.53.4",
+    "Project-maintained SQLite package requires ongoing source and maintainer review; no release attestation claimed",
+    "Source-host deployment remains blocked pending patched and verified host SQLite; final container is separately patched"
+  ],
+  "cleanup": "Both owned disposable clusters removed; kind get clusters reported none; dedicated Colima runtime stopped at handoff"
+}

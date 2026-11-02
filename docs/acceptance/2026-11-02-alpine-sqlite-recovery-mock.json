@@ -1,0 +1,24 @@
+{
+  "completed_at": "2026-11-02T10:11:13.515371+00:00",
+  "software": "0.1.0",
+  "image_id": "sha256:2226235df3082152ac81ef3872ee76cbb38415b00ee68ed48a7f2336bc5984e9",
+  "source": "kubernetes",
+  "provider": "mock",
+  "mock": true,
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "checks": [
+    "schema-1 config upgrade preserves reports",
+    "Helm revision rollback preserves reports",
+    "offline PVC backup",
+    "authorised deletion",
+    "offline PVC restore with previous snapshot",
+    "integrity/schema validation",
+    "restored report equality",
+    "fresh investigation from restored report",
+    "bounded history summaries after restore"
+  ],
+  "kubernetes": "v1.35.8",
+  "upgrade_scope": "same binary/schema 1; retention 7 -> 8 -> 7; not a cross-version schema downgrade",
+  "report": "37d1c948-0ecf-4a94-9c3a-7622f3769cd8"
+}

@@ -1,0 +1,6 @@
+flowchart LR
+  Stop["Stop every app process"] --> Lease["Acquire exclusive database lease"]
+  Lease --> Validate["Validate backup integrity and schema 1"]
+  Validate --> Preserve["Snapshot existing target; checkpoint WAL"]
+  Preserve --> Replace["Atomic replacement; private permissions"]
+  Replace --> Start["Start matching binary; interrupted jobs remain explicit"]

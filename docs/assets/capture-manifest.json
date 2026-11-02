@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-11-02T09:21:52.163Z",
+  "application_version": "0.1.0",
+  "mode": "mock",
+  "source": "fixture",
+  "commit": null,
+  "source_sha256": "61a70161c78858c9c48a1a5f74110dc6c9da9ac68269852e14dc4636c064f832",
+  "assets": [
+    {
+      "file": "screenshots/overview.png",
+      "sha256": "8070572e3622bb65482e929f2a65bb7a1b21e601808230a7445c78c2c694e4c1"
+    },
+    {
+      "file": "screenshots/report.png",
+      "sha256": "0c45bca85a01b487ae824effde2254a4c542fcd92e294680149da55799599050"
+    },
+    {
+      "file": "screenshots/evidence.png",
+      "sha256": "246aed4de9951d380c6b67b4910e186d0acba4167577e28351559071007dcde0"
+    },
+    {
+      "file": "screenshots/followup.png",
+      "sha256": "d136875cceb5ebce3aa5e2e29428a47b5f157c44eddefe1626704c22b5a012ea"
+    },
+    {
+      "file": "screenshots/mobile.png",
+      "sha256": "5bbf392cd23926a7565d1e6986803e05e3f954957eadbbd44e31b043019880b9"
+    },
+    {
+      "file": "demos/investigation.webm",
+      "sha256": "41d2c829f7e6b2984fb114645a8ec8c88cb696bb705845184a5840e74d7a748d"
+    },
+    {
+      "file": "demos/investigation.gif",
+      "sha256": "7483e1d36f971d875620f68cf48d42d34bdb257545f7ff8a7e0d9a5f02775257"
+    }
+  ],
+  "authoring_tools": {
+    "playwright": "1.62.1",
+    "marked": "17.0.5",
+    "sharp": "0.35.5",
+    "Pillow": "12.3.0"
+  }
+}
