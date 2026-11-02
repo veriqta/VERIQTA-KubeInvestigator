@@ -1,0 +1,76 @@
+name: Validate
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false}
+      - name: Select maintained Python with verified patched SQLite
+        run: bash scripts/setup-ci-python.sh
+      - run: make setup
+      - run: make test check
+      - run: .venv/bin/python scripts/check_sqlite_update.py
+      - run: .venv/bin/pip install pip-audit pip-licenses
+      - run: .venv/bin/pip-audit -r requirements.lock
+      - run: .venv/bin/pip-licenses --format=json --output-file=/tmp/dependency-licenses.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with: {name: dependency-licenses, path: /tmp/dependency-licenses.json}
+      - run: .venv/bin/python scripts/check_licenses.py /tmp/dependency-licenses.json
+  chart:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false}
+      - uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
+        with: {version: v3.19.0}
+      - run: python -m venv /tmp/chart-check && /tmp/chart-check/bin/pip install PyYAML==6.0.3
+      - run: helm lint charts/kubeinvestigator -f examples/values.yaml
+      - run: |
+          for version in 1.35.0 1.36.0 1.37.0; do
+            helm template investigator charts/kubeinvestigator -n veriqta-system -f examples/values.yaml --kube-version "$version" > /tmp/rendered.yaml
+            /tmp/chart-check/bin/python scripts/check_chart.py /tmp/rendered.yaml
+          done
+  container:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false}
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3
+      - uses: docker/build-push-action@10e90e3645eae34f1e60eeb005ba3a3d33f178e8 # v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: false
+          outputs: type=oci,dest=/tmp/investigator.tar
+      - uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          input: /tmp/investigator.tar
+          severity: CRITICAL,HIGH
+          exit-code: '1'
+  runtime:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false}
+      - name: Build final runtime, including verified SQLite source package
+        run: docker build --target runtime -t kubeinvestigator:runtime-check .
+      - name: Check installed runtime independently of scanner advisory coverage
+        run: |
+          docker run --rm -i --read-only --network none --cap-drop ALL \
+            --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,nodev,size=32m \
+            kubeinvestigator:runtime-check python - < scripts/check_runtime.py
+  smoke:
+    uses: ./.github/workflows/cluster-smoke.yml
+  secrets:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false, fetch-depth: 0}
+      - uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

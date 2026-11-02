@@ -1,0 +1,18 @@
+{
+  "image": "docker.io/library/python:3.12-alpine3.24",
+  "digest": "sha256:e6dae589c1c05976188fd3bd019afd091445fc533ed2ea29001beddc7368a9c8",
+  "manifest_architectures": [
+    "amd64",
+    "arm64"
+  ],
+  "manifest_architectures_note": "Declared target pair verified in official index; no claim that these are the only published architectures",
+  "execution_tested": [
+    "linux/arm64"
+  ],
+  "upstream_source": "https://github.com/docker-library/python/tree/master/3.12/alpine3.24",
+  "sqlite_override": "packaging/sqlite/source.json",
+  "emulated_execution_tested": [
+    "linux/amd64 under QEMU in native arm64 Colima VM"
+  ],
+  "native_amd64_execution_tested": false
+}

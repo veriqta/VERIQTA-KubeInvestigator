@@ -1,0 +1,110 @@
+name: Disposable Kubernetes acceptance
+on:
+  workflow_dispatch:
+  workflow_call:
+permissions:
+  contents: read
+concurrency:
+  group: cluster-acceptance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  smoke:
+    name: Kubernetes ${{ matrix.kubernetes }} / mock provider
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - kubernetes: v1.35.8
+            image: kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0
+          - kubernetes: v1.36.4
+            image: kindest/node:v1.36.4@sha256:099e049362a1526b2db71494e1947aae99bd16290d7c895f2b7ea312e3cbfaed
+          - kubernetes: v1.37.0
+            image: kindest/node:v1.37.0@sha256:a1ed56cfb0e7b93589bdf97c8cd566405a265939e3620fc4f5de89adff580ae5
+    env:
+      KIND_EXPERIMENTAL_PROVIDER: docker
+      KI_KIND_IMAGE: ${{ matrix.image }}
+      KI_PROVIDER: mock
+      KI_SOURCE: kubernetes
+      KI_API_KEY: ''
+      VENV: .venv
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Select maintained Python with verified patched SQLite
+        run: bash scripts/setup-ci-python.sh
+      - name: Verify real Docker daemon and Buildx
+        run: |
+          docker info
+          docker buildx version
+      - name: Install checksum-verified kind, matching kubectl and Helm
+        run: |
+          bash scripts/install-kind-tools.sh '${{ matrix.kubernetes }}' "$RUNNER_TEMP/acceptance-bin"
+          echo "$RUNNER_TEMP/acceptance-bin" >> "$GITHUB_PATH"
+      - name: Install locked Python dependencies
+        run: make setup
+      - name: Run full disposable-cluster smoke
+        run: bash scripts/smoke.sh
+      - name: Retain synthetic acceptance summary only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: smoke-${{ matrix.kubernetes }}-mock
+          path: .data/smoke-result.json
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Cleanup owned cluster after interrupted runner step
+        if: always()
+        run: |
+          if test -f .data/smoke-owned; then
+            kind delete cluster --name veriqta-investigator-demo
+            rm -f .data/demo-access.env .data/smoke-owned
+          fi
+
+  recovery:
+    name: PVC recovery and schema-compatible rollback / mock provider
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      KIND_EXPERIMENTAL_PROVIDER: docker
+      KI_KIND_IMAGE: kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0
+      KI_ACCEPTANCE_SUITE: recovery
+      KI_PROVIDER: mock
+      KI_SOURCE: kubernetes
+      KI_API_KEY: ''
+      VENV: .venv
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Select maintained Python with verified patched SQLite
+        run: bash scripts/setup-ci-python.sh
+      - name: Verify real Docker daemon and Buildx
+        run: |
+          docker info
+          docker buildx version
+      - name: Install checksum-verified kind, matching kubectl and Helm
+        run: |
+          bash scripts/install-kind-tools.sh 'v1.35.8' "$RUNNER_TEMP/acceptance-bin"
+          echo "$RUNNER_TEMP/acceptance-bin" >> "$GITHUB_PATH"
+      - name: Install locked Python dependencies
+        run: make setup
+      - name: Run focused PVC recovery and config rollback
+        run: bash scripts/smoke.sh
+      - name: Retain synthetic acceptance summary only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: recovery-v1.35.8-mock
+          path: .data/recovery-result.json
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Cleanup owned cluster after interrupted runner step
+        if: always()
+        run: |
+          if test -f .data/smoke-owned; then
+            kind delete cluster --name veriqta-investigator-demo
+            rm -f .data/demo-access.env .data/smoke-owned
+          fi

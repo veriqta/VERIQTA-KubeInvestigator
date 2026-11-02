@@ -1,0 +1,14 @@
+name: Bug report
+description: Report a non-sensitive defect
+body:
+  - type: markdown
+    attributes:
+      value: Do not disclose vulnerabilities, tokens or private cluster data here. See SECURITY.md.
+  - type: textarea
+    id: reproduce
+    attributes: {label: Reproduction and expected behaviour}
+    validations: {required: true}
+  - type: textarea
+    id: environment
+    attributes: {label: Version, source/provider mode and redacted environment}
+    validations: {required: true}
