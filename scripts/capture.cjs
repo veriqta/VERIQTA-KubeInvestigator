@@ -12,6 +12,7 @@ const { chromium } = require('playwright');
  const context=await browser.newContext({viewport:{width:1440,height:1100},recordVideo:{dir:'.capture/video',size:{width:1440,height:1100}}});
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:8080');
+ await page.waitForFunction(()=>{const logo=document.querySelector('.brand-logo');return logo?.complete&&logo.naturalWidth>0;});
  await page.getByLabel('Team access token').fill(token);
  await page.getByRole('button',{name:'Open workspace'}).click();
  await page.locator('#app').waitFor({state:'visible'});
@@ -66,6 +67,6 @@ const { chromium } = require('playwright');
  function walk(directory){for(const entry of fs.readdirSync(directory,{withFileTypes:true})){const file=path.join(directory,entry.name);if(entry.isDirectory()&&entry.name!=='__pycache__')walk(file);else if(entry.isFile()&&/\.(py|js|css|html)$/.test(file))sourceFiles.push(file);}}
  walk('src/kubeinvestigator');
  const fingerprint=crypto.createHash('sha256');sourceFiles.sort().forEach(file=>fingerprint.update(file+'\n'+fs.readFileSync(file)));
- fs.writeFileSync('docs/assets/capture-manifest.json',JSON.stringify({captured_at:new Date().toISOString(),application_version:configuration.version,mode:'mock',source:'fixture',commit:null,authoring_tools:{playwright:require('playwright/package.json').version},source_sha256:fingerprint.digest('hex'),assets:assets.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync('docs/assets/'+file)).digest('hex')}))},null,2)+'\n');
+ fs.writeFileSync('docs/assets/capture-manifest.json',JSON.stringify({captured_at:new Date().toISOString(),application_version:configuration.version,mode:'mock',source:'fixture',commit:null,branding:{source:'brand/veriqta-supplied.png',source_sha256:crypto.createHash('sha256').update(fs.readFileSync('docs/assets/brand/veriqta-supplied.png')).digest('hex'),ui_asset_sha256:crypto.createHash('sha256').update(fs.readFileSync('src/kubeinvestigator/static/veriqta-logo.png')).digest('hex')},authoring_tools:{playwright:require('playwright/package.json').version},source_sha256:fingerprint.digest('hex'),assets:assets.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync('docs/assets/'+file)).digest('hex')}))},null,2)+'\n');
  console.log('Browser flow passed: login, three scenarios, evidence, follow-up and mobile capture.');
 })().catch(e=>{console.error(e);process.exit(1);});

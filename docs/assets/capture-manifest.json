@@ -1,44 +1,47 @@
 {
-  "captured_at": "2026-11-02T09:21:52.163Z",
+  "captured_at": "2026-11-02T15:08:16.071Z",
   "application_version": "0.1.0",
   "mode": "mock",
   "source": "fixture",
   "commit": null,
-  "source_sha256": "61a70161c78858c9c48a1a5f74110dc6c9da9ac68269852e14dc4636c064f832",
+  "authoring_tools": {
+    "playwright": "1.62.1",
+    "Pillow": "12.3.0"
+  },
+  "source_sha256": "62a525721b1cbe9627f5a7fabdb59e6acae22b62e7167b7fd81bc4008fafa1ed",
   "assets": [
     {
       "file": "screenshots/overview.png",
-      "sha256": "8070572e3622bb65482e929f2a65bb7a1b21e601808230a7445c78c2c694e4c1"
+      "sha256": "abf60ea447db2ccde03730de9da6713e7867238b96e244948cfabed85fe6b49e"
     },
     {
       "file": "screenshots/report.png",
-      "sha256": "0c45bca85a01b487ae824effde2254a4c542fcd92e294680149da55799599050"
+      "sha256": "23372b49db200365f53ad5f69ea638e40552fa49230583606a05c5761ea786ce"
     },
     {
       "file": "screenshots/evidence.png",
-      "sha256": "246aed4de9951d380c6b67b4910e186d0acba4167577e28351559071007dcde0"
+      "sha256": "39c2753d4237ea29e9d3d73837a2668537844cfc3914467a1baa8ac0c30a6dee"
     },
     {
       "file": "screenshots/followup.png",
-      "sha256": "d136875cceb5ebce3aa5e2e29428a47b5f157c44eddefe1626704c22b5a012ea"
+      "sha256": "769c3748be5b61ad9129fdd37c6d2e399b7879db3e2dc36ff12a3c47cd482594"
     },
     {
       "file": "screenshots/mobile.png",
-      "sha256": "5bbf392cd23926a7565d1e6986803e05e3f954957eadbbd44e31b043019880b9"
+      "sha256": "07ccb8c5a683ddf08df364edadb0facd0e00a433d4d3824f600eb99f4ee8be86"
     },
     {
       "file": "demos/investigation.webm",
-      "sha256": "41d2c829f7e6b2984fb114645a8ec8c88cb696bb705845184a5840e74d7a748d"
+      "sha256": "4f249a21e940a295a879cdb8f6a7799af66da1c584b82280a41cc6be091252df"
     },
     {
       "file": "demos/investigation.gif",
-      "sha256": "7483e1d36f971d875620f68cf48d42d34bdb257545f7ff8a7e0d9a5f02775257"
+      "sha256": "5bf42d4314889c9abf72e05a6a70f9f06afdbb575cef7d859ee6ad55edc901c5"
     }
   ],
-  "authoring_tools": {
-    "playwright": "1.62.1",
-    "marked": "17.0.5",
-    "sharp": "0.35.5",
-    "Pillow": "12.3.0"
+  "branding": {
+    "source": "brand/veriqta-supplied.png",
+    "source_sha256": "c1945a781c5eec423acaa52095120f257b126462b1923df61c41be67052748f4",
+    "ui_asset_sha256": "4cbf6ce0d57e3074440cd1314800c4987a42cf518d4e72c28c21316c644676bf"
   }
 }

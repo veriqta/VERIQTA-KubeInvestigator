@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/assets/brand/hero.svg" alt="VERIQTA KubeInvestigator — From symptoms to evidence." width="100%"></p>
+<p align="center"><img src="docs/assets/brand/hero.png" alt="VERIQTA KubeInvestigator — From symptoms to evidence." width="100%"></p>
 
 # VERIQTA KubeInvestigator
 
