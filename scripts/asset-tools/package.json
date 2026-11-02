@@ -1,0 +1,10 @@
+{
+  "name": "kubeinvestigator-asset-tools",
+  "private": true,
+  "engines": {"node": ">=22"},
+  "dependencies": {
+    "playwright": "1.62.1",
+    "marked": "17.0.5",
+    "sharp": "0.35.5"
+  }
+}

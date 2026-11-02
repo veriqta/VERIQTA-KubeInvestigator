@@ -1,0 +1,44 @@
+name: Prepare release artifacts (no publication)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prepare:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false}
+      - name: Select maintained Python with verified patched SQLite
+        run: bash scripts/setup-ci-python.sh
+      - uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
+        with: {version: v3.19.0}
+      - run: make setup test check
+      - run: .venv/bin/python -m build --no-isolation
+      - run: helm package charts/kubeinvestigator -d dist
+      - run: docker build --target runtime -t kubeinvestigator:0.1.0 .
+      - name: Verify actual runtime SQLite and hardening offline
+        run: |
+          docker run --rm -i --read-only --network none --cap-drop ALL \
+            --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,nodev,size=32m \
+            kubeinvestigator:0.1.0 python - < scripts/check_runtime.py
+      - name: Block candidate artifacts on unresolved high-impact findings
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          image-ref: kubeinvestigator:0.1.0
+          scanners: vuln,secret
+          severity: HIGH,CRITICAL
+          exit-code: '1'
+      - uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
+        with:
+          image: kubeinvestigator:0.1.0
+          format: spdx-json
+          output-file: dist/sbom.spdx.json
+          upload-release-assets: false
+      - run: |
+          docker save kubeinvestigator:0.1.0 -o dist/kubeinvestigator-0.1.0.tar
+          cp CHANGELOG.md dist/RELEASE-NOTES.md
+          cd dist
+          sha256sum -- ./*.whl ./*.gz ./*.tgz ./*.tar ./*.json ./RELEASE-NOTES.md > SHA256SUMS
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with: {name: release-candidate-0.1.0, path: dist/}

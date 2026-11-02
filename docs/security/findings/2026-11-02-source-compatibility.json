@@ -1,0 +1,185 @@
+{
+  "recorded_at": "2026-11-02T14:31:53.471697+00:00",
+  "historical_evidence": "Prior dated acceptance/scans retained unchanged; new startup-guard images recorded separately",
+  "source_macos": {
+    "status": "passed",
+    "profile": "macOS 26.2 arm64; official CPython source build in private workspace prefix",
+    "linkage": {
+      "python": "3.12.16",
+      "sqlite": "3.54.1",
+      "expat": "expat_2.9.0",
+      "extension_linkage": "<workspace>/.local/python-3.12.16/lib/python3.12/lib-dynload/_sqlite3.cpython-312-darwin.so:\n\t/opt/homebrew/opt/sqlite/lib/libsqlite3.dylib (compatibility version 9.0.0, current version 9.6.0)\n\t/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1356.0.0)\n",
+      "interpreter": "<workspace>/.local/python-3.12.16/bin/python3.12",
+      "openssl": "Homebrew openssl@3",
+      "setup": "make setup PYTHON=<workspace>/.local/python-3.12.16/bin/python3.12 VENV=.venv-source",
+      "tests": 74,
+      "status": "passed"
+    },
+    "http": {
+      "status": "passed",
+      "python": "3.12.16",
+      "sqlite": "3.54.1",
+      "expat": "expat_2.9.0",
+      "openssl": "OpenSSL 3.5.9 29 Sep 2026",
+      "mode": "mock",
+      "source": "fixture",
+      "checks": [
+        "actual Uvicorn HTTP startup",
+        "authenticated configuration",
+        "fixture investigation completion",
+        "JSON export",
+        "authorised deletion"
+      ],
+      "live_model_accuracy": "unverified"
+    },
+    "cpython_source": {
+      "version": "3.12.16",
+      "url": "https://www.python.org/ftp/python/3.12.16/Python-3.12.16.tar.xz",
+      "published_sha256": "b5796915dc45ff745cfb4e990a7e7c93d6f546328a102ce31448d69ebc37575c",
+      "bootstrap": "scripts/bootstrap-source-python.sh",
+      "system_library_replacement": false,
+      "loader_overrides": false
+    },
+    "rejection": {
+      "original_runtime_sqlite": "3.53.1",
+      "real_preflight_exit": 1,
+      "real_make_setup_exit": 2,
+      "virtualenv_or_database_created": false,
+      "bypass_supported": false
+    },
+    "bottle_attempt": "Homebrew Python linked to correct SQLite but incompatible system Expat symbol prevented ensurepip; failed bottle environment preserved, not counted as a successful setup"
+  },
+  "source_linux": {
+    "status": "passed_with_explicit_skip",
+    "profile": "native arm64 disposable development container using patched runtime interpreter; NOT a bare-host Linux/WSL2 installation",
+    "setup": "make setup PYTHON=/usr/local/bin/python3.12 VENV=.venv",
+    "tests_passed": 73,
+    "tests_skipped": 1,
+    "skip_reason": "Helm not installed in development-only image; actual Helm exercised by real cluster matrix",
+    "static": "ruff/format/mypy passed; docs passed after omitted evals fixture was supplied",
+    "harness_issues": "Initial context inherited tests/docs exclusions; corrected. Subsequent documentation check identified omitted evals fixture; supplied and reran only failed documentation check. Earlier failures are not passes.",
+    "runtime_image_modified": false
+  },
+  "images": {
+    "arm64": {
+      "local_index_digest": "sha256:19df187eb683a044eb31d522ea1a5cfea25ac42e2f5ad14726608e84b9af14a1",
+      "runtime_manifest_digest": "sha256:6c4beb01d358590add7bc51edb5c76f8788b89d22e734613c54f7be76a80887d",
+      "config_digest": "sha256:72f30c5c689e776206f6c9542a3bb97875030da79bb1863d446b8696fc769a40",
+      "archive_sha256": "5c1116e6bb8ea987cefa634176f464b69e2771bbfa3c0098a49b2b5fb030da93",
+      "execution": "native Linux arm64",
+      "runtime_check": {
+        "status": "passed",
+        "uid": 10001,
+        "python": "3.12.16",
+        "sqlite": "3.54.1",
+        "sqlite_libraries": {
+          "/usr/lib/libsqlite3.so.3.54.1": "7b03d826dd3898d24421baa0b4c972396fe10d506988cb528a9b63ff02678401"
+        },
+        "checks": [
+          "non-root",
+          "no runtime packaging/compiler tools",
+          "TLS verification and CA stores",
+          "FTS5 negative-rowid prefix regression, three detail modes",
+          "JSON functions and database integrity",
+          "application WAL initialisation and restart"
+        ],
+        "application": "0.1.0"
+      },
+      "scan_outcome": "No findings detected by the recorded scan",
+      "counts": {
+        "vulnerability_records": 0,
+        "secret_records": 0
+      },
+      "gate_exit_code": 0,
+      "os_packages": 38,
+      "python_packages": 39
+    },
+    "amd64": {
+      "local_index_digest": "sha256:5dbf57548df8ee0cf92fb815091d18a513f41785dfe765bb3a4718dab72a69f9",
+      "runtime_manifest_digest": "sha256:1c89b72c87d68d9b23764eb056a6e252720871890e8cdee02aca1551369894f0",
+      "config_digest": "sha256:eb8b84064e2ad09bce049ae81446b1391fd5a242070c6a114bbefff140e8aaa1",
+      "archive_sha256": "aeacb53cc3559874f1edd95bfe7b08efa5c27e007f577d9e5fcd0a4100e4dfb0",
+      "execution": "Linux amd64 under QEMU in arm64 Colima VM; NOT native amd64 hardware",
+      "runtime_check": {
+        "status": "passed",
+        "uid": 10001,
+        "python": "3.12.16",
+        "sqlite": "3.54.1",
+        "sqlite_libraries": {
+          "/usr/lib/libsqlite3.so.3.54.1": "a15896d26c0c302a9595114658d663aa8e26da37aef0fcefa27d35e86933ab89"
+        },
+        "checks": [
+          "non-root",
+          "no runtime packaging/compiler tools",
+          "TLS verification and CA stores",
+          "FTS5 negative-rowid prefix regression, three detail modes",
+          "JSON functions and database integrity",
+          "application WAL initialisation and restart"
+        ],
+        "application": "0.1.0"
+      },
+      "scan_outcome": "No findings detected by the recorded scan",
+      "counts": {
+        "vulnerability_records": 0,
+        "secret_records": 0
+      },
+      "gate_exit_code": 0,
+      "os_packages": 38,
+      "python_packages": 39
+    }
+  },
+  "scanner": {
+    "version": "Trivy 0.76.1",
+    "database": {
+      "Version": 2,
+      "NextUpdate": "2026-11-03T07:17:05.526947983Z",
+      "UpdatedAt": "2026-11-02T07:17:05.526948404Z",
+      "DownloadedAt": "2026-11-02T10:00:51.90053Z"
+    },
+    "scan_command": "trivy --cache-dir .capture/trivy-runtime-cache image --skip-db-update --input .capture/compat-ARCH-image.tar --scanners vuln,secret --list-all-pkgs --format json --output .capture/compat-ARCH-scan.json",
+    "gate_command": "trivy --cache-dir .capture/trivy-runtime-cache image --skip-db-update --input .capture/compat-ARCH-image.tar --scanners vuln,secret --severity HIGH,CRITICAL --exit-code 1",
+    "suppressed_findings": 0,
+    "scope": "Final deployment images, not development verification image; no findings detected is not proof of no vulnerabilities"
+  },
+  "amd64_tests": {
+    "passed": 61,
+    "profile": "Installed-image application/security/storage and new guard tests, offline read-only runtime/test volume under QEMU; fixture tools not installed in final image"
+  },
+  "cluster_checks": {
+    "new_native_arm64": [
+      "1.36.4",
+      "1.37.0"
+    ],
+    "runtime_identity": {
+      "1.36": {
+        "runtime_manifest_matches_final_scan": true,
+        "config_matches_final_scan": true
+      },
+      "1.37": {
+        "runtime_manifest_matches_final_scan": true,
+        "config_matches_final_scan": true
+      }
+    },
+    "prior_native_arm64": "1.35.8 incident and PVC recovery records retained, not repeated without relevant runtime/library changes",
+    "source": "real Kubernetes evidence",
+    "provider": "mock; live-model accuracy unverified"
+  },
+  "sqlite_update_check": {
+    "status": "current",
+    "version": "3.54.1",
+    "feed": "https://sqlite.org/download.html",
+    "sha3_256": "b6ced585c750916b1052667239a12c25a7ff34e7f06e1e6e01ecb0427657d9c4"
+  },
+  "hosted_workflows": "prepared and linted; NOT executed",
+  "unverified": [
+    "native amd64 hardware and amd64 Kubernetes",
+    "bare-host Linux/WSL2 source setup",
+    "managed clouds",
+    "real ingress/TLS/CNI enforcement",
+    "physical storage loss and future schema downgrade",
+    "full upstream CPython/SQLite suites and independent external review",
+    "live-provider account, accuracy, billing, signing/provenance"
+  ],
+  "external_actions": "No push/publication/hosted workflow trigger/paid call/production access",
+  "cleanup": "Both newly tested kind clusters removed; no kind clusters or running task containers remain; source HTTP server and dedicated Colima stopped at handoff"
+}

@@ -1,0 +1,40 @@
+{
+  "software": "0.1.0",
+  "completed_at": "2026-11-02T06:03:36.787937+00:00",
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "versions": {
+    "kubernetes": "{\n  \"clientVersion\": {\n    \"major\": \"1\",\n    \"minor\": \"35\",\n    \"gitVersion\": \"v1.35.8\",\n    \"gitCommit\": \"1c2e10a409eb1b03f2f28f401ce935312e20d9fb\",\n    \"gitTreeState\": \"clean\",\n    \"buildDate\": \"2026-08-20T15:19:06Z\",\n    \"goVersion\": \"go1.26.5\",\n    \"compiler\": \"gc\",\n    \"platform\": \"darwin/arm64\"\n  },\n  \"kustomizeVersion\": \"v5.7.1\",\n  \"serverVersion\": {\n    \"major\": \"1\",\n    \"minor\": \"35\",\n    \"emulationMajor\": \"1\",\n    \"emulationMinor\": \"35\",\n    \"minCompatibilityMajor\": \"1\",\n    \"minCompatibilityMinor\": \"34\",\n    \"gitVersion\": \"v1.35.8\",\n    \"gitCommit\": \"1c2e10a409eb1b03f2f28f401ce935312e20d9fb\",\n    \"gitTreeState\": \"clean\",\n    \"buildDate\": \"2026-08-20T15:16:16Z\",\n    \"goVersion\": \"go1.26.5\",\n    \"compiler\": \"gc\",\n    \"platform\": \"linux/arm64\"\n  }\n}",
+    "kind": "kind v0.33.0 go1.27.0 darwin/arm64",
+    "helm": "v3.19.0+g3d8990f",
+    "image_id": "sha256:a35ac5b56a08c0f8c3544f2d72b315c1d80f1484674f5d7314ec7a6b994476c2",
+    "image_architecture": "arm64",
+    "docker_server": "29.5.2"
+  },
+  "source": "kubernetes",
+  "provider": "mock",
+  "mock": true,
+  "observation_counts": {
+    "crash": 1,
+    "image": 1,
+    "service": 1
+  },
+  "reports": [
+    "ae39de42-b3bf-4f8d-abf0-5c7f29347dbb",
+    "27e6e6a0-47e4-4f56-9dce-5456a081d529",
+    "e0e5250f-1cee-4d56-a013-d9036f69d932"
+  ],
+  "verifications": {
+    "crash": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "image": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "service": "Previously observed condition is absent in fresh evidence. This does not guarantee application health."
+  },
+  "checks": [
+    "Helm installation via demo setup",
+    "restricted credential API reads/denials",
+    "three incidents and exports",
+    "unchanged reports across restart",
+    "three external corrections and fresh follow-ups",
+    "deletion"
+  ]
+}

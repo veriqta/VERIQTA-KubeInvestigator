@@ -1,0 +1,20 @@
+# Optional starting point. Adapt selectors/API routing to your CNI before applying.
+# Requires enforcing NetworkPolicy support. HTTPS egress is intentionally broad;
+# use an egress proxy/firewall for provider destination restrictions.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: investigator-boundary
+  namespace: veriqta-system
+spec:
+  podSelector:
+    matchLabels: {app.kubernetes.io/instance: investigator}
+  policyTypes: [Ingress, Egress]
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels: {kubernetes.io/metadata.name: veriqta-system}
+      ports: [{protocol: TCP, port: 8080}]
+  egress:
+    - ports: [{protocol: UDP, port: 53}, {protocol: TCP, port: 53}]
+    - ports: [{protocol: TCP, port: 443}, {protocol: TCP, port: 6443}]

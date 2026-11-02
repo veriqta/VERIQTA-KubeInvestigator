@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-02",
+  "source": "uncommitted 0.1.0 local working tree",
+  "platform": "macOS arm64; Python 3.12.14",
+  "checks": [
+    {
+      "command": "make setup PYTHON=<bundled-python-3.12> VENV=.venv-readiness",
+      "result": "passed; clean environment"
+    },
+    {
+      "command": "make test VENV=.venv-readiness",
+      "result": "68 passed; TestClient deprecation warning"
+    },
+    {
+      "command": ".venv-readiness/bin/pytest -q tests/test_release_security.py tests/test_storage_recovery.py",
+      "result": "10 passed"
+    },
+    {
+      "command": ".venv-readiness/bin/pytest -q tests/test_storage_recovery.py",
+      "result": "5 passed after adding corrupt-target preservation/fresh-path restore assertions"
+    },
+    {
+      "command": "make check VENV=.venv-readiness",
+      "result": "ruff, formatting, mypy (12 modules), documentation checks passed"
+    },
+    {
+      "command": "actionlint",
+      "result": "passed; hosted workflows not triggered"
+    },
+    {
+      "command": "node scripts/capture.cjs",
+      "result": "passed with explicit mock/fixture provider/source; genuine captures"
+    },
+    {
+      "command": "node scripts/check_readme.cjs",
+      "result": "passed light/dark desktop and narrow, images and anchors; exact GitHub rendering unverified"
+    },
+    {
+      "command": ".venv-readiness/bin/python -m build --no-isolation",
+      "result": "wheel and sdist built; maintenance module included"
+    },
+    {
+      "command": "helm package charts/kubeinvestigator -d dist",
+      "result": "packaged locally"
+    },
+    {
+      "command": "trivy image --scanners vuln,secret --severity HIGH,CRITICAL --exit-code 1 kubeinvestigator:0.1.0",
+      "result": "FAILED as expected; 45 HIGH OS findings, no suppression"
+    }
+  ],
+  "cluster_records": [
+    "2026-11-01-kind-1.35.8-mock.json",
+    "2026-11-02-storage-recovery-mock.json"
+  ],
+  "interpretation_accuracy": "UNVERIFIED: no live model calls",
+  "cleanup": "No kind clusters found; dedicated Colima profile and localhost capture server stopped",
+  "external_actions": "No push, publication, hosted workflow trigger or production access"
+}

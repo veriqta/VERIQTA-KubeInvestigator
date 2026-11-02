@@ -1,0 +1,138 @@
+{
+  "properties": {
+    "token": {
+      "format": "password",
+      "title": "Token",
+      "type": "string",
+      "writeOnly": true
+    },
+    "namespaces": {
+      "default": [
+        "veriqta-demo"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "title": "Namespaces",
+      "type": "array"
+    },
+    "provider": {
+      "default": "mock",
+      "title": "Provider",
+      "type": "string"
+    },
+    "source": {
+      "default": "fixture",
+      "title": "Source",
+      "type": "string"
+    },
+    "model": {
+      "default": "gpt-4.1-mini",
+      "title": "Model",
+      "type": "string"
+    },
+    "api_key": {
+      "default": "",
+      "format": "password",
+      "title": "Api Key",
+      "type": "string",
+      "writeOnly": true
+    },
+    "database": {
+      "default": ".data/investigations.db",
+      "title": "Database",
+      "type": "string"
+    },
+    "logs": {
+      "default": false,
+      "title": "Logs",
+      "type": "boolean"
+    },
+    "log_lookback_seconds": {
+      "default": 3600,
+      "maximum": 86400,
+      "minimum": 60,
+      "title": "Log Lookback Seconds",
+      "type": "integer"
+    },
+    "concurrency": {
+      "default": 2,
+      "maximum": 8,
+      "minimum": 1,
+      "title": "Concurrency",
+      "type": "integer"
+    },
+    "queue_limit": {
+      "default": 20,
+      "maximum": 100,
+      "minimum": 1,
+      "title": "Queue Limit",
+      "type": "integer"
+    },
+    "duration": {
+      "default": 90,
+      "maximum": 300,
+      "minimum": 1,
+      "title": "Duration",
+      "type": "integer"
+    },
+    "tool_timeout": {
+      "default": 8,
+      "maximum": 30,
+      "minimum": 1,
+      "title": "Tool Timeout",
+      "type": "integer"
+    },
+    "max_calls": {
+      "default": 8,
+      "maximum": 16,
+      "minimum": 1,
+      "title": "Max Calls",
+      "type": "integer"
+    },
+    "max_turns": {
+      "default": 6,
+      "maximum": 12,
+      "minimum": 1,
+      "title": "Max Turns",
+      "type": "integer"
+    },
+    "retention_days": {
+      "default": 7,
+      "maximum": 90,
+      "minimum": 1,
+      "title": "Retention Days",
+      "type": "integer"
+    },
+    "max_records": {
+      "default": 500,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Max Records",
+      "type": "integer"
+    },
+    "max_db_bytes": {
+      "default": 100000000,
+      "minimum": 100000,
+      "title": "Max Db Bytes",
+      "type": "integer"
+    },
+    "session_seconds": {
+      "default": 3600,
+      "maximum": 86400,
+      "minimum": 60,
+      "title": "Session Seconds",
+      "type": "integer"
+    },
+    "secure_cookie": {
+      "default": false,
+      "title": "Secure Cookie",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "token"
+  ],
+  "title": "Settings",
+  "type": "object"
+}

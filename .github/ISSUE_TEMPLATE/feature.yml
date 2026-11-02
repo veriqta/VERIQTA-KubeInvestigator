@@ -1,0 +1,10 @@
+name: Feature request
+description: Propose a focused improvement
+body:
+  - type: textarea
+    id: need
+    attributes: {label: User problem and proposed outcome}
+    validations: {required: true}
+  - type: textarea
+    id: boundary
+    attributes: {label: Evidence, permission and compatibility implications}

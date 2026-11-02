@@ -1,0 +1,86 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels: {app.kubernetes.io/instance: {{ .Release.Name }}}
+  template:
+    metadata:
+      labels: {app.kubernetes.io/instance: {{ .Release.Name }}}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}
+      containers:
+        - name: investigator
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - {name: http, containerPort: 8080}
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: {drop: [ALL]}
+            seccompProfile: {type: RuntimeDefault}
+          envFrom:
+            - secretRef: {name: {{ required "existingSecret is required" .Values.existingSecret }}}
+          env:
+            - {name: KI_NAMESPACES, value: {{ join "," .Values.namespaces | quote }}}
+            - {name: KI_PROVIDER, value: {{ .Values.provider | quote }}}
+            - {name: KI_SOURCE, value: kubernetes}
+            - {name: KI_MODEL, value: {{ .Values.model | quote }}}
+            - {name: KI_LOGS, value: {{ .Values.logs | quote }}}
+            - {name: KI_LOG_LOOKBACK_SECONDS, value: {{ .Values.logLookbackSeconds | int64 | quote }}}
+            - {name: KI_SECURE_COOKIE, value: {{ .Values.ingress.enabled | quote }}}
+            - {name: KI_RETENTION_DAYS, value: {{ .Values.retentionDays | int64 | quote }}}
+            - {name: KI_MAX_RECORDS, value: {{ .Values.maxRecords | int64 | quote }}}
+            - {name: KI_MAX_DB_BYTES, value: {{ .Values.maxDbBytes | int64 | quote }}}
+            - {name: KI_CONCURRENCY, value: {{ .Values.concurrency | int64 | quote }}}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          startupProbe:
+            httpGet: {path: /health/live, port: http}
+            periodSeconds: 2
+            failureThreshold: 30
+          readinessProbe:
+            httpGet: {path: /health/ready, port: http}
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: {path: /health/live, port: http}
+            periodSeconds: 15
+          volumeMounts:
+            - {name: data, mountPath: /data}
+            - {name: tmp, mountPath: /tmp}
+      volumes:
+        - name: data
+          persistentVolumeClaim: {claimName: {{ .Release.Name }}-data}
+        - name: tmp
+          emptyDir: {sizeLimit: 16Mi}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-data
+  annotations:
+    helm.sh/resource-policy: keep
+spec:
+  accessModes: [ReadWriteOnce]
+  {{- if .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.storageClass | quote }}
+  {{- end }}
+  resources:
+    requests: {storage: {{ .Values.persistence.size }}}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  type: ClusterIP
+  selector: {app.kubernetes.io/instance: {{ .Release.Name }}}
+  ports:
+    - {name: http, port: 8080, targetPort: http}

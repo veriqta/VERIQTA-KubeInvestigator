@@ -1,0 +1,11 @@
+flowchart LR
+  Browser["Trusted team browser"] -->|"session + CSRF"| API
+  subgraph Deployment["One self-hosted deployment"]
+    API["API + namespace policy"] --> Engine["Bounded engine"]
+    Engine --> Store["SQLite: redacted reports"]
+    Engine --> Redact["Minimise, redact, bound"]
+  end
+  Cluster["Authorised namespaces: read-only API"] -->|"untrusted selected evidence"| Engine
+  Redact -->|"only with live provider enabled"| Provider["OpenAI HTTPS boundary"]
+  Provider -->|"untrusted validated interpretation"| Engine
+  Browser -->|"independent manual correction"| Cluster

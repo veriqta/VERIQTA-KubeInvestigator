@@ -1,0 +1,7 @@
+# Create this Secret before installing. Never put tokens in values.
+existingSecret: investigator-access
+namespaces: [veriqta-demo]
+provider: mock
+image:
+  repository: kubeinvestigator
+  tag: "0.1.0"

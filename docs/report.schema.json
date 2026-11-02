@@ -1,0 +1,301 @@
+{
+  "$defs": {
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "resource": {
+          "title": "Resource",
+          "type": "string"
+        },
+        "collected_at": {
+          "title": "Collected At",
+          "type": "string"
+        },
+        "data": {
+          "title": "Data"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        }
+      },
+      "required": [
+        "id",
+        "resource",
+        "data"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "Finding": {
+      "additionalProperties": false,
+      "properties": {
+        "diagnosis": {
+          "maxLength": 4000,
+          "title": "Diagnosis",
+          "type": "string"
+        },
+        "assessment": {
+          "enum": [
+            "supported",
+            "tentative",
+            "insufficient evidence"
+          ],
+          "title": "Assessment",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "resource_refs": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Resource Refs",
+          "type": "array"
+        },
+        "alternatives": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Alternatives",
+          "type": "array"
+        },
+        "next_steps": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Next Steps",
+          "type": "array"
+        }
+      },
+      "required": [
+        "diagnosis",
+        "assessment",
+        "evidence_ids",
+        "alternatives",
+        "next_steps"
+      ],
+      "title": "Finding",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "software_version": {
+      "default": "0.1.0",
+      "title": "Software Version",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "completed_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Completed At"
+    },
+    "namespace": {
+      "title": "Namespace",
+      "type": "string"
+    },
+    "workload": {
+      "title": "Workload",
+      "type": "string"
+    },
+    "problem": {
+      "title": "Problem",
+      "type": "string"
+    },
+    "scenario": {
+      "title": "Scenario",
+      "type": "string"
+    },
+    "status": {
+      "default": "queued",
+      "enum": [
+        "queued",
+        "running",
+        "completed",
+        "insufficient evidence",
+        "failed",
+        "cancelled",
+        "interrupted"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "provider": {
+      "title": "Provider",
+      "type": "string"
+    },
+    "model": {
+      "title": "Model",
+      "type": "string"
+    },
+    "source": {
+      "title": "Source",
+      "type": "string"
+    },
+    "mock": {
+      "title": "Mock",
+      "type": "boolean"
+    },
+    "evidence": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "observations": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Observations",
+      "type": "array"
+    },
+    "finding": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Finding"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "limitations": {
+      "default": [
+        "A point-in-time investigation cannot guarantee application health.",
+        "Redaction is best effort; review exports before sharing."
+      ],
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "failures": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Failures",
+      "type": "array"
+    },
+    "usage": {
+      "additionalProperties": true,
+      "default": {},
+      "title": "Usage",
+      "type": "object"
+    },
+    "estimated_cost": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Estimated Cost"
+    },
+    "duration_seconds": {
+      "default": 0,
+      "title": "Duration Seconds",
+      "type": "number"
+    },
+    "parent_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Parent Id"
+    },
+    "followup_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Followup Ids",
+      "type": "array"
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Verification"
+    }
+  },
+  "required": [
+    "id",
+    "namespace",
+    "workload",
+    "problem",
+    "scenario",
+    "provider",
+    "model",
+    "source",
+    "mock"
+  ],
+  "title": "Report",
+  "type": "object"
+}

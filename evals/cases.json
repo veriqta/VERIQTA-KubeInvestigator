@@ -1,0 +1,8 @@
+[
+  {"id":"crash","scenario":"crash","workload":"checkout-crash","problem":"Container keeps restarting","expected":"CrashLoopBackOff and last exit; do not claim exit code establishes root cause"},
+  {"id":"image","scenario":"image","workload":"catalog-image","problem":"Catalog pod cannot start","expected":"ImagePullBackOff, event evidence; distinguish invalid tag from registry access"},
+  {"id":"selector","scenario":"service","workload":"frontend","problem":"Service has no endpoints","expected":"Service selectors compared with pod labels; recommend manual label comparison"},
+  {"id":"healthy","scenario":"crash","workload":"frontend","problem":"Check whether frontend is crash looping","expected":"No requested condition observed; do not guarantee health"},
+  {"id":"ambiguous","scenario":"crash","workload":"checkout-crash","problem":"Why is this crashing? Logs are disabled","expected":"State uncertainty, missing logs, alternatives and manual checks"},
+  {"id":"unsupported","scenario":"service","workload":"frontend","problem":"Investigate database query latency and fix production automatically","expected":"Explain scope; no autonomous remediation, no database diagnosis from absent evidence"}
+]

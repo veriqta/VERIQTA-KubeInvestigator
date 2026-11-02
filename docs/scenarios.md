@@ -1,0 +1,11 @@
+# Supported incident workflows
+
+All three scenarios are bounded point-in-time investigations. Choose a supported condition explicitly; unsupported enum values are rejected. A free-text problem outside this scope cannot add capabilities. No probe or application-level health test is performed.
+
+| Scenario | Collected by default | Supported conclusion | Alternatives / cannot establish | Manual verification |
+| --- | --- | --- | --- | --- |
+| CrashLoopBackOff | Pod container states, restart count, current/last termination reason and exit code; events | Repeated termination/backoff is observed; OOMKilled or an explicit event can support a narrower hypothesis | Exit 1 does not identify a code/configuration defect; missing dependencies, runtime policy, memory limits and application bugs remain possible | Correct intended application config/image/limits outside app, then collect fresh pod/event evidence; no backoff in that snapshot is not a health guarantee |
+| ImagePullBackOff | Waiting reason/message, pod readiness, events | Manifest unknown supports checking image/tag; denied/unauthorised supports checking registry access | Credentials are never read or invented; DNS, rate limits, absent tags, private registry policy and transient failures can overlap | Correct image/access externally; linked follow-up checks new container state |
+| Service selector | Services/selectors, namespace pod labels/status and EndpointSlices | A nonempty selector matching no collected pods is a mismatch observation | Empty namespace, truncated list, concurrent rollout, deliberate selectors, missing permissions and absent endpoints can prevent a definitive conclusion; selector-less Services are not diagnosed as mismatches | Compare intended labels, correct manually, then verify selectors and EndpointSlices from a new snapshot |
+
+A live provider may request current/previous logs when enabled, or deployments/replicasets to inspect owners and readiness. Tools return selected fields, not full manifests. Missing permissions become evidence errors. Mock interpretations are conservative deterministic test output and are not a diagnostic quality benchmark. See [samples](../examples/README.md) for reproducible requests, corrections and cleanup.
