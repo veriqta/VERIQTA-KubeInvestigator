@@ -1,0 +1,1217 @@
+{
+  "conclusion": "success",
+  "databaseId": 41518958745,
+  "event": "push",
+  "headSha": "0a1927150f8698f313333d36ad0322022175d7ca",
+  "jobs": [
+    {
+      "completedAt": "2026-11-02T20:26:46Z",
+      "conclusion": "success",
+      "databaseId": 125529706435,
+      "name": "Container / arm64",
+      "startedAt": "2026-11-02T20:24:55Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:59Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:00Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:19Z",
+          "conclusion": "success",
+          "name": "Verify native architecture and build final runtime",
+          "number": 3,
+          "startedAt": "2026-11-02T20:25:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:40Z",
+          "conclusion": "success",
+          "name": "Scan exact Docker archive and retain complete findings locally",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:40Z",
+          "conclusion": "success",
+          "name": "Record image lineage and sanitised scan evidence",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:40Z",
+          "conclusion": "success",
+          "name": "Enforce unchanged HIGH/CRITICAL and secret gate",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:42Z",
+          "conclusion": "success",
+          "name": "Retain sanitised final-image evidence only",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:42Z",
+          "conclusion": "success",
+          "name": "Post Scan exact Docker archive and retain complete findings locally",
+          "number": 13,
+          "startedAt": "2026-11-02T20:26:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:42Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 14,
+          "startedAt": "2026-11-02T20:26:42Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:42Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 15,
+          "startedAt": "2026-11-02T20:26:42Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529706435"
+    },
+    {
+      "completedAt": "2026-11-02T20:25:08Z",
+      "conclusion": "success",
+      "databaseId": 125529706925,
+      "name": "chart",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:58Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:59Z",
+          "conclusion": "success",
+          "name": "Run azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:03Z",
+          "conclusion": "success",
+          "name": "Run python -m venv /tmp/chart-check && /tmp/chart-check/bin/pip install PyYAML==6.0.3",
+          "number": 4,
+          "startedAt": "2026-11-02T20:24:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:03Z",
+          "conclusion": "success",
+          "name": "Run helm lint charts/kubeinvestigator -f examples/values.yaml",
+          "number": 5,
+          "startedAt": "2026-11-02T20:25:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:03Z",
+          "conclusion": "success",
+          "name": "Run for version in 1.35.0 1.36.0 1.37.0; do",
+          "number": 6,
+          "startedAt": "2026-11-02T20:25:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:03Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 12,
+          "startedAt": "2026-11-02T20:25:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:03Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 13,
+          "startedAt": "2026-11-02T20:25:03Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529706925"
+    },
+    {
+      "completedAt": "2026-11-02T20:27:19Z",
+      "conclusion": "success",
+      "databaseId": 125529707000,
+      "name": "python",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:20Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:43Z",
+          "conclusion": "success",
+          "name": "Run make setup",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:02Z",
+          "conclusion": "success",
+          "name": "Run make test check",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:02Z",
+          "conclusion": "success",
+          "name": "Run .venv/bin/python scripts/check_sqlite_update.py",
+          "number": 6,
+          "startedAt": "2026-11-02T20:27:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:05Z",
+          "conclusion": "success",
+          "name": "Run .venv/bin/pip install pip-audit pip-licenses",
+          "number": 7,
+          "startedAt": "2026-11-02T20:27:02Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:12Z",
+          "conclusion": "success",
+          "name": "Run .venv/bin/pip-audit -r requirements.lock",
+          "number": 8,
+          "startedAt": "2026-11-02T20:27:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:13Z",
+          "conclusion": "success",
+          "name": "Run .venv/bin/pip-licenses --format=json --output-file=/tmp/dependency-licenses.json",
+          "number": 9,
+          "startedAt": "2026-11-02T20:27:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:15Z",
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02",
+          "number": 10,
+          "startedAt": "2026-11-02T20:27:13Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:15Z",
+          "conclusion": "success",
+          "name": "Run .venv/bin/python scripts/check_licenses.py /tmp/dependency-licenses.json",
+          "number": 11,
+          "startedAt": "2026-11-02T20:27:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:15Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 22,
+          "startedAt": "2026-11-02T20:27:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:15Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 23,
+          "startedAt": "2026-11-02T20:27:15Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707000"
+    },
+    {
+      "completedAt": "2026-11-02T20:27:19Z",
+      "conclusion": "success",
+      "databaseId": 125529707069,
+      "name": "runtime",
+      "startedAt": "2026-11-02T20:25:04Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:25:05Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:25:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:07Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:25:05Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:14Z",
+          "conclusion": "success",
+          "name": "Build final runtime, including verified SQLite source package",
+          "number": 3,
+          "startedAt": "2026-11-02T20:25:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:15Z",
+          "conclusion": "success",
+          "name": "Check installed runtime independently of scanner advisory coverage",
+          "number": 4,
+          "startedAt": "2026-11-02T20:27:14Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:16Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 8,
+          "startedAt": "2026-11-02T20:27:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:16Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 9,
+          "startedAt": "2026-11-02T20:27:16Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707069"
+    },
+    {
+      "completedAt": "2026-11-02T20:30:08Z",
+      "conclusion": "success",
+      "databaseId": 125529707188,
+      "name": "smoke / First-release load / real Kubernetes / mock provider",
+      "startedAt": "2026-11-02T20:24:54Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:58Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:52Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:54Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified cluster tools",
+          "number": 4,
+          "startedAt": "2026-11-02T20:25:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:10Z",
+          "conclusion": "success",
+          "name": "Run make setup",
+          "number": 5,
+          "startedAt": "2026-11-02T20:25:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:10Z",
+          "conclusion": "skipped",
+          "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:10Z",
+          "conclusion": "skipped",
+          "name": "Install locked browser authoring tools",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:29:53Z",
+          "conclusion": "success",
+          "name": "Run disposable first-release acceptance",
+          "number": 8,
+          "startedAt": "2026-11-02T20:26:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:29:54Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance evidence only",
+          "number": 9,
+          "startedAt": "2026-11-02T20:29:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:29:54Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interruption",
+          "number": 10,
+          "startedAt": "2026-11-02T20:29:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:29:54Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 20,
+          "startedAt": "2026-11-02T20:29:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:29:54Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 21,
+          "startedAt": "2026-11-02T20:29:54Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707188"
+    },
+    {
+      "completedAt": "2026-11-02T20:25:04Z",
+      "conclusion": "success",
+      "databaseId": 125529707200,
+      "name": "secrets",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:58Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:01Z",
+          "conclusion": "success",
+          "name": "Run gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:01Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 6,
+          "startedAt": "2026-11-02T20:25:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:25:01Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 7,
+          "startedAt": "2026-11-02T20:25:01Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707200"
+    },
+    {
+      "completedAt": "2026-11-02T20:27:42Z",
+      "conclusion": "success",
+      "databaseId": 125529707385,
+      "name": "Container / amd64",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:15Z",
+          "conclusion": "success",
+          "name": "Verify native architecture and build final runtime",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:38Z",
+          "conclusion": "success",
+          "name": "Scan exact Docker archive and retain complete findings locally",
+          "number": 4,
+          "startedAt": "2026-11-02T20:27:15Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:38Z",
+          "conclusion": "success",
+          "name": "Record image lineage and sanitised scan evidence",
+          "number": 5,
+          "startedAt": "2026-11-02T20:27:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:39Z",
+          "conclusion": "success",
+          "name": "Enforce unchanged HIGH/CRITICAL and secret gate",
+          "number": 6,
+          "startedAt": "2026-11-02T20:27:38Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:40Z",
+          "conclusion": "success",
+          "name": "Retain sanitised final-image evidence only",
+          "number": 7,
+          "startedAt": "2026-11-02T20:27:39Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:40Z",
+          "conclusion": "success",
+          "name": "Post Scan exact Docker archive and retain complete findings locally",
+          "number": 13,
+          "startedAt": "2026-11-02T20:27:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:41Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 14,
+          "startedAt": "2026-11-02T20:27:40Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:27:41Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 15,
+          "startedAt": "2026-11-02T20:27:41Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707385"
+    },
+    {
+      "completedAt": "2026-11-02T20:30:30Z",
+      "conclusion": "success",
+      "databaseId": 125529707479,
+      "name": "smoke / PVC recovery and schema-compatible rollback / mock provider",
+      "startedAt": "2026-11-02T20:24:54Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:58Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:08Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:08Z",
+          "conclusion": "success",
+          "name": "Verify real Docker daemon and Buildx",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:10Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified kind, matching kubectl and Helm",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:08Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:31Z",
+          "conclusion": "success",
+          "name": "Install locked Python dependencies",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:25Z",
+          "conclusion": "success",
+          "name": "Run focused PVC recovery and config rollback",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:27Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance summary only",
+          "number": 8,
+          "startedAt": "2026-11-02T20:30:25Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:27Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interrupted runner step",
+          "number": 9,
+          "startedAt": "2026-11-02T20:30:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:27Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 18,
+          "startedAt": "2026-11-02T20:30:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:27Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-11-02T20:30:27Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707479"
+    },
+    {
+      "completedAt": "2026-11-02T20:31:11Z",
+      "conclusion": "success",
+      "databaseId": 125529707516,
+      "name": "smoke / First-release evidence / real Kubernetes / mock provider",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:20Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:22Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified cluster tools",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:45Z",
+          "conclusion": "success",
+          "name": "Run make setup",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:45Z",
+          "conclusion": "skipped",
+          "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:45Z",
+          "conclusion": "skipped",
+          "name": "Install locked browser authoring tools",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:31:07Z",
+          "conclusion": "success",
+          "name": "Run disposable first-release acceptance",
+          "number": 8,
+          "startedAt": "2026-11-02T20:26:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:31:09Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance evidence only",
+          "number": 9,
+          "startedAt": "2026-11-02T20:31:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:31:09Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interruption",
+          "number": 10,
+          "startedAt": "2026-11-02T20:31:09Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:31:09Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 20,
+          "startedAt": "2026-11-02T20:31:09Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:31:09Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 21,
+          "startedAt": "2026-11-02T20:31:09Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707516"
+    },
+    {
+      "completedAt": "2026-11-02T20:30:27Z",
+      "conclusion": "success",
+      "databaseId": 125529707523,
+      "name": "smoke / Kubernetes v1.35.8 / mock provider",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:20Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:22Z",
+          "conclusion": "success",
+          "name": "Verify real Docker daemon and Buildx",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:24Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified kind, matching kubectl and Helm",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:48Z",
+          "conclusion": "success",
+          "name": "Install locked Python dependencies",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:23Z",
+          "conclusion": "success",
+          "name": "Run full disposable-cluster smoke",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:24Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance summary only",
+          "number": 8,
+          "startedAt": "2026-11-02T20:30:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:24Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interrupted runner step",
+          "number": 9,
+          "startedAt": "2026-11-02T20:30:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:25Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 18,
+          "startedAt": "2026-11-02T20:30:24Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:25Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-11-02T20:30:25Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707523"
+    },
+    {
+      "completedAt": "2026-11-02T20:30:24Z",
+      "conclusion": "success",
+      "databaseId": 125529707609,
+      "name": "smoke / Kubernetes v1.36.4 / mock provider",
+      "startedAt": "2026-11-02T20:24:54Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:10Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:10Z",
+          "conclusion": "success",
+          "name": "Verify real Docker daemon and Buildx",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:12Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified kind, matching kubectl and Helm",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:10Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:34Z",
+          "conclusion": "success",
+          "name": "Install locked Python dependencies",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:19Z",
+          "conclusion": "success",
+          "name": "Run full disposable-cluster smoke",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:21Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance summary only",
+          "number": 8,
+          "startedAt": "2026-11-02T20:30:19Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:21Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interrupted runner step",
+          "number": 9,
+          "startedAt": "2026-11-02T20:30:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:21Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 18,
+          "startedAt": "2026-11-02T20:30:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:21Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-11-02T20:30:21Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707609"
+    },
+    {
+      "completedAt": "2026-11-02T20:40:04Z",
+      "conclusion": "success",
+      "databaseId": 125529707742,
+      "name": "smoke / First-release browser / real Kubernetes / mock provider",
+      "startedAt": "2026-11-02T20:24:54Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:57Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:20Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:21Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified cluster tools",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:46Z",
+          "conclusion": "success",
+          "name": "Run make setup",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:21Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:47Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:36:12Z",
+          "conclusion": "success",
+          "name": "Install locked browser authoring tools",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:39:58Z",
+          "conclusion": "success",
+          "name": "Run disposable first-release acceptance",
+          "number": 8,
+          "startedAt": "2026-11-02T20:36:12Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:40:00Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance evidence only",
+          "number": 9,
+          "startedAt": "2026-11-02T20:39:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:40:00Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interruption",
+          "number": 10,
+          "startedAt": "2026-11-02T20:40:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:40:00Z",
+          "conclusion": "success",
+          "name": "Post Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020",
+          "number": 19,
+          "startedAt": "2026-11-02T20:40:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:40:00Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 20,
+          "startedAt": "2026-11-02T20:40:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:40:00Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 21,
+          "startedAt": "2026-11-02T20:40:00Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707742"
+    },
+    {
+      "completedAt": "2026-11-02T20:30:55Z",
+      "conclusion": "success",
+      "databaseId": 125529707855,
+      "name": "smoke / Kubernetes v1.37.0 / mock provider",
+      "startedAt": "2026-11-02T20:24:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-11-02T20:24:55Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-02T20:24:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:24:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 2,
+          "startedAt": "2026-11-02T20:24:55Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:17Z",
+          "conclusion": "success",
+          "name": "Select maintained Python with verified patched SQLite",
+          "number": 3,
+          "startedAt": "2026-11-02T20:24:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:17Z",
+          "conclusion": "success",
+          "name": "Verify real Docker daemon and Buildx",
+          "number": 4,
+          "startedAt": "2026-11-02T20:26:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:18Z",
+          "conclusion": "success",
+          "name": "Install checksum-verified kind, matching kubectl and Helm",
+          "number": 5,
+          "startedAt": "2026-11-02T20:26:17Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:26:43Z",
+          "conclusion": "success",
+          "name": "Install locked Python dependencies",
+          "number": 6,
+          "startedAt": "2026-11-02T20:26:18Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:51Z",
+          "conclusion": "success",
+          "name": "Run full disposable-cluster smoke",
+          "number": 7,
+          "startedAt": "2026-11-02T20:26:43Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:52Z",
+          "conclusion": "success",
+          "name": "Retain synthetic acceptance summary only",
+          "number": 8,
+          "startedAt": "2026-11-02T20:30:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:52Z",
+          "conclusion": "success",
+          "name": "Cleanup owned cluster after interrupted runner step",
+          "number": 9,
+          "startedAt": "2026-11-02T20:30:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:52Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262",
+          "number": 18,
+          "startedAt": "2026-11-02T20:30:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-02T20:30:52Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-11-02T20:30:52Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745/job/125529707855"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745"
+}

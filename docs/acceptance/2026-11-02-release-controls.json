@@ -1,0 +1,58 @@
+{
+  "checked_at": "2026-11-02T20:41:56.087349+00:00",
+  "baseline_revision": "0a1927150f8698f313333d36ad0322022175d7ca",
+  "post_merge_validation": {
+    "run_id": 41518958745,
+    "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41518958745",
+    "status": "passed",
+    "jobs_passed": 13
+  },
+  "security_reporting": {
+    "repository_visibility": "PRIVATE",
+    "status_api_http": 404,
+    "enabled": null,
+    "result": "unverified;404 does not prove enabled or disabled",
+    "settings_changed": false,
+    "required_action": "Administrator must authorise and verify a private reporting route. GitHub private vulnerability reporting is documented for public repositories; visibility change requires separate approval. A verified private contact is an alternative."
+  },
+  "maintenance": {
+    "runtime_maintainer": "unassigned",
+    "security_triage": "unassigned",
+    "release_reviewer": "unassigned",
+    "scheduled_monitoring": "not configured; documented review process and existing CI gates only"
+  },
+  "publisher_approval": {
+    "status": "prepared, not configured for production",
+    "policy": "packaging/release/trust.json",
+    "policy_sha256": "3a780927aaccd5b74649eceb9a2f1edd7ed4171a2eb6ffc8db3c73fdb695e687",
+    "approved_signers": 0,
+    "fixture_crypto_tests_passed": 11,
+    "local_cli": "LibreSSL 3.3.6",
+    "existing_candidate_rejected_by_empty_policy": true,
+    "claims": "No independently approved identity, independent builder attestation or SLSA level.",
+    "production_publisher_signature_created": false
+  },
+  "live_evaluation": {
+    "authorisation": "not recorded for paid calls",
+    "executed": false,
+    "KI_API_KEY_present_in_checked_environment": false,
+    "documented_private_live_env_present": false,
+    "secret_values_inspected": false,
+    "scope": "No evidence of credentials elsewhere is inferred; no cluster/secret-store search performed. Missing authorisation and private setup only."
+  },
+  "publication": {
+    "packages": false,
+    "release": false,
+    "visibility_changed": false,
+    "production_deployment": false
+  },
+  "local_validation": {
+    "tests_passed": 103,
+    "commands": [
+      "make test check VENV=.venv-source"
+    ],
+    "scope": "Current working-tree controls based on recorded baseline revision; no model calls or runtime image change.",
+    "script_sha256": "61f3ed6ae8f7b73b31de1b93fa2d1cc7e2cb6014e193216b638454d12ae057bf",
+    "fixture_tests_sha256": "27c17509e0ae992e0f311caf32dc50d42aa35d7fb8c74f39955addb8dae33119"
+  }
+}
