@@ -1,0 +1,48 @@
+{
+  "software": "0.1.0",
+  "completed_at": "2026-11-02T15:43:07.500390+00:00",
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "versions": {
+    "kubernetes": "{\n  \"clientVersion\": {\n    \"major\": \"1\",\n    \"minor\": \"35\",\n    \"gitVersion\": \"v1.35.8\",\n    \"gitCommit\": \"1c2e10a409eb1b03f2f28f401ce935312e20d9fb\",\n    \"gitTreeState\": \"clean\",\n    \"buildDate\": \"2026-08-20T15:19:06Z\",\n    \"goVersion\": \"go1.26.5\",\n    \"compiler\": \"gc\",\n    \"platform\": \"linux/amd64\"\n  },\n  \"kustomizeVersion\": \"v5.7.1\",\n  \"serverVersion\": {\n    \"major\": \"1\",\n    \"minor\": \"35\",\n    \"emulationMajor\": \"1\",\n    \"emulationMinor\": \"35\",\n    \"minCompatibilityMajor\": \"1\",\n    \"minCompatibilityMinor\": \"34\",\n    \"gitVersion\": \"v1.35.8\",\n    \"gitCommit\": \"1c2e10a409eb1b03f2f28f401ce935312e20d9fb\",\n    \"gitTreeState\": \"clean\",\n    \"buildDate\": \"2026-08-20T15:16:16Z\",\n    \"goVersion\": \"go1.26.5\",\n    \"compiler\": \"gc\",\n    \"platform\": \"linux/amd64\"\n  }\n}",
+    "kind": "kind v0.33.0 go1.26.7 linux/amd64",
+    "helm": "v3.19.0+g3d8990f",
+    "image_id": "sha256:afa640030b6ff308d899b0f01fbe2f778e6d8cbd403dd82df474f5e7c5ba1d33",
+    "image_architecture": "amd64",
+    "docker_server": "28.0.4"
+  },
+  "source": "kubernetes",
+  "provider": "mock",
+  "mock": true,
+  "observation_counts": {
+    "crash": 1,
+    "image": 1,
+    "service": 1
+  },
+  "reports": [
+    "56f748be-65a3-4f0f-9786-5d42efb06712",
+    "efd82f37-c581-4e7d-9068-31f81ad1463b",
+    "d9af8d01-8274-4621-98ea-289aa610166d"
+  ],
+  "verifications": {
+    "crash": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "image": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "service": "Previously observed condition is absent in fresh evidence. This does not guarantee application health."
+  },
+  "checks": [
+    "Helm installation via demo setup",
+    "restricted credential API reads/denials",
+    "three incidents and exports",
+    "unchanged reports across restart",
+    "three external corrections and fresh follow-ups",
+    "deletion"
+  ],
+  "hosted_provenance": {
+    "run_id": 41473405003,
+    "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41473405003",
+    "head_revision": "d261de7164427864adbc18221e26aca9c3ba5b8b",
+    "artifact": "smoke-v1.35.8-mock",
+    "profile": "native amd64 Ubuntu 24.04 hosted VM",
+    "original_summary_sha256": "646fdca5428292fd19517a4395e0ac36b98896264ab05c8a3ce179967b128fb8"
+  }
+}
