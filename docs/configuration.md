@@ -8,7 +8,7 @@ Environment variables are read once on startup and validated. Chart values expos
 | KI_NAMESPACES | veriqta-demo | Comma-separated explicit DNS namespace names; never `*` |
 | KI_PROVIDER | mock | mock or openai |
 | KI_SOURCE | fixture | fixture or kubernetes; chart forces kubernetes |
-| KI_MODEL | gpt-4.1-mini | Candidate live model; not live-tested |
+| KI_MODEL | gpt-6-luna | Candidate live model; not live-tested |
 | KI_API_KEY | unset | Required only for live provider; never chart values |
 | KI_DATABASE | .data/investigations.db | Container uses /data/investigations.db |
 | KI_LOGS | false | Enable narrow current/previous pod logs and chart permission together |

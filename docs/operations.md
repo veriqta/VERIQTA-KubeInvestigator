@@ -10,6 +10,8 @@ Retention is seven days, configurable to 1–90 days, evaluated every 60 seconds
 
 Use the integrity-checked [maintenance commands](#verified-maintenance-commands) below. Stop the single application writer first. For Kubernetes, the focused disposable recovery test supplies the scale-to-zero, hardened Job, restore and startup sequence; adapt it only with explicit authorisation for your deployment/storage system. Do not copy a live main DB while ignoring its WAL. Encryption and independent backup retention remain operator responsibilities.
 
+See [measured operating limits](operating-limits.md) for a bounded baseline and conservative small-team starting allocation.
+
 ## Operational signals
 
 `GET /metrics` requires team authentication and returns Prometheus text. Counters include completed/failed/insufficient_evidence/cancelled/interrupted outcomes when executed, duration_milliseconds, tool_calls/tool_milliseconds/tool_errors, provider_errors, prompt_tokens/completion_tokens/total_tokens, budget_exhausted, storage_errors and cleanup_errors. Queue_depth and active are gauges. Only observed signals appear. Metrics reset on restart; persistent reports are the historical record. No cost value is invented. Request logs contain opaque request IDs; investigation lifecycle logs contain investigation IDs and status. The application logger emits these records at INFO without request bodies; supplied server commands disable access logs.

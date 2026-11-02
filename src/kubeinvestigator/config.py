@@ -10,7 +10,7 @@ class Settings(BaseModel):
     namespaces: list[str] = ["veriqta-demo"]
     provider: str = "mock"
     source: str = "fixture"
-    model: str = "gpt-4.1-mini"
+    model: str = "gpt-6-luna"
     api_key: SecretStr = SecretStr("")
     database: str = ".data/investigations.db"
     logs: bool = False

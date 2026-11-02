@@ -8,9 +8,9 @@ A self-hosted, read-only Kubernetes incident investigator that turns authorised 
 
 [Quick start](#quick-start) · [Demonstration](#see-an-investigation) · [Documentation](docs/index.md) · [Security](SECURITY.md) · [Contributing](CONTRIBUTING.md)
 
-![Actual authenticated interface, explicitly labelled MOCK provider and synthetic fixture evidence](docs/assets/screenshots/overview.png)
+![Actual Helm-installed interface with real Kubernetes evidence and explicitly labelled MOCK interpretations](docs/assets/cluster/overview.png)
 
-*Actual 0.1.0 interface using synthetic fixture evidence and a mock provider. No live-model quality or cluster recovery is implied.*
+*Actual 0.1.0 interface against disposable Kubernetes sample workloads. Evidence is real; interpretations use the MOCK provider. [Browser acceptance and genuine recording](docs/browser-acceptance.md). No live-model quality is implied.*
 
 ## Investigate the failure without handing over control
 
@@ -26,11 +26,11 @@ One deployment connects to one cluster, with explicit namespace scope and a shar
 4. The engineer corrects the sample selector independently.
 5. A linked follow-up collects fresh evidence. With complete real-cluster evidence it can say the previous condition is absent; it cannot guarantee that the whole application is healthy.
 
-![Short sequence of genuine mock-backed UI captures: workspace, report, evidence and linked follow-up](docs/assets/demos/investigation.gif)
+![Static sequence of genuine browser captures with real Kubernetes evidence and mock interpretations](docs/assets/cluster/investigation.gif)
 
-*GIF sequence of actual fixture/mock captures. [Static fallback](docs/assets/screenshots/report.png) · [Actual browser recording](docs/assets/demos/investigation.webm). The pictured fixture follow-up explicitly cannot verify a real correction. The separate real-cluster correction path passed on Kubernetes 1.35.8 with mock interpretations; the pictures still depict fixture evidence.*
+*Static sequence of genuine browser captures from disposable Kubernetes workloads; interpretations are MOCK. [Full follow-up screenshot](docs/assets/cluster/followup.png) · [Continuous browser recording](docs/assets/cluster/investigation.webm) · [Test evidence](docs/browser-acceptance.md). Corrections occur outside the read-only application; fresh evidence verifies only the previously observed condition.*
 
-![Expanded evidence from the functioning mock-backed report](docs/assets/screenshots/evidence.png)
+![Expanded real Kubernetes evidence from the functioning mock-backed report](docs/assets/cluster/evidence.png)
 
 ## Implemented scope
 

@@ -9,5 +9,6 @@
   "aquasecurity/trivy-action@v0.36.0": "ed142fd0673e97e23eac54620cfb913e5ce36c25",
   "helm/kind-action@v1.12.0": "a1b0e391336a6ee6713a0583f8c6240d70863de3",
   "gitleaks/gitleaks-action@v2": "ff98106e4c7b2bc287b24eaf42907196329070c7",
-  "anchore/sbom-action@v0": "e22c389904149dbc22b58101806040fa8d37a610"
+  "anchore/sbom-action@v0": "e22c389904149dbc22b58101806040fa8d37a610",
+  "actions/setup-node@v4": "49933ea5288caeca8642d1e84afbd3f7d6820020"
 }

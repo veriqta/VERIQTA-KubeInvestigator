@@ -1,0 +1,340 @@
+{
+  "configuration": {
+    "version": "0.1.0",
+    "namespaces": [
+      "veriqta-demo"
+    ],
+    "provider": "mock",
+    "source": "kubernetes",
+    "mock": true,
+    "model": "deterministic-fixture-v1",
+    "logs": false,
+    "limits": {
+      "max_turns": 6,
+      "max_calls": 8,
+      "duration": 90
+    },
+    "workspace": "Trusted team: all authenticated users share every report"
+  },
+  "phases": [
+    {
+      "client_concurrency": 1,
+      "requests": 8,
+      "response_counts": {
+        "202": 8
+      },
+      "max_queued_sample": 0,
+      "submission_latency_seconds": [
+        0.0341,
+        0.0144,
+        0.0114,
+        0.0202,
+        0.0145,
+        0.0211,
+        0.0066,
+        0.0118
+      ],
+      "completion_latency_seconds": [
+        0.1432,
+        0.109,
+        0.0946,
+        0.0832,
+        0.0629,
+        0.0484,
+        0.288,
+        0.2813
+      ],
+      "terminal_counts": {
+        "completed": 8
+      }
+    },
+    {
+      "client_concurrency": 2,
+      "requests": 8,
+      "response_counts": {
+        "202": 8
+      },
+      "max_queued_sample": 2,
+      "submission_latency_seconds": [
+        0.0113,
+        0.0104,
+        0.0153,
+        0.0116,
+        0.007,
+        0.0169,
+        0.0126,
+        0.0087
+      ],
+      "completion_latency_seconds": [
+        0.0624,
+        0.0621,
+        0.0515,
+        0.0511,
+        0.3014,
+        0.298,
+        0.2943,
+        0.2815
+      ],
+      "terminal_counts": {
+        "completed": 8
+      }
+    },
+    {
+      "client_concurrency": 4,
+      "requests": 8,
+      "response_counts": {
+        "202": 8
+      },
+      "max_queued_sample": 4,
+      "submission_latency_seconds": [
+        0.027,
+        0.0272,
+        0.027,
+        0.0264,
+        0.0205,
+        0.0191,
+        0.0186,
+        0.0177
+      ],
+      "completion_latency_seconds": [
+        0.0649,
+        0.0642,
+        0.3225,
+        0.3222,
+        0.2966,
+        0.2955,
+        0.2951,
+        0.2948
+      ],
+      "terminal_counts": {
+        "completed": 8
+      }
+    },
+    {
+      "client_concurrency": 32,
+      "requests": 32,
+      "response_counts": {
+        "202": 20,
+        "429": 12
+      },
+      "max_queued_sample": 16,
+      "submission_latency_seconds": [
+        0.0499,
+        0.0476,
+        0.116,
+        0.1168,
+        0.0997,
+        0.1177,
+        0.117,
+        0.0971,
+        0.1148,
+        0.1113,
+        0.1125,
+        0.1137,
+        0.1101,
+        0.1138,
+        0.1117,
+        0.1155,
+        0.1091,
+        0.1148,
+        0.1091,
+        0.1083,
+        0.1124,
+        0.1133,
+        0.1159,
+        0.1127,
+        0.1154,
+        0.116,
+        0.1118,
+        0.1127,
+        0.1143,
+        0.1125,
+        0.1112,
+        0.1104
+      ],
+      "completion_latency_seconds": [
+        0.1434,
+        0.1415,
+        0.403,
+        0.402,
+        0.4013,
+        0.4006,
+        0.3996,
+        0.399,
+        0.3984,
+        0.398,
+        0.3975,
+        0.397,
+        0.3965,
+        0.3961,
+        0.3956,
+        0.3951,
+        0.3947,
+        0.394,
+        0.3934,
+        0.3929
+      ],
+      "terminal_counts": {
+        "completed": 20
+      }
+    }
+  ],
+  "resource_samples": [
+    {
+      "time": "2026-11-02T19:22:56Z",
+      "cpu_nanocores": 4320939,
+      "cpu_core_nanoseconds": 1261303000,
+      "working_set_bytes": 74727424,
+      "rss_bytes": 71839744
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    },
+    {
+      "time": "2026-11-02T19:23:13Z",
+      "cpu_nanocores": 9971883,
+      "cpu_core_nanoseconds": 1431505000,
+      "working_set_bytes": 76734464,
+      "rss_bytes": 73199616
+    }
+  ],
+  "metrics_samples": [
+    {
+      "kubeinvestigator_tool_calls": 14.0,
+      "kubeinvestigator_tool_milliseconds": 138.0,
+      "kubeinvestigator_completed": 4.0,
+      "kubeinvestigator_duration_milliseconds": 171.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 2.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 24.0,
+      "kubeinvestigator_tool_milliseconds": 170.0,
+      "kubeinvestigator_completed": 8.0,
+      "kubeinvestigator_duration_milliseconds": 254.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 24.0,
+      "kubeinvestigator_tool_milliseconds": 170.0,
+      "kubeinvestigator_completed": 8.0,
+      "kubeinvestigator_duration_milliseconds": 254.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 48.0,
+      "kubeinvestigator_tool_milliseconds": 262.0,
+      "kubeinvestigator_completed": 16.0,
+      "kubeinvestigator_duration_milliseconds": 500.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 48.0,
+      "kubeinvestigator_tool_milliseconds": 262.0,
+      "kubeinvestigator_completed": 16.0,
+      "kubeinvestigator_duration_milliseconds": 500.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 72.0,
+      "kubeinvestigator_tool_milliseconds": 362.0,
+      "kubeinvestigator_completed": 24.0,
+      "kubeinvestigator_duration_milliseconds": 838.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 72.0,
+      "kubeinvestigator_tool_milliseconds": 362.0,
+      "kubeinvestigator_completed": 24.0,
+      "kubeinvestigator_duration_milliseconds": 838.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 132.0,
+      "kubeinvestigator_tool_milliseconds": 617.0,
+      "kubeinvestigator_completed": 44.0,
+      "kubeinvestigator_duration_milliseconds": 2329.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    },
+    {
+      "kubeinvestigator_tool_calls": 132.0,
+      "kubeinvestigator_tool_milliseconds": 617.0,
+      "kubeinvestigator_completed": 44.0,
+      "kubeinvestigator_duration_milliseconds": 2329.0,
+      "kubeinvestigator_queue_depth": 0.0,
+      "kubeinvestigator_active": 0.0
+    }
+  ],
+  "rate_limit": {
+    "rejected": true,
+    "recovered": true,
+    "requests_until_rejection": 106
+  },
+  "measurement_limits": [
+    "Short synthetic sample workload; not sustained production or live-provider load.",
+    "Kubelet resource samples can miss brief peaks; client timings include localhost port-forward and polling delay.",
+    "Installer reads kubelet statistics; application service account retains no node access."
+  ],
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "completed_at": "2026-11-02T19:24:13.337243+00:00",
+  "revision": "a300a4512af3057c7276f19de1c56a0a50e66abc",
+  "source": "kubernetes",
+  "provider": "mock",
+  "kubernetes": "v1.35.8",
+  "image_id": "sha256:7ab1544ec0cd59aaf0f80ba0a9a386374c1afa54875a01e0217ceffb7bbf7c92",
+  "client_kubectl": "v1.37.2 (outside supported +/-1 minor skew for server1.35; API requests succeeded; matching client required for supported reproduction and hosted jobs)"
+}

@@ -108,3 +108,57 @@ jobs:
             kind delete cluster --name veriqta-investigator-demo
             rm -f .data/demo-access.env .data/smoke-owned
           fi
+
+  first-release:
+    name: First-release ${{ matrix.suite }} / real Kubernetes / mock provider
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [browser, evidence, load]
+    env:
+      KIND_EXPERIMENTAL_PROVIDER: docker
+      KI_KIND_IMAGE: kindest/node:v1.35.8@sha256:07b2536e30b803ed61d1677a79df6115f798ce64c80f9e22f6ed45afd09323c0
+      KI_ACCEPTANCE_SUITE: ${{ matrix.suite }}
+      KI_PROVIDER: mock
+      KI_SOURCE: kubernetes
+      KI_API_KEY: ''
+      VENV: .venv
+      NODE_PATH: ${{ github.workspace }}/scripts/asset-tools/node_modules
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with: {persist-credentials: false}
+      - name: Select maintained Python with verified patched SQLite
+        run: bash scripts/setup-ci-python.sh
+      - name: Install checksum-verified cluster tools
+        run: |
+          bash scripts/install-kind-tools.sh 'v1.35.8' "$RUNNER_TEMP/acceptance-bin"
+          echo "$RUNNER_TEMP/acceptance-bin" >> "$GITHUB_PATH"
+      - run: make setup
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        if: matrix.suite == 'browser'
+        with: {node-version: '22'}
+      - name: Install locked browser authoring tools
+        if: matrix.suite == 'browser'
+        run: |
+          npx --yes pnpm@10.22.0 --dir scripts/asset-tools install --frozen-lockfile
+          npx --yes pnpm@10.22.0 --dir scripts/asset-tools exec playwright install --with-deps chromium
+      - name: Run disposable first-release acceptance
+        run: bash scripts/smoke.sh
+      - name: Retain synthetic acceptance evidence only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: first-release-${{ matrix.suite }}-mock
+          path: |
+            .data/${{ matrix.suite }}-result.json
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Cleanup owned cluster after interruption
+        if: always()
+        run: |
+          if test -f .data/smoke-owned; then
+            kind delete cluster --name veriqta-investigator-demo
+            rm -f .data/demo-access.env .data/smoke-owned
+          fi

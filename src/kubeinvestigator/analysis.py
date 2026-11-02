@@ -64,3 +64,30 @@ def mock_finding(report):
             "Make any correction independently, then run a linked follow-up investigation.",
         ],
     )
+
+
+def scope_mismatch(problem, scenario):
+    """Conservative explicit mismatch checks, not semantic intent classification."""
+    text = problem.casefold()
+    if any(
+        term in text
+        for term in (
+            "database query",
+            "latency",
+            "automatically fix",
+            "fix production automatically",
+            "delete all pods",
+        )
+    ):
+        return "The submitted problem asks for an unsupported diagnosis or action. Only the selected Kubernetes condition was collected; no cause is established."
+    named = {
+        "crash": "crashloopbackoff",
+        "image": "imagepullbackoff",
+        "service": "selector mismatch",
+    }
+    if (
+        any(term in text for key, term in named.items() if key != scenario)
+        and named[scenario] not in text
+    ):
+        return "The named condition does not match the selected scenario. Collected evidence does not establish the submitted problem's cause."
+    return None

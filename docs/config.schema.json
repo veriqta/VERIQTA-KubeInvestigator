@@ -27,7 +27,7 @@
       "type": "string"
     },
     "model": {
-      "default": "gpt-4.1-mini",
+      "default": "gpt-6-luna",
       "title": "Model",
       "type": "string"
     },

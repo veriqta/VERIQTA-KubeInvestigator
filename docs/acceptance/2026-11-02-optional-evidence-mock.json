@@ -1,0 +1,248 @@
+{
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "completed_at": "2026-11-02T19:20:49.651018+00:00",
+  "revision": "a300a4512af3057c7276f19de1c56a0a50e66abc",
+  "source": "kubernetes",
+  "provider": "mock",
+  "checks": [
+    "successful current/previous retained logs on restarted healthy pod; historical exit is not active failure",
+    "ambiguous crash retains uncertainty instead of inventing a cause",
+    "current and previous logs via installed application",
+    "log redaction before persistence/export",
+    "Pod \u2192 ReplicaSet \u2192 Deployment ownership via restricted runtime",
+    "crash condition distinguished from root cause",
+    "image backoff with actual events; no invented registry credentials/root cause",
+    "healthy case does not force a diagnosis",
+    "mismatch case does not force a diagnosis",
+    "unsupported case does not force a diagnosis",
+    "missing case does not force a diagnosis",
+    "unrelated reads still forbidden with log opt-in"
+  ],
+  "cases": {
+    "retained-logs": {
+      "status": "insufficient evidence",
+      "resources": [
+        "pods",
+        "events",
+        "logs",
+        "logs"
+      ],
+      "observations": [],
+      "finding": {
+        "diagnosis": "MOCK \u2014 Requested condition not observed in this snapshot; this does not establish health.",
+        "assessment": "insufficient evidence",
+        "evidence_ids": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+        ],
+        "next_steps": [
+          "Inspect the evidence and compare it with the intended workload configuration.",
+          "Make any correction independently, then run a linked follow-up investigation."
+        ]
+      }
+    },
+    "ambiguous": {
+      "status": "completed",
+      "resources": [
+        "pods",
+        "events",
+        "logs",
+        "logs"
+      ],
+      "observations": [
+        "Pod ambiguous-crash container app is waiting: CrashLoopBackOff; last exit: {'reason': 'Error', 'exit_code': 2}; message: back-off 20s restarting failed container=app pod=ambiguous-crash_veriqta-demo(3a208914-b762-4f2b-9a91-4f4b6a96a32f)"
+      ],
+      "finding": {
+        "diagnosis": "MOCK \u2014 Repeated container exits are observed. Exit status alone does not establish why the application failed.",
+        "assessment": "tentative",
+        "evidence_ids": [
+          "E1",
+          "E2",
+          "E3",
+          "E4"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+        ],
+        "next_steps": [
+          "Inspect the evidence and compare it with the intended workload configuration.",
+          "Make any correction independently, then run a linked follow-up investigation."
+        ]
+      }
+    },
+    "owned-crash": {
+      "status": "completed",
+      "resources": [
+        "pods",
+        "events",
+        "logs",
+        "logs",
+        "replicasets",
+        "deployments"
+      ],
+      "observations": [
+        "Pod owned-crash-c67698d9b-kkzk9 container app is waiting: CrashLoopBackOff; last exit: {'reason': 'Error', 'exit_code': 1}; message: back-off 20s restarting failed container=app pod=owned-crash-c67698d9b-kkzk9_veriqta-demo(38701d2f-bf1b-4dda-ba00-7510e1b614ac)"
+      ],
+      "finding": {
+        "diagnosis": "MOCK \u2014 Repeated container exits are observed. Exit status alone does not establish why the application failed.",
+        "assessment": "tentative",
+        "evidence_ids": [
+          "E1",
+          "E2",
+          "E3",
+          "E4",
+          "E5",
+          "E6"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+        ],
+        "next_steps": [
+          "Inspect the evidence and compare it with the intended workload configuration.",
+          "Make any correction independently, then run a linked follow-up investigation."
+        ]
+      }
+    },
+    "image": {
+      "status": "completed",
+      "resources": [
+        "pods",
+        "events"
+      ],
+      "observations": [
+        "Pod catalog-image container app is waiting: ErrImagePull; last exit: None; message: rpc error: code = NotFound desc = failed to pull and unpack image \"docker.io/library/busybox:veriqta-intentionally-missing\": failed to resolve reference \"docker.io/library/busybox:veriqta-intentionally-missing\": docker.io/library/busybox:veriqta-intentionally-missing: not found"
+      ],
+      "finding": {
+        "diagnosis": "MOCK \u2014 An image pull backoff is observed. Inspect the collected message and events to distinguish an invalid image reference from registry access or availability failures.",
+        "assessment": "tentative",
+        "evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+        ],
+        "next_steps": [
+          "Inspect the evidence and compare it with the intended workload configuration.",
+          "Make any correction independently, then run a linked follow-up investigation."
+        ]
+      }
+    },
+    "healthy": {
+      "status": "insufficient evidence",
+      "resources": [
+        "pods",
+        "events"
+      ],
+      "observations": [],
+      "finding": {
+        "diagnosis": "MOCK \u2014 Requested condition not observed in this snapshot; this does not establish health.",
+        "assessment": "insufficient evidence",
+        "evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+        ],
+        "next_steps": [
+          "Inspect the evidence and compare it with the intended workload configuration.",
+          "Make any correction independently, then run a linked follow-up investigation."
+        ]
+      }
+    },
+    "mismatch": {
+      "status": "insufficient evidence",
+      "resources": [
+        "pods",
+        "events"
+      ],
+      "observations": [],
+      "finding": {
+        "diagnosis": "MOCK \u2014 The named condition does not match the selected scenario. Collected evidence does not establish the submitted problem's cause.",
+        "assessment": "insufficient evidence",
+        "evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "The selected scenario does not establish the submitted problem's cause."
+        ],
+        "next_steps": [
+          "Choose the observed condition and matching Pod or Service; investigate unrelated problems independently."
+        ]
+      }
+    },
+    "unsupported": {
+      "status": "insufficient evidence",
+      "resources": [
+        "pods",
+        "services",
+        "endpointslices",
+        "replicasets",
+        "deployments"
+      ],
+      "observations": [
+        "Service frontend selector {'app': 'frontned'} matches no pods in the collected namespace snapshot."
+      ],
+      "finding": {
+        "diagnosis": "MOCK \u2014 The submitted problem asks for an unsupported diagnosis or action. Only the selected Kubernetes condition was collected; no cause is established.",
+        "assessment": "insufficient evidence",
+        "evidence_ids": [
+          "E1",
+          "E2",
+          "E3",
+          "E4",
+          "E5"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "The selected scenario does not establish the submitted problem's cause."
+        ],
+        "next_steps": [
+          "Choose the observed condition and matching Pod or Service; investigate unrelated problems independently."
+        ]
+      }
+    },
+    "missing": {
+      "status": "insufficient evidence",
+      "resources": [
+        "pods",
+        "events"
+      ],
+      "observations": [],
+      "finding": {
+        "diagnosis": "MOCK \u2014 Requested condition not observed in this snapshot; this does not establish health.",
+        "assessment": "insufficient evidence",
+        "evidence_ids": [
+          "E1",
+          "E2"
+        ],
+        "resource_refs": [],
+        "alternatives": [
+          "Missing permissions, transient state, incomplete snapshots, or a different workload may explain the result."
+        ],
+        "next_steps": [
+          "Inspect the evidence and compare it with the intended workload configuration.",
+          "Make any correction independently, then run a linked follow-up investigation."
+        ]
+      }
+    }
+  },
+  "image_id": "sha256:7ab1544ec0cd59aaf0f80ba0a9a386374c1afa54875a01e0217ceffb7bbf7c92",
+  "kubernetes": "v1.35.8",
+  "architecture": "arm64",
+  "replay": "scripts/evaluate.py --replay evals/real-evidence/2026-11-02-mock-reports.json (structural only; no model call)"
+}

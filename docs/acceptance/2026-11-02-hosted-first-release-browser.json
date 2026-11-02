@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "completed_at": "2026-11-02T19:40:53.689Z",
+  "revision": "fbe14b813597a7114dd8f74a21ec4c83c0078ba6",
+  "source": "kubernetes",
+  "provider": "mock",
+  "checks": [
+    "unauthenticated denial",
+    "browser session login",
+    "three browser submissions",
+    "expandable real evidence",
+    "JSON and Markdown browser downloads",
+    "real deployment restart and session invalidation",
+    "exact persisted report equality",
+    "three external manual corrections",
+    "three browser follow-ups with newer evidence timestamps",
+    "logout invalidation"
+  ],
+  "verifications": {
+    "service": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "crash": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "image": "Previously observed condition is absent in fresh evidence. This does not guarantee application health."
+  },
+  "versions": {
+    "clientVersion": {
+      "major": "1",
+      "minor": "35",
+      "gitVersion": "v1.35.8",
+      "gitCommit": "1c2e10a409eb1b03f2f28f401ce935312e20d9fb",
+      "gitTreeState": "clean",
+      "buildDate": "2026-08-20T15:19:06Z",
+      "goVersion": "go1.26.5",
+      "compiler": "gc",
+      "platform": "linux/amd64"
+    },
+    "kustomizeVersion": "v5.7.1",
+    "serverVersion": {
+      "major": "1",
+      "minor": "35",
+      "emulationMajor": "1",
+      "emulationMinor": "35",
+      "minCompatibilityMajor": "1",
+      "minCompatibilityMinor": "34",
+      "gitVersion": "v1.35.8",
+      "gitCommit": "1c2e10a409eb1b03f2f28f401ce935312e20d9fb",
+      "gitTreeState": "clean",
+      "buildDate": "2026-08-20T15:16:16Z",
+      "goVersion": "go1.26.5",
+      "compiler": "gc",
+      "platform": "linux/amd64"
+    }
+  },
+  "image_id": "sha256:cc30ebcb5039666fc9cb0d1a0f4dee67a986df65dbee22b851eaa61adfad9a5e",
+  "hosted_provenance": {
+    "run_id": 41511157004,
+    "url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/actions/runs/41511157004",
+    "head_revision": "50c30af057171a3f24906a8424b905a31110c5d6",
+    "checkout_revision": "fbe14b813597a7114dd8f74a21ec4c83c0078ba6",
+    "original_result_sha256": "b459d2501e45f5ae6f4fbe7df25933225ba6f1b0d8913e011de7128fcd2e5f84",
+    "profile": "native amd64 Ubuntu24.04; matching kubectl1.35.8; real Kubernetes/mock interpretations"
+  }
+}

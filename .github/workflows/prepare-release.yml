@@ -5,7 +5,17 @@ permissions:
   contents: read
 jobs:
   prepare:
-    runs-on: ubuntu-24.04
+    name: Candidate / ${{ matrix.architecture }} / no publication
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: amd64
+            runner: ubuntu-24.04
+          - architecture: arm64
+            runner: ubuntu-24.04-arm
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with: {persist-credentials: false}
@@ -14,31 +24,36 @@ jobs:
       - uses: azure/setup-helm@b9e51907a09c216f16ebe8536097933489208112 # v4.3.0
         with: {version: v3.19.0}
       - run: make setup test check
-      - run: .venv/bin/python -m build --no-isolation
-      - run: helm package charts/kubeinvestigator -d dist
-      - run: docker build --target runtime -t kubeinvestigator:0.1.0 .
-      - name: Verify actual runtime SQLite and hardening offline
-        run: |
-          docker run --rm -i --read-only --network none --cap-drop ALL \
-            --security-opt no-new-privileges --tmpfs /tmp:rw,nosuid,nodev,size=32m \
-            kubeinvestigator:0.1.0 python - < scripts/check_runtime.py
-      - name: Block candidate artifacts on unresolved high-impact findings
+      - name: Source security gate and pinned scanner installation
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
-          image-ref: kubeinvestigator:0.1.0
+          version: v0.76.1
+          cache-dir: ${{ runner.temp }}/source-trivy
+          scan-type: fs
+          scan-ref: .
           scanners: vuln,secret
           severity: HIGH,CRITICAL
           exit-code: '1'
-      - uses: anchore/sbom-action@e22c389904149dbc22b58101806040fa8d37a610 # v0
+      - name: Build and verify native versioned candidate with ephemeral test identity
+        env:
+          EXPECTED_ARCH: ${{ matrix.architecture }}
+        run: |
+          umask 077
+          case "$EXPECTED_ARCH:$(uname -m)" in
+            amd64:x86_64|arm64:aarch64) ;;
+            *) echo "Native runner architecture mismatch" >&2; exit 1 ;;
+          esac
+          openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:3072 \
+            -out "$RUNNER_TEMP/candidate-signing.pem"
+          .venv/bin/python scripts/release_bundle.py --prepare \
+            --signing-key "$RUNNER_TEMP/candidate-signing.pem"
+          rm -f "$RUNNER_TEMP/candidate-signing.pem"
+      - name: Retain candidate artifacts only (not a release or registry publication)
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          image: kubeinvestigator:0.1.0
-          format: spdx-json
-          output-file: dist/sbom.spdx.json
-          upload-release-assets: false
-      - run: |
-          docker save kubeinvestigator:0.1.0 -o dist/kubeinvestigator-0.1.0.tar
-          cp CHANGELOG.md dist/RELEASE-NOTES.md
-          cd dist
-          sha256sum -- ./*.whl ./*.gz ./*.tgz ./*.tar ./*.json ./RELEASE-NOTES.md > SHA256SUMS
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with: {name: release-candidate-0.1.0, path: dist/}
+          name: release-candidate-0.1.0-${{ matrix.architecture }}
+          path: dist/
+          retention-days: 7
+      - name: Remove ephemeral test key after interruption
+        if: always()
+        run: rm -f "$RUNNER_TEMP/candidate-signing.pem"

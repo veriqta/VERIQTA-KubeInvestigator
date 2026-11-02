@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "revision": "a300a4512af3057c7276f19de1c56a0a50e66abc",
+  "profile": "fresh git archive checkout and new virtual environment; macOS arm64 with previously verified private-prefix CPython3.12.16/SQLite3.54.1",
+  "commands": [
+    "make setup PYTHON=PATCHED_PYTHON VENV=.venv",
+    "make preflight test check",
+    "KI_TOKEN=PRIVATE_GENERATED_TOKEN make run"
+  ],
+  "tests_passed": 87,
+  "startup": "real localhost HTTP startup; authenticated fixture investigation and JSON export passed",
+  "limits": [
+    "Existing host OS/interpreter; not a fresh physical OS install.",
+    "Synthetic fixture evidence/mock interpretations; separate browser/evidence records cover real Kubernetes.",
+    "Latest live-provider-only guard has separate component tests; live model unexecuted."
+  ]
+}

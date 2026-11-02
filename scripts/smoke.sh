@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 suite=${KI_ACCEPTANCE_SUITE:-smoke}
-case "$suite" in smoke|recovery) ;; *) echo "Unsupported acceptance suite" >&2; exit 2;; esac
+case "$suite" in smoke|recovery|browser|evidence|load) ;; *) echo "Unsupported acceptance suite" >&2; exit 2;; esac
 result_file=".data/$suite-result.json"
 missing=()
 for tool in docker kind kubectl helm; do
@@ -29,6 +29,9 @@ fi
 if [[ ! -x "${VENV:-.venv}/bin/python" ]]; then
   echo "BLOCKED: run make setup with Python 3.12+ first" >&2
   exit 2
+fi
+if [[ "$suite" = browser ]]; then
+  "${NODE:-node}" -e 'const fs=require("node:fs"); const {chromium}=require("playwright"); if(!fs.existsSync(chromium.executablePath())){console.error("Install pinned Playwright Chromium before browser acceptance");process.exit(2);}'
 fi
 # Isolate installer credentials and context changes from every existing kubeconfig.
 umask 077
@@ -80,4 +83,8 @@ touch .data/smoke-owned
 rm -f "$result_file"
 trap cleanup EXIT
 bash scripts/demo.sh setup
-"${VENV:-.venv}/bin/python" "scripts/$suite.py"
+if [[ "$suite" = browser ]]; then
+  "${NODE:-node}" scripts/browser-cluster.cjs
+else
+  "${VENV:-.venv}/bin/python" "scripts/$suite.py"
+fi

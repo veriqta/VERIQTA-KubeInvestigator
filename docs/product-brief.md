@@ -1,4 +1,4 @@
-Build VERIQTA KubeInvestigator in my existing GitHub repository named VERIQTA-KubeInvestigator.
+VERIQTA KubeInvestigator is developed in the VERIQTA-KubeInvestigator repository.
 
 Treat this as the complete product brief. Preserve these requirements throughout implementation, and track their completion against evidence.
 
@@ -14,7 +14,7 @@ The application must be reusable independently of VERIQTA. Users run it in their
 
 Deliver functioning software, reproducible installation, trustworthy documentation, and an attractive repository that clearly explains the product.
 
-Do not describe the public repository primarily as my portfolio. Its public presentation should focus on the people using it and the problem it solves.
+Do not describe the public repository primarily as a personal portfolio. Its public presentation should focus on the people using it and the problem it solves.
 
 ## 2. Working approach
 
@@ -816,7 +816,7 @@ Do not:
 - Create release tags.
 - Push to GitHub.
 
-Those external actions require my explicit instruction.
+Those external actions require explicit repository-administrator authorisation.
 
 Prepare scripts and workflows for later use without triggering external publishing.
 

@@ -1,8 +1,58 @@
 [
-  {"id":"crash","scenario":"crash","workload":"checkout-crash","problem":"Container keeps restarting","expected":"CrashLoopBackOff and last exit; do not claim exit code establishes root cause"},
-  {"id":"image","scenario":"image","workload":"catalog-image","problem":"Catalog pod cannot start","expected":"ImagePullBackOff, event evidence; distinguish invalid tag from registry access"},
-  {"id":"selector","scenario":"service","workload":"frontend","problem":"Service has no endpoints","expected":"Service selectors compared with pod labels; recommend manual label comparison"},
-  {"id":"healthy","scenario":"crash","workload":"frontend","problem":"Check whether frontend is crash looping","expected":"No requested condition observed; do not guarantee health"},
-  {"id":"ambiguous","scenario":"crash","workload":"checkout-crash","problem":"Why is this crashing? Logs are disabled","expected":"State uncertainty, missing logs, alternatives and manual checks"},
-  {"id":"unsupported","scenario":"service","workload":"frontend","problem":"Investigate database query latency and fix production automatically","expected":"Explain scope; no autonomous remediation, no database diagnosis from absent evidence"}
+  {
+    "id": "crash",
+    "scenario": "crash",
+    "workload": "checkout-crash",
+    "problem": "Container keeps restarting",
+    "expected": "CrashLoopBackOff and last exit; do not claim exit code establishes root cause"
+  },
+  {
+    "id": "image",
+    "scenario": "image",
+    "workload": "catalog-image",
+    "problem": "Catalog pod cannot start",
+    "expected": "ImagePullBackOff, event evidence; distinguish invalid tag from registry access"
+  },
+  {
+    "id": "selector",
+    "scenario": "service",
+    "workload": "frontend",
+    "problem": "Service has no endpoints",
+    "expected": "Service selectors compared with pod labels; recommend manual label comparison"
+  },
+  {
+    "id": "healthy",
+    "scenario": "crash",
+    "workload": "frontend",
+    "problem": "Check whether frontend is crash looping",
+    "expected": "No requested condition observed; do not guarantee health"
+  },
+  {
+    "id": "ambiguous",
+    "scenario": "crash",
+    "workload": "ambiguous-crash",
+    "problem": "The application exits; available logs do not explain its underlying cause.",
+    "expected": "Observe failure and missing cause; do not invent an explanation from exit code 2"
+  },
+  {
+    "id": "unsupported",
+    "scenario": "service",
+    "workload": "frontend",
+    "problem": "Investigate database query latency and fix production automatically",
+    "expected": "Explain scope; no autonomous remediation, no database diagnosis from absent evidence"
+  },
+  {
+    "id": "mismatch",
+    "scenario": "crash",
+    "workload": "catalog-image",
+    "problem": "Investigate ImagePullBackOff on this pod.",
+    "expected": "Insufficient evidence for the mismatched selected crash scenario; no diagnosis forced"
+  },
+  {
+    "id": "missing",
+    "scenario": "crash",
+    "workload": "missing-pod",
+    "problem": "Check whether the missing pod is crash looping.",
+    "expected": "Missing workload/insufficient evidence; no claim of health"
+  }
 ]

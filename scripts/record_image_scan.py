@@ -21,6 +21,38 @@ def record(archive, inspection, scan, runtime, database, scanner_info, architect
         config_bytes = bundle.extractfile(manifest[0]["Config"]).read()
     config = json.loads(config_bytes)
     config_digest = "sha256:" + hashlib.sha256(config_bytes).hexdigest()
+
+    def nondefault_configuration(value):
+        # Docker API versions differ in whether empty/default fields are emitted.
+        return {key: item for key, item in value.items() if item not in (None, "", False, [], {})}
+
+    if nondefault_configuration(config.get("config", {})) != nondefault_configuration(
+        image.get("Config", {})
+    ):
+        raise ValueError("Archived runtime configuration differs from the executed image")
+    descriptor = image.get("Descriptor")
+    if descriptor:
+        # Docker's containerd store may expose an OCI manifest/index ID rather than
+        # a configuration ID. Bind that exact object graph to the scanned config.
+        with tarfile.open(archive) as bundle:
+
+            def reaches_config(digest, depth=0):
+                if depth > 3 or not re.fullmatch(r"sha256:[a-f0-9]{64}", digest):
+                    raise ValueError("Invalid archived image descriptor")
+                blob = bundle.extractfile("blobs/sha256/" + digest.split(":")[1]).read()
+                if "sha256:" + hashlib.sha256(blob).hexdigest() != digest:
+                    raise ValueError("Archived image descriptor digest mismatch")
+                node = json.loads(blob)
+                if "config" in node:
+                    return node["config"]["digest"] == config_digest
+                return any(
+                    reaches_config(item["digest"], depth + 1) for item in node.get("manifests", [])
+                )
+
+            if descriptor["digest"] != image["Id"] or not reaches_config(descriptor["digest"]):
+                raise ValueError("Executed image descriptor does not reach scanned runtime")
+    elif image["Id"] != config_digest:
+        raise ValueError("Executed image configuration identity differs from archive")
     if config_digest != scan["Metadata"]["ImageID"]:
         raise ValueError("Scanner identity does not match archived runtime configuration")
     if config["architecture"] != architecture or image["Architecture"] != architecture:
@@ -53,6 +85,8 @@ def record(archive, inspection, scan, runtime, database, scanner_info, architect
             "runner_os": os.getenv("RUNNER_OS"),
         },
         "config_digest": config_digest,
+        "runtime_configuration_matches": True,
+        "executed_image_identity_verified": True,
         "inspected_image_id": image["Id"],
         "archive_sha256": archive_digest,
         "filesystem_diff_ids": layers,

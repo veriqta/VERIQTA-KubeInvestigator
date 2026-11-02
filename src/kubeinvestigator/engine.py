@@ -1,9 +1,10 @@
 import asyncio
 import time
 from collections import Counter
+from typing import Literal
 
 from .audit import security_event
-from .analysis import mock_finding, observations
+from .analysis import mock_finding, observations, scope_mismatch
 from .policy import redact
 from .provider import OpenAIProvider, ProviderFailure
 from .schemas import Evidence, Finding, ToolArgs, now
@@ -125,6 +126,13 @@ class Engine:
                     for pod in evidence.data
                     for c in pod.get("containers", [])
                     if (c.get("waiting") or {}).get("reason") == "CrashLoopBackOff"
+                    or (
+                        c.get("restarts", 0) > 0
+                        and (
+                            (c.get("terminated") or {}).get("exit_code", 0) != 0
+                            or (c.get("last_exit") or {}).get("exit_code", 0) != 0
+                        )
+                    )
                 ]
                 for pod, container in targets[:1]:
                     for previous in [False, True]:
@@ -138,8 +146,74 @@ class Engine:
                                 previous=previous,
                             ),
                         )
+        # Follow a single observed ownership chain, with the same validated tools/budgets.
+        owners = [
+            owner
+            for e in r.evidence
+            if e.resource.split("/")[1] == "pods" and not e.error and isinstance(e.data, list)
+            for pod in e.data
+            for owner in pod.get("owners", [])
+            if owner.get("kind") in {"ReplicaSet", "Deployment"}
+        ]
+        if owners:
+            owner = owners[0]
+            owner_resource: Literal["replicasets", "deployments"] = (
+                "replicasets" if owner["kind"] == "ReplicaSet" else "deployments"
+            )
+            await self.tool(
+                r, ToolArgs(namespace=r.namespace, resource=owner_resource, name=owner["name"])
+            )
+            if owner_resource == "replicasets":
+                latest = r.evidence[-1]
+                deployments = (
+                    [
+                        o
+                        for row in latest.data
+                        for o in row.get("owners", [])
+                        if o.get("kind") == "Deployment"
+                    ]
+                    if not latest.error and isinstance(latest.data, list)
+                    else []
+                )
+                if deployments:
+                    await self.tool(
+                        r,
+                        ToolArgs(
+                            namespace=r.namespace,
+                            resource="deployments",
+                            name=deployments[0]["name"],
+                        ),
+                    )
         r.observations = observations(r)
-        if self.provider:
+        mismatch = scope_mismatch(r.problem, r.scenario)
+        if mismatch:
+            r.finding = Finding(
+                diagnosis=("MOCK — " if r.mock else "Evidence-only — ") + mismatch,
+                assessment="insufficient evidence",
+                evidence_ids=[e.id for e in r.evidence if not e.error],
+                alternatives=[
+                    "The selected scenario does not establish the submitted problem's cause."
+                ],
+                next_steps=[
+                    "Choose the observed condition and matching Pod or Service; investigate unrelated problems independently."
+                ],
+            )
+        elif self.provider and not r.observations:
+            r.finding = Finding(
+                diagnosis="Evidence-only — The selected condition was not established in the collected snapshot. No underlying cause or application health is inferred.",
+                assessment="insufficient evidence",
+                evidence_ids=[e.id for e in r.evidence if not e.error],
+                alternatives=[
+                    "The condition may be absent, transient, out of scope or inaccessible."
+                ],
+                next_steps=[
+                    "Review missing evidence and select the matching observed condition before requesting a diagnosis."
+                ],
+            )
+            r.limitations.append(
+                "No provider request was made because the selected condition was not established."
+            )
+        elif self.provider:
             for _ in range(self.s.max_turns):
                 try:
                     action, usage = await self.provider.turn(r)

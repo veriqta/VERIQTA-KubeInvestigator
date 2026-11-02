@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "cluster_cleanup_verified": true,
+  "completed_at": "2026-11-02T19:47:47.034Z",
+  "revision": "7d21ec7b4242142c6f214591a43ee78845716e2a",
+  "source": "kubernetes",
+  "provider": "mock",
+  "checks": [
+    "unauthenticated denial",
+    "browser session login",
+    "three browser submissions",
+    "expandable real evidence",
+    "JSON and Markdown browser downloads",
+    "real deployment restart and session invalidation",
+    "exact persisted report equality",
+    "three external manual corrections",
+    "three browser follow-ups with newer evidence timestamps",
+    "logout invalidation"
+  ],
+  "verifications": {
+    "service": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "crash": "Previously observed condition is absent in fresh evidence. This does not guarantee application health.",
+    "image": "Previously observed condition is absent in fresh evidence. This does not guarantee application health."
+  },
+  "versions": {
+    "clientVersion": {
+      "major": "1",
+      "minor": "35",
+      "gitVersion": "v1.35.8",
+      "gitCommit": "1c2e10a409eb1b03f2f28f401ce935312e20d9fb",
+      "gitTreeState": "clean",
+      "buildDate": "2026-08-20T15:19:06Z",
+      "goVersion": "go1.26.5",
+      "compiler": "gc",
+      "platform": "darwin/arm64"
+    },
+    "kustomizeVersion": "v5.7.1",
+    "serverVersion": {
+      "major": "1",
+      "minor": "35",
+      "emulationMajor": "1",
+      "emulationMinor": "35",
+      "minCompatibilityMajor": "1",
+      "minCompatibilityMinor": "34",
+      "gitVersion": "v1.35.8",
+      "gitCommit": "1c2e10a409eb1b03f2f28f401ce935312e20d9fb",
+      "gitTreeState": "clean",
+      "buildDate": "2026-08-20T15:16:16Z",
+      "goVersion": "go1.26.5",
+      "compiler": "gc",
+      "platform": "linux/arm64"
+    }
+  },
+  "image_id": "sha256:29e8703ea4f27599f073a1b7e0fbcb0e9129f543c95c535dfa15108c30bf92c6"
+}

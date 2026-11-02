@@ -1,0 +1,65 @@
+{
+  "recorded_at": "2026-11-02T19:38:22.453709+00:00",
+  "architecture": "arm64",
+  "execution": {
+    "machine_architecture": "arm64",
+    "runner_architecture": null,
+    "runner_os": null
+  },
+  "config_digest": "sha256:1fb9568611060e9578f1f3a651d917a8a2d6ec291cf3c8019d93ebb8aa5d47f1",
+  "runtime_configuration_matches": true,
+  "executed_image_identity_verified": true,
+  "inspected_image_id": "sha256:80ccba2b17e3ccd63782cdf9a1f0c931f184db6866ed311bde31952d4d83dfb8",
+  "archive_sha256": "54985dc16cc72f2172d3f635321c9a82b9bdd2aec92e9adae6cd9ece6b5baab0",
+  "filesystem_diff_ids": [
+    "sha256:a278e6f39431cd0ed74238a3d377893ad0d905d68b676bf9a65529080669756b",
+    "sha256:d1f7e7fd9025f972f44b67b76aa2c8979253755508c059fe1a358de9bc1fdc89",
+    "sha256:fb50aa63544d8736bd10cb1e7b26d1f60f7b1d2e502fac14b5c5ac5ea43efbc0",
+    "sha256:4210d19c4e0d650c02a69d0a86a48205fc3012d71135d7782764de0588cc6148",
+    "sha256:6caf29c495c319f0ebdcac81817f8f7423cc30304e71448695d3c5e99b91f22b",
+    "sha256:f79dfda8dea588b1e6f934fdfd62076ec137fdcc8e0d2613bfb8e559e7a21e75",
+    "sha256:229ac5b3dcba2c28d12dcb6af6d3f971668d2b82a0b90d3a714b8e96025a5cee",
+    "sha256:f74a8b23a63c352732619bd8e35b0d4ffe2a2d62ea47d306e7569fdb506875e2"
+  ],
+  "scanner": {
+    "version": "0.76.1",
+    "database": {
+      "Version": 2,
+      "NextUpdate": "2026-11-03T13:15:56.441126429Z",
+      "UpdatedAt": "2026-11-02T13:15:56.44112656Z",
+      "DownloadedAt": "2026-11-02T19:35:00.206185Z"
+    }
+  },
+  "inventory": {
+    "os_packages": 38,
+    "python_packages": 39
+  },
+  "scan_outcome": "no findings detected by the recorded scan",
+  "vulnerability_counts": {},
+  "vulnerabilities": [],
+  "secret_finding_count": 0,
+  "runtime_check": {
+    "status": "passed",
+    "uid": 10001,
+    "python": "3.12.16",
+    "sqlite": "3.54.1",
+    "sqlite_libraries": {
+      "/usr/lib/libsqlite3.so.3.54.1": "7b03d826dd3898d24421baa0b4c972396fe10d506988cb528a9b63ff02678401"
+    },
+    "checks": [
+      "non-root",
+      "no runtime packaging/compiler tools",
+      "TLS verification and CA stores",
+      "FTS5 negative-rowid prefix regression, three detail modes",
+      "JSON functions and database integrity",
+      "application WAL initialisation and restart"
+    ],
+    "application": "0.1.0"
+  },
+  "gate_policy": "HIGH/CRITICAL and secret gate runs separately after evidence; this record is not its exit status",
+  "source_revision": "50c30af057171a3f24906a8424b905a31110c5d6",
+  "run_id": null,
+  "limitations": "No findings detected is not proof of no vulnerabilities; no live-model accuracy is established",
+  "verification_scope": "Same immutable candidate archive; enhanced descriptor/configuration binding verified without changing the signed candidate.",
+  "distribution_review": "Image scan is valid. The first local bundle is withheld: its SBOM included private host paths. A new candidate must pass portable metadata review before distribution."
+}
