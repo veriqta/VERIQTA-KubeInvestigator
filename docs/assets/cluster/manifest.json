@@ -1,0 +1,32 @@
+{
+  "captured_at": "2026-11-02T16:34:52.063Z",
+  "software": "0.1.0",
+  "revision": "3bdcb36b3694cb4656f187b374ed44d03c74c75e",
+  "working_tree_changes": [
+    "scripts/smoke.sh"
+  ],
+  "source": "kubernetes",
+  "provider": "mock",
+  "synthetic_workloads": true,
+  "playwright": "1.62.1",
+  "assets": [
+    {
+      "file": "overview.png",
+      "sha256": "155fd4a2a9a2af2a6b6b7215e5f1a4b7d762128683aa643f48ae8c13773e4b05"
+    },
+    {
+      "file": "evidence.png",
+      "sha256": "feb709dfe48b8f619ceea5dcf710f768e17f8c3fe64093235f659e5a551151b8"
+    },
+    {
+      "file": "followup.png",
+      "sha256": "4edfd157ea080329592d02de2da77803453221bc55355758a3beb8d4b14262ca"
+    },
+    {
+      "file": "investigation.webm",
+      "sha256": "f560db18c6c96928cf4b039263ba14e94a9dc2081ce451936d697d3402e9f14e"
+    }
+  ],
+  "harness_sha256": "1e8dbceeedd72ba8d1879d6bdac4451a2760b2a87499959c15926c1a5853632f",
+  "application_source": "Unchanged application source at recorded revision; acceptance harness added in working tree."
+}
