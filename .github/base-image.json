@@ -7,6 +7,7 @@
   ],
   "manifest_architectures_note": "Declared target pair verified in official index; no claim that these are the only published architectures",
   "execution_tested": [
+    "linux/amd64",
     "linux/arm64"
   ],
   "upstream_source": "https://github.com/docker-library/python/tree/master/3.12/alpine3.24",
@@ -14,5 +15,11 @@
   "emulated_execution_tested": [
     "linux/amd64 under QEMU in native arm64 Colima VM"
   ],
-  "native_amd64_execution_tested": false
+  "native_amd64_execution_tested": true,
+  "execution_evidence": [
+    "docs/acceptance/2026-11-02-hosted-release-candidates.json",
+    "docs/security/findings/2026-11-02-hosted-candidate-amd64.json",
+    "docs/security/findings/2026-11-02-hosted-candidate-arm64.json"
+  ],
+  "execution_scope": "Native hosted runtime checks at c95c50a using this pinned base plus the project SQLite override. No managed-cloud or live-model claim."
 }

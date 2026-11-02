@@ -39,3 +39,5 @@ The maintenance owner has not been appointed or independently reviewed this reci
 ## Source interpreter boundary
 
 The source installation uses a different linkage: the tested macOS CPython build links directly to maintained Homebrew SQLite 3.54.1. The bundled older interpreter was not patched and is now rejected before database access. The tested local CPython bootstrap pins the official 3.12.16 security source checksum, uses bundled Expat 2.9.0 and Homebrew OpenSSL, and installs into a private prefix using altinstall. Track CPython security releases and Homebrew SQLite/OpenSSL updates separately; review and update that bootstrap's version/hash and recreate its virtual environment when needed. Its full upstream CPython test suite was not run; application, stdlib/TLS, linkage and installation checks are recorded.
+
+The broader [maintenance runbook](../../docs/maintenance.md) includes CPython, base-image/OS, dependency and action updates. Roles remain unassigned until administrator appointment; CI checks do not constitute continuous monitoring of deployed instances.

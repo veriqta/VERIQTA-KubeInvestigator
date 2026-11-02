@@ -64,3 +64,7 @@ gh run download 41515560190 --repo veriqta/VERIQTA-KubeInvestigator \
 ```
 
 Compare the public-key PEM SHA256 with the run record and runner log before verification; the bundled test key alone is not an independently established publisher identity. The record includes GitHub ZIP digests and per-file hashes for additional checks. Artifacts expire after seven days; expiry is not a new test failure. Rebuilding requires another explicitly authorised candidate execution and produces new records/signatures. No container registry, package repository, release tag, public visibility change or production deployment was performed. Live-model evaluation remains unexecuted.
+
+## Approved publisher path
+
+The separate [publisher approval procedure](trusted-signing.md) and `scripts/trusted_release.py` prepare offline endorsement and verification under an independently pinned trust policy. This path rejects unapproved/revoked/expired identities and temporary candidate-key reuse, binds exact version/revision/platform and preserves the original candidate unchanged. The committed policy is empty and refuses current test candidates as production releases. Fixture cryptographic tests pass; no approved production identity, publisher signature or independently attested build is claimed. Key custody, independent policy/fingerprint approval and publication remain administrator-controlled release gates.

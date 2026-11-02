@@ -20,4 +20,6 @@ Start with the current [release-readiness report](release-readiness.md) and [uns
 - [Asset inventory and regeneration](assets/README.md)
 - [Follow-on acceptance audit and requirements table](audit-results.md)
 - [Milestones](plan.md) · [Requirements](requirements.md) · [Validation](validation.md) · [Checkpoint](checkpoint.md)
+- [Maintenance process and responsibilities](maintenance.md)
+- [Trusted publisher approval and verification](trusted-signing.md)
 - [Release preparation](releasing.md) · [Roadmap](../ROADMAP.md)
