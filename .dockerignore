@@ -1,0 +1,13 @@
+.git
+.venv*
+.env
+.data
+.capture
+__pycache__
+*.db*
+docs
+tests
+
+**/node_modules
+
+.local

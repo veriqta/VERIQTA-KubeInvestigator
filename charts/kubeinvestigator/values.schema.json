@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "image",
+    "namespaces",
+    "existingSecret",
+    "provider",
+    "persistence",
+    "concurrency"
+  ],
+  "properties": {
+    "namespaces": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?$"
+      }
+    },
+    "existingSecret": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider": {
+      "enum": [
+        "mock",
+        "openai"
+      ]
+    },
+    "logs": {
+      "type": "boolean"
+    },
+    "concurrency": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8
+    },
+    "retentionDays": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 90
+    },
+    "maxRecords": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "maxDbBytes": {
+      "type": "integer",
+      "minimum": 100000
+    },
+    "image": {
+      "type": "object",
+      "required": [
+        "repository",
+        "tag"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "persistence": {
+      "type": "object",
+      "required": [
+        "size"
+      ],
+      "properties": {
+        "size": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "ingress": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "if": {
+        "properties": {
+          "enabled": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "host",
+          "tlsSecret",
+          "className"
+        ],
+        "properties": {
+          "host": {
+            "type": "string",
+            "minLength": 1
+          },
+          "tlsSecret": {
+            "type": "string",
+            "minLength": 1
+          },
+          "className": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "logLookbackSeconds": {
+      "type": "integer",
+      "minimum": 60,
+      "maximum": 86400
+    },
+    "replicaCount": {
+      "type": "integer",
+      "const": 1,
+      "description": "Only one replica is supported"
+    },
+    "workers": {
+      "type": "integer",
+      "const": 1,
+      "description": "Only one application process is supported"
+    }
+  }
+}

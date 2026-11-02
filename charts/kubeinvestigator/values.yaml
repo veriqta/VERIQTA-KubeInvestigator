@@ -1,0 +1,37 @@
+image:
+  repository: kubeinvestigator
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+namespaces:
+  - veriqta-demo
+provider: mock
+model: gpt-4.1-mini
+logs: false
+logLookbackSeconds: 3600
+# Must exist in the release namespace; contains KI_TOKEN and optionally KI_API_KEY.
+existingSecret: ""
+serviceAccountName: kubeinvestigator
+persistence:
+  size: 1Gi
+  storageClass: ""
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: "1"
+    memory: 512Mi
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001
+  fsGroup: 10001
+ingress:
+  enabled: false
+  className: ""
+  host: ""
+  tlsSecret: ""
+retentionDays: 7
+maxRecords: 500
+maxDbBytes: 100000000
+concurrency: 2
