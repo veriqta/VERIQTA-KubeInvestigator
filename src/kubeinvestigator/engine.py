@@ -128,7 +128,10 @@ class Engine:
                     if (c.get("waiting") or {}).get("reason") == "CrashLoopBackOff"
                     or (
                         c.get("restarts", 0) > 0
-                        and (c.get("terminated") or {}).get("exit_code", 0) != 0
+                        and (
+                            (c.get("terminated") or {}).get("exit_code", 0) != 0
+                            or (c.get("last_exit") or {}).get("exit_code", 0) != 0
+                        )
                     )
                 ]
                 for pod, container in targets[:1]:

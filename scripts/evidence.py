@@ -30,6 +30,9 @@ def main():
         "pod/" + pod,
         "--timeout=180s",
     )
+    kubectl(
+        "-n", "veriqta-demo", "wait", "--for=condition=Ready", "pod/log-recovery", "--timeout=180s"
+    )
     # Enabling logs adds only get pods/log in the same configured namespace.
     subprocess.run(
         [
@@ -62,6 +65,18 @@ def main():
         ) as c:
             assert c.get("/api/config").raise_for_status().json()["logs"] is True
             for case, scenario, workload, problem in [
+                (
+                    "retained-logs",
+                    "crash",
+                    "log-recovery",
+                    "Check this restarted pod without claiming an active crash loop.",
+                ),
+                (
+                    "ambiguous",
+                    "crash",
+                    "ambiguous-crash",
+                    "The application exits; the underlying cause is unknown.",
+                ),
                 (
                     "owned-crash",
                     "crash",
@@ -121,11 +136,17 @@ def main():
                         False,
                         True,
                     }, r
-                    assert all(
-                        not e["error"]
-                        and "Required application configuration is missing" in e["data"]["text"]
-                        for e in logs
-                    ), r
+                    assert (
+                        not logs[0]["error"]
+                        and "Required application configuration is missing"
+                        in logs[0]["data"]["text"]
+                    )
+                    # Kubelet may remove a previous crashing container; this must be an explicit error, never fabricated content.
+                    assert (
+                        logs[1]["error"]
+                        or "Required application configuration is missing"
+                        in logs[1]["data"]["text"]
+                    )
                     assert "fixture-only-value" not in json.dumps(r) and "[REDACTED]" in json.dumps(
                         logs
                     )
@@ -141,6 +162,25 @@ def main():
                             "Pod → ReplicaSet → Deployment ownership via restricted runtime",
                             "crash condition distinguished from root cause",
                         ]
+                    )
+                elif case == "retained-logs":
+                    logs = [e for e in r["evidence"] if "/logs/" in e["resource"]]
+                    assert r["status"] == "insufficient evidence" and not r["observations"]
+                    assert len(logs) == 2 and all(not e["error"] for e in logs)
+                    assert "Current attempt: startup completed" in logs[0]["data"]["text"]
+                    assert (
+                        "Previous attempt: required configuration missing"
+                        in logs[1]["data"]["text"]
+                    )
+                    assert "fixture-only-value" not in json.dumps(r)
+                    checks.append(
+                        "successful current/previous retained logs on restarted healthy pod; historical exit is not active failure"
+                    )
+                elif case == "ambiguous":
+                    assert r["status"] == "completed" and r["finding"]["assessment"] == "tentative"
+                    assert "does not establish" in r["finding"]["diagnosis"]
+                    checks.append(
+                        "ambiguous crash retains uncertainty instead of inventing a cause"
                     )
                 elif case == "image":
                     assert r["status"] == "completed" and r["observations"]

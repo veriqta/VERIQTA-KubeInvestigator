@@ -16,3 +16,32 @@ spec:
         - name: app
           image: busybox:1.37.0
           command: [sh, -c, "echo 'Required application configuration is missing'; echo 'password=fixture-only-value'; sleep 2; exit 1"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: log-recovery
+  namespace: veriqta-demo
+  labels: {app: log-recovery}
+spec:
+  containers:
+    - name: app
+      image: busybox:1.37.0
+      command: [sh, -c, "if [ ! -f /state/started ]; then touch /state/started; echo 'Previous attempt: required configuration missing'; echo 'password=fixture-only-value'; exit 1; fi; echo 'Current attempt: startup completed'; sleep 86400"]
+      volumeMounts:
+        - {name: state, mountPath: /state}
+  volumes:
+    - name: state
+      emptyDir: {}
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambiguous-crash
+  namespace: veriqta-demo
+  labels: {app: ambiguous-crash}
+spec:
+  containers:
+    - name: app
+      image: busybox:1.37.0
+      command: [sh, -c, "echo 'Application exited; cause unavailable'; sleep 2; exit 2"]

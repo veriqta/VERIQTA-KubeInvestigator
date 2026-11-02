@@ -39,6 +39,12 @@ class Collector:
             truncated = False
         else:
             data, truncated = self.live(args)
+        if (
+            args.resource == "logs"
+            and isinstance(data, dict)
+            and str(data.get("text", "")).startswith("unable to retrieve container logs for")
+        ):
+            raise ValueError("Kubernetes runtime could not retrieve retained container logs")
         data = redact(data)
         # Bound stored evidence, preserving a valid JSON structure.
         if len(json.dumps(data)) > 16000:

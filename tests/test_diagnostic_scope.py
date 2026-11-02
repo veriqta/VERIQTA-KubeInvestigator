@@ -102,3 +102,24 @@ def test_one_observed_owner_chain_uses_bounded_registered_tools(tmp_path):
         store.close()
 
     asyncio.run(run())
+
+
+def test_kubelet_log_unavailability_is_not_usable_evidence(tmp_path):
+    s = Settings(token=secrets.token_urlsafe(32), database=str(tmp_path / "reports.db"), logs=True)
+    c = Collector(s)
+    c.fixture = lambda args: {
+        "text": "unable to retrieve container logs for containerd://old-container"
+    }
+    from kubeinvestigator.schemas import ToolArgs
+
+    with pytest.raises(ValueError, match="could not retrieve"):
+        c.collect(
+            ToolArgs(
+                namespace="veriqta-demo",
+                resource="logs",
+                name="pod",
+                container="app",
+                previous=True,
+            ),
+            "E1",
+        )
