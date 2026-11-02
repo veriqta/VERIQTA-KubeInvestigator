@@ -154,13 +154,13 @@ class Engine:
         ]
         if owners:
             owner = owners[0]
-            resource: Literal["replicasets", "deployments"] = (
+            owner_resource: Literal["replicasets", "deployments"] = (
                 "replicasets" if owner["kind"] == "ReplicaSet" else "deployments"
             )
             await self.tool(
-                r, ToolArgs(namespace=r.namespace, resource=resource, name=owner["name"])
+                r, ToolArgs(namespace=r.namespace, resource=owner_resource, name=owner["name"])
             )
-            if resource == "replicasets":
+            if owner_resource == "replicasets":
                 latest = r.evidence[-1]
                 deployments = (
                     [
