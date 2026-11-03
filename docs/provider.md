@@ -22,7 +22,7 @@ At the official rates checked November 2, 2026—$0.10 per million uncached inpu
 
 ## Authorisation and setup status
 
-The recorded eight-investigation, maximum 48-request, proposed $0.50 evaluation remains **unauthorised** as of November 3, 2026. The candidate-workflow dispatch approval authorised artifact preparation only; it did not approve paid model calls. The remaining decision is explicit approval of this exact evaluation scope and budget, not another candidate-workflow approval. No live calls have been made.
+The recorded eight-investigation, maximum 48-request, proposed $0.50 evaluation remains **unauthorised** as of November 3, 2026. The candidate-workflow dispatch approval authorised artifact preparation only; it did not approve paid model calls. Approval requested for the existing bounded plan: OpenAI `gpt-6-luna`, eight investigations, at most 48 requests, the stated per-request/tool/time limits, no automatic retries, and the proposed $0.50 budget envelope. Authorisation has not been granted. The remaining decision is explicit approval of this exact evaluation scope and budget, not another candidate-workflow approval. No live calls have been made.
 
 A presence-only local check found neither `KI_API_KEY` in the current process environment nor the designated `.data/live.env` file. It did not inspect secret values or search other credential stores, so it does not establish that no organisation credentials exist elsewhere. Before execution, an authorised operator must configure a restricted evaluation-project provider credential server-side and confirm access, current pricing and billing controls. Provider budget alerts may not enforce a hard $0.50 spending cap; the proposed envelope is not a billing guarantee.
 

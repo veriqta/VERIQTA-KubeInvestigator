@@ -44,3 +44,14 @@ Signing-key rotation/revocation, security reporting and maintainer succession mu
 ## Assignment required before publication
 
 VERIQTA LIMITED must explicitly designate a person or team for runtime updates, security triage and release review, and a restricted signing-key custodian with a recovery delegate. Roles may overlap where justified, but release evidence and trust-policy changes require an independently recorded review. Record role acceptance, GitHub access and alert subscription verification through the organisation’s approved process; public documentation need not expose private contact details. Organisational naming alone does not establish staffed monitoring, key custody or a response SLA.
+
+## Proposed role allocation — awaiting confirmation
+
+| Responsibility | Proposed accountable organisation | Person/team decision required |
+| --- | --- | --- |
+| Runtime/dependency maintenance | VERIQTA LIMITED | Appoint runtime update owner and backup; accept SQLite/Python/base-image/advisory review cadence |
+| Security triage | VERIQTA LIMITED | Appoint primary and backup responder; confirm private-report access and notification delivery |
+| Release review | VERIQTA LIMITED | Appoint reviewer for evidence, exceptions and release approval; record independent trust-policy review |
+| Signing-key custody | VERIQTA LIMITED | Appoint restricted primary custodian and recovery delegate; approve custody, backup, rotation and revocation |
+
+These proposals do not grant access or assign the existing `veriqta` administrator to operational roles. Private reporting is enabled and its public route verified; subscription/delivery and staffed triage remain unverified. The CLI token could not inspect subscriptions without an additional `notifications` scope; no extra scope was requested and no account preferences were changed.

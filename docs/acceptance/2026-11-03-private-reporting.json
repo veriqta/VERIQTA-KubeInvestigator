@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-03",
+  "baseline_revision": "39feabbbab9a057160c6a536b97caff786e63c1f",
+  "baseline_validation": {
+    "run_id": 41608968992,
+    "conclusion": "success",
+    "successful_jobs": 13
+  },
+  "reporting": {
+    "authorised_change": "enabled private vulnerability reporting",
+    "enabled": true,
+    "public_advisories_page_button": "Report a vulnerability",
+    "form_url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/security/advisories/new",
+    "page_link_verified": true,
+    "report_submitted": false,
+    "notification_delivery_tested": false,
+    "visibility": "PUBLIC",
+    "visibility_changed": false
+  },
+  "access_inspection": {
+    "collaborators": [
+      {
+        "login": "veriqta",
+        "role": "admin"
+      }
+    ],
+    "repository_teams": [],
+    "notification_subscription_query": "HTTP 404; CLI reports missing notifications scope",
+    "additional_scope_requested": false,
+    "individual_delivery_confirmed": false
+  },
+  "assignments": "awaiting explicit person/team confirmation",
+  "publisher_keys_generated_or_replaced": false,
+  "live_evaluation_authorised": false,
+  "paid_calls_made": false
+}
