@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-03",
+  "baseline_revision": "e4dcf3bf7be6e786b7154f9a03a32e9d44f1ed0a",
+  "post_merge_validation": {
+    "run_id": 41524039692,
+    "conclusion": "success",
+    "successful_jobs": 13
+  },
+  "maintaining_organisation": "VERIQTA LIMITED",
+  "operational_roles": "person_or_team_assignment_required",
+  "repository_inspection": {
+    "visibility": "PUBLIC",
+    "viewer_permission": "ADMIN",
+    "private_vulnerability_reporting": {
+      "enabled": false
+    },
+    "settings_changed": false,
+    "visibility_changed": false
+  },
+  "signing": {
+    "approved_signers": 0,
+    "recommended_path": "offline RSA publisher approval; dedicated organisation identity and restricted custody",
+    "production_identity_created": false
+  },
+  "live_evaluation": {
+    "investigations": 8,
+    "maximum_requests": 48,
+    "proposed_budget_usd": 0.5,
+    "paid_execution_authorised": false,
+    "prior_dispatch_approval_scope": "candidate workflow only",
+    "credential_presence_only": {
+      "KI_API_KEY_in_process_environment": false,
+      "designated_live_env_file_exists": false,
+      "values_inspected": false,
+      "other_credential_stores_searched": false
+    }
+  },
+  "publication_performed": false
+}
