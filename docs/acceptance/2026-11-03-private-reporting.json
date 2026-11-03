@@ -31,6 +31,25 @@
   },
   "assignments": "awaiting explicit person/team confirmation",
   "publisher_keys_generated_or_replaced": false,
-  "live_evaluation_authorised": false,
-  "paid_calls_made": false
+  "live_evaluation_authorised": true,
+  "paid_calls_made": false,
+  "live_evaluation_scope": {
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "investigations": 8,
+    "maximum_requests": 48,
+    "proposed_budget_usd": 0.5,
+    "automatic_retries": false,
+    "maximum_model_turns_per_investigation": 6,
+    "maximum_tools_per_investigation": 8,
+    "running_seconds_per_investigation": 90,
+    "maximum_payload_characters": 48000,
+    "maximum_output_tokens_per_request": 1600
+  },
+  "credential_presence_only": {
+    "KI_API_KEY_in_process_environment": false,
+    "designated_live_env_file_exists": false,
+    "values_inspected": false,
+    "other_stores_searched": false
+  }
 }

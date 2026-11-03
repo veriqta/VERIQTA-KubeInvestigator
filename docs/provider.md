@@ -22,7 +22,7 @@ At the official rates checked November 2, 2026—$0.10 per million uncached inpu
 
 ## Authorisation and setup status
 
-The recorded eight-investigation, maximum 48-request, proposed $0.50 evaluation remains **unauthorised** as of November 3, 2026. The candidate-workflow dispatch approval authorised artifact preparation only; it did not approve paid model calls. Approval requested for the existing bounded plan: OpenAI `gpt-6-luna`, eight investigations, at most 48 requests, the stated per-request/tool/time limits, no automatic retries, and the proposed $0.50 budget envelope. Authorisation has not been granted. The remaining decision is explicit approval of this exact evaluation scope and budget, not another candidate-workflow approval. No live calls have been made.
+The bounded evaluation was explicitly authorised on November 3, 2026: OpenAI `gpt-6-luna`, **eight investigations, at most 48 requests**, the documented per-request/tool/time limits, a **proposed $0.50 budget envelope**, and **no automatic retries**. This approval does not authorise expanded cases, increased limits or unrelated paid calls. Secure credential configuration remains outstanding; no live calls or accuracy results have been recorded. Do not seek duplicate approval for this unchanged scope. Recheck model access/pricing before execution; pause if the approved envelope cannot be respected.
 
 A presence-only local check found neither `KI_API_KEY` in the current process environment nor the designated `.data/live.env` file. It did not inspect secret values or search other credential stores, so it does not establish that no organisation credentials exist elsewhere. Before execution, an authorised operator must configure a restricted evaluation-project provider credential server-side and confirm access, current pricing and billing controls. Provider budget alerts may not enforce a hard $0.50 spending cap; the proposed envelope is not a billing guarantee.
 
@@ -30,7 +30,7 @@ A presence-only local check found neither `KI_API_KEY` in the current process en
 
 Use only an authorised disposable deployment exposed through an explicit localhost port-forward. Keep a high-entropy team token and provider API key in a private server-side environment file or existing Kubernetes Secret containing `KI_TOKEN` and `KI_API_KEY`. For a local environment file, use a private directory and mode 0600 (with `umask 077`), a private editor or secret-manager injection, and an ignored path such as `.data/live.env`; do not type keys into shell command history. For Helm, create/update the Secret from that private file and reference `existingSecret`; restrict Secret-reader access and use cluster encryption at rest where available. Never put real values in source, Helm values, URLs, screenshots or chat. Configure `provider=openai`, `model=gpt-6-luna`, `logs=true` and only `veriqta-demo`; use the documented [installation Secret procedure](installation.md). No key is delivered to the browser or evaluation output. A Secret's base64 representation is not encryption.
 
-After independent paid-call authorisation and private configuration, the explicit execution command is:
+After the already authorised scope has secure private configuration, the explicit execution command is:
 
 ```sh
 # KI_TOKEN is the team token, not the provider key. Configure it privately.
