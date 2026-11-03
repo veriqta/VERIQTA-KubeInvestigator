@@ -1,0 +1,55 @@
+{
+  "date": "2026-11-03",
+  "baseline_revision": "39feabbbab9a057160c6a536b97caff786e63c1f",
+  "baseline_validation": {
+    "run_id": 41608968992,
+    "conclusion": "success",
+    "successful_jobs": 13
+  },
+  "reporting": {
+    "authorised_change": "enabled private vulnerability reporting",
+    "enabled": true,
+    "public_advisories_page_button": "Report a vulnerability",
+    "form_url": "https://github.com/veriqta/VERIQTA-KubeInvestigator/security/advisories/new",
+    "page_link_verified": true,
+    "report_submitted": false,
+    "notification_delivery_tested": false,
+    "visibility": "PUBLIC",
+    "visibility_changed": false
+  },
+  "access_inspection": {
+    "collaborators": [
+      {
+        "login": "veriqta",
+        "role": "admin"
+      }
+    ],
+    "repository_teams": [],
+    "notification_subscription_query": "HTTP 404; CLI reports missing notifications scope",
+    "additional_scope_requested": false,
+    "individual_delivery_confirmed": false
+  },
+  "assignments": "awaiting explicit person/team confirmation",
+  "publisher_keys_generated_or_replaced": false,
+  "live_evaluation_authorised": true,
+  "paid_calls_made": false,
+  "live_evaluation_scope": {
+    "provider": "openai",
+    "model": "gpt-6-luna",
+    "investigations": 8,
+    "maximum_requests": 48,
+    "proposed_budget_usd": 0.5,
+    "automatic_retries": false,
+    "maximum_model_turns_per_investigation": 6,
+    "maximum_tools_per_investigation": 8,
+    "running_seconds_per_investigation": 90,
+    "maximum_payload_characters": 48000,
+    "maximum_output_tokens_per_request": 1600
+  },
+  "credential_presence_only": {
+    "KI_API_KEY_in_process_environment": false,
+    "designated_live_env_file_exists": false,
+    "values_inspected": false,
+    "other_stores_searched": false
+  }
+}
