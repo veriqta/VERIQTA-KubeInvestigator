@@ -2,6 +2,12 @@
 
 The existing candidate workflow uses ephemeral RSA test keys. Its signatures prove integrity of the recorded candidate bytes, not an approved publisher, independent builder or SLSA level. No persistent publisher identity or private signing key has been configured. The committed [trust policy](../packaging/release/trust.json) deliberately has an empty approved-signers list: the publisher path fails closed until an identity is approved.
 
+## Recommended first-release setup
+
+Use the implemented offline publisher-approval path with a dedicated VERIQTA LIMITED release-publisher RSA key of at least 3072 bits. Keep the key on an isolated signing workstation under an explicitly appointed custodian; maintain a restricted offline recovery copy and a documented revocation/rotation procedure. This is a recommendation, not an assigned custodian or generated identity. Do not place a persistent key in GitHub Actions secrets for the current candidate workflow: that workflow intentionally retains only ephemeral test signing and `contents: read` permission.
+
+Owner action: appoint the custodian and independent release reviewer, approve custody/backup/validity, then generate the key outside this repository using the approved procedure. Review the actual public SPKI fingerprint and add its active, time-bounded entry with a genuine review reference to `packaging/release/trust.json` through a reviewed PR. Distribute the approved public key and policy SHA-256 through an independently authenticated organisation channel. No private key or approval is needed merely to run existing candidate validation. An administrator must arrange the review/access controls; no environment, write permission or publication permission has been added to CI. Hardware-backed or keyless signing would require a separately implemented and validated integration and is not claimed by this first-release path.
+
 ## Required trust setup
 
 A repository administrator and release reviewer must select an accountable signing identity, approve its custody/recovery/revocation process and verify its public-key fingerprint through an independent channel. No individual is assigned by this guide. A public key bundled with the candidate or copied from an unverified PR is not a trust anchor.

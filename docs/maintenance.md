@@ -1,9 +1,10 @@
 # Maintenance and vulnerability response
 
-No named runtime maintainer, security triage owner or release reviewer has been assigned in this repository. Repository administrators must record responsible people and an independently reviewed approval process before a public release. The roles below define responsibilities; they do not appoint anyone or promise a support SLA.
+VERIQTA LIMITED is the maintaining organisation. It is accountable for arranging maintenance and release governance. No named runtime maintainer, security triage owner or release reviewer has been assigned in this repository. Repository administrators must record responsible people and an independently reviewed approval process before a package/release publication. The roles below define responsibilities; they do not appoint anyone or promise a support SLA.
 
 | Role | Responsibilities | Current assignment |
 | --- | --- | --- |
+| Maintaining organisation | Arrange ownership, resourcing and succession for the roles below | VERIQTA LIMITED |
 | Runtime maintainer | SQLite fork, CPython/linkage, Alpine base, OpenSSL/Expat, dependency/action pins, update PRs and exact-image evidence | Unassigned |
 | Security triage owner | Monitor advisories and private reports, assess deployed exposure, coordinate fixes and communications without public exploit details | Unassigned |
 | Release reviewer | Review test/scan/provenance evidence, licensing, publisher identity and distribution approval; confirm private reporting works | Unassigned |
@@ -39,3 +40,7 @@ The [SQLite recipe](../packaging/sqlite/README.md) records provenance, checksum 
 6. Release publication, visibility and production rollout each require separate approval. Document affected versions, upgrade steps and the backup/schema contract; do not advertise cross-release downgrade or disaster guarantees outside the tested profile.
 
 Signing-key rotation/revocation, security reporting and maintainer succession must be reviewed before changing responsibilities. Record the accepted scope and review references without placing private contact details, credentials or conversation history in distributed documents. Until people and channels are appointed, these operational responsibilities remain release blockers rather than fictional completed work.
+
+## Assignment required before publication
+
+VERIQTA LIMITED must explicitly designate a person or team for runtime updates, security triage and release review, and a restricted signing-key custodian with a recovery delegate. Roles may overlap where justified, but release evidence and trust-policy changes require an independently recorded review. Record role acceptance, GitHub access and alert subscription verification through the organisation’s approved process; public documentation need not expose private contact details. Organisational naming alone does not establish staffed monitoring, key custody or a response SLA.

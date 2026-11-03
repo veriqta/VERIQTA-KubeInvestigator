@@ -1,5 +1,7 @@
 # Maintenance responsibilities
 
+**Maintaining organisation: VERIQTA LIMITED.** Organisational stewardship does not appoint an operational responder or signing-key custodian.
+
 Repository administrators control maintainer appointment, release approval and private security-report handling. No response-time or commercial support commitment is provided. A named responsible reviewer for the project-maintained SQLite package and source-interpreter recipe has not yet been recorded; that assignment and recipe review are required before a public release.
 
 The runtime maintainer is responsible for:
